@@ -1,16 +1,16 @@
 ﻿<?php
 // 百度站长平台 API 自动推送脚本
-// 使用方法：上传到服务器后访问 https://www.jiaodao.fun/baidu_push.php
+// 使用方法：上传到服务器后访问 https://www.jiaodaodadui.com.cn/baidu_push.php
 
 // 配置信息
-$site = 'https://www.jiaodao.fun';
+$site = 'https://www.jiaodaodadui.com.cn';
 $token = 'Cu4Vb8njvn4q86SR';
 $api = "http://data.zz.baidu.com/urls?site={$site}&token={$token}";
 
 // 需要推送的URL列表
 $urls = array(
-    'https://www.jiaodao.fun/',
-    'https://www.jiaodao.fun/index.html',
+    'https://www.jiaodaodadui.com.cn/',
+    'https://www.jiaodaodadui.com.cn/index.html',
 );
 
 // 初始化cURL

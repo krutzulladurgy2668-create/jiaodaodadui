@@ -136,7 +136,7 @@ if ($action === 'create') {
         exit;
     }
 
-    $redirectUri = 'https://www.jiaodao.fun/api/feishu_callback.php';
+    $redirectUri = 'https://www.jiaodaodadui.com.cn/api/feishu_callback.php';
     $postData = json_encode([
         'app_id' => FEISHU_APP_ID,
         'redirect_uri' => $redirectUri,

@@ -50,18 +50,18 @@ if (!$article && !empty($allNews)) {
 $pageTitle = $article ? htmlspecialchars($article['title']) . ' - 学生志愿教导大队' : '未找到文章 - 学生志愿教导大队';
 
 // 提取文章封面图：优先从images数组，再从content中提取第一张img，最后用默认图
-$ogImage = 'https://www.jiaodao.fun/logo.jpg';
+$ogImage = 'https://www.jiaodaodadui.com.cn/logo.jpg';
 if ($article) {
     // 优先使用文章的images字段第一张
     if (!empty($article['images']) && is_array($article['images']) && !empty($article['images'][0])) {
         $imgSrc = $article['images'][0];
-        $ogImage = (strpos($imgSrc, 'http') === 0) ? $imgSrc : ('https://www.jiaodao.fun' . ltrim($imgSrc, '/'));
+        $ogImage = (strpos($imgSrc, 'http') === 0) ? $imgSrc : ('https://www.jiaodaodadui.com.cn' . ltrim($imgSrc, '/'));
     }
     // 其次从content HTML中提取第一张图片
     else {
         $contentHtml = $article['content'] ?? '';
         if ($contentHtml && preg_match('/<img[^>]+src=["\']([^"\']+)["\']/i', $contentHtml, $imgMatch)) {
-            $ogImage = (strpos($imgMatch[1], 'http') === 0) ? $imgMatch[1] : ('https://www.jiaodao.fun' . ltrim($imgMatch[1], '/'));
+            $ogImage = (strpos($imgMatch[1], 'http') === 0) ? $imgMatch[1] : ('https://www.jiaodaodadui.com.cn' . ltrim($imgMatch[1], '/'));
         }
     }
 }
@@ -69,7 +69,7 @@ if ($article) {
 // 文章描述（用于微信卡片）
 $ogDesc = $article ? htmlspecialchars(mb_substr($article['desc'] ?? '', 0, 120, 'UTF-8')) : '学生志愿教导大队通知公告详情页';
 // 当前页面完整URL
-$pageUrl = 'https://www.jiaodao.fun/news-detail.php?id=' . (isset($_GET['id']) ? urlencode($_GET['id']) : '');
+$pageUrl = 'https://www.jiaodaodadui.com.cn/news-detail.php?id=' . (isset($_GET['id']) ? urlencode($_GET['id']) : '');
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -80,7 +80,7 @@ $pageUrl = 'https://www.jiaodao.fun/news-detail.php?id=' . (isset($_GET['id']) ?
     <meta name="description" content="<?php echo $article ? htmlspecialchars(mb_substr($article['desc'] ?? '', 0, 120)) : '学生志愿教导大队通知公告详情页'; ?>">
     <meta name="author" content="学生志愿教导大队">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.jiaodao.fun/news-detail.php?id=<?php echo isset($_GET['id']) ? urlencode($_GET['id']) : ''; ?>">
+    <link rel="canonical" href="https://www.jiaodaodadui.com.cn/news-detail.php?id=<?php echo isset($_GET['id']) ? urlencode($_GET['id']) : ''; ?>">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/logo.jpg">
 
@@ -522,15 +522,6 @@ body{padding-top:64px}
 
             <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500 space-y-2">
                 <p>学生志愿教导大队版权所有</p>
-                <p class="flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-1">
-                    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors cursor-pointer">
-                        蜀ICP备2026028492号-1
-                    </a>
-                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors cursor-pointer inline-flex items-center gap-1">
-                        <img src="https://www.beian.gov.cn/img/ghs.png" alt="公安备案图标" class="w-4 h-4">
-                        川公网安备51012202002408号
-                    </a>
-                </p>
             </div>
         </div>
     </footer>

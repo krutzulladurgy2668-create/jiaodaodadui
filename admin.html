@@ -17,15 +17,15 @@
     <meta property="og:title" content="学生志愿教导大队 - 管理后台">
     <meta property="og:description" content="学生志愿教导大队管理后台，用于管理官网通知公告、轮播图、人员信息等内容。">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.jiaodao.fun/admin.html">
-    <meta property="og:image" content="https://www.jiaodao.fun/logo.jpg">
+    <meta property="og:url" content="https://www.jiaodaodadui.com.cn/admin.html">
+    <meta property="og:image" content="https://www.jiaodaodadui.com.cn/logo.jpg">
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
 
     <!-- 微博/QQ 等 -->
     <meta itemprop="name" content="学生志愿教导大队 - 管理后台">
     <meta itemprop="description" content="学生志愿教导大队管理后台，用于管理官网通知公告、轮播图、人员信息等内容。">
-    <meta itemprop="image" content="https://www.jiaodao.fun/logo.jpg">
+    <meta itemprop="image" content="https://www.jiaodaodadui.com.cn/logo.jpg">
 
     <!-- 图标 -->
     <link rel="icon" href="logo.jpg" type="image/jpeg">
@@ -478,13 +478,8 @@
     <div class="login-footer relative z-10 w-full py-5 text-center">
         <p class="text-xs text-gray-400 mb-1">学生志愿教导大队版权所有</p>
         <div class="text-xs text-gray-400 flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-1">
-            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-600 transition-colors cursor-pointer">
-                蜀ICP备2026028492号-1
-            </a>
-            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="hover:text-gray-600 transition-colors cursor-pointer inline-flex items-center gap-1">
-                <img src="https://www.beian.gov.cn/img/ghs.png" alt="公安备案图标" class="w-3.5 h-3.5 inline-block align-middle">
-                川公网安备51012202002408号
-            </a>
+            
+            
         </div>
     </div>
 </div>
@@ -620,7 +615,7 @@ var _feishuQrKey = '';
 
 function handleFeishuLogin() {
     // 必须与后端 feishu_callback.php 里的 redirect_uri 完全一致
-    var redirectUri = encodeURIComponent('https://www.jiaodao.fun/api/feishu_callback.php');
+    var redirectUri = encodeURIComponent('https://www.jiaodaodadui.com.cn/api/feishu_callback.php');
     var authUrl = 'https://accounts.feishu.cn/open-apis/authen/v1/authorize?app_id=cli_aabc65cf3138dbd4&redirect_uri=' + redirectUri + '&scope=contact:user.base:readonly';
 
     // 移动端直接跳转飞书授权链接，PC端走后端中间页
@@ -1341,14 +1336,9 @@ function showLoginErr(msg) {
         <div class="flex items-center justify-center gap-x-2 text-xs text-gray-400 flex-wrap px-4">
             <span>© 2026 学生志愿教导大队版权所有</span>
             <span>·</span>
-            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="text-[#3370FF] hover:text-[#2660E0] hover:underline">
-                蜀ICP备2026028492号
-            </a>
+            
             <span>·</span>
-            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="text-[#3370FF] hover:text-[#2660E0] hover:underline inline-flex items-center gap-1">
-                <img src="https://www.beian.gov.cn/img/ghs.png" alt="公安备案图标" style="width:14px;height:14px;flex-shrink:0;">
-                <span>川公网安备51012202002408号</span>
-            </a>
+            
         </div>
     </div>
 </div>

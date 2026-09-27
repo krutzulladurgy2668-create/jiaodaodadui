@@ -14,7 +14,7 @@ require_once __DIR__ . '/feishu_bot.php';
 
 header('Content-Type: application/json; charset=utf-8');
 // CORS：限制为同源请求（部署时可根据实际情况调整）
-$allowedOrigins = ['*']; // 生产环境建议设为具体域名，如 ['https://www.jiaodao.fun']
+$allowedOrigins = ['*']; // 生产环境建议设为具体域名，如 ['https://www.jiaodaodadui.com.cn']
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 if (in_array($origin, $allowedOrigins) || in_array('*', $allowedOrigins)) {
     header('Access-Control-Allow-Origin: ' . (in_array('*', $allowedOrigins) ? '*' : $origin));

@@ -879,24 +879,24 @@ function genPage(pageKey, fileName, pageTitle, bodyContent, extraInit) {
     <meta name="googlebot" content="index, follow">
     <meta name="revisit-after" content="7 days">
     
-    <link rel="canonical" href="https://www.jiaodao.fun/${fileName}">
+    <link rel="canonical" href="https://www.jiaodaodadui.com.cn/${fileName}">
     
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/logo.jpg">
     
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.jiaodao.fun/${fileName}">
+    <meta property="og:url" content="https://www.jiaodaodadui.com.cn/${fileName}">
     <meta property="og:title" content="${ogTitle}">
     <meta property="og:description" content="${ogDesc}">
-    <meta property="og:image" content="https://www.jiaodao.fun/logo.jpg">
+    <meta property="og:image" content="https://www.jiaodaodadui.com.cn/logo.jpg">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:site_name" content="学生志愿教导大队">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.jiaodao.fun/${fileName}">
+    <meta name="twitter:url" content="https://www.jiaodaodadui.com.cn/${fileName}">
     <meta name="twitter:title" content="${ogTitle}">
     <meta name="twitter:description" content="${ogDesc}">
-    <meta name="twitter:image" content="https://www.jiaodao.fun/logo.jpg">
+    <meta name="twitter:image" content="https://www.jiaodaodadui.com.cn/logo.jpg">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -908,9 +908,9 @@ function genPage(pageKey, fileName, pageTitle, bodyContent, extraInit) {
     
     <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preconnect" href="https://www.jiaodao.fun" crossorigin>
+    <link rel="preconnect" href="https://www.jiaodaodadui.com.cn" crossorigin>
     
-    <link rel="dns-prefetch" href="//www.jiaodao.fun">
+    <link rel="dns-prefetch" href="//www.jiaodaodadui.com.cn">
     <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     
@@ -922,8 +922,8 @@ ${preloadLinks}
         "@type": "Organization",
         "name": "学生志愿教导大队",
         "alternateName": "教导大队",
-        "url": "https://www.jiaodao.fun/",
-        "logo": "https://www.jiaodao.fun/logo.jpg",
+        "url": "https://www.jiaodaodadui.com.cn/",
+        "logo": "https://www.jiaodaodadui.com.cn/logo.jpg",
         "description": "学生志愿教导大队官方网站，明理严军，自强不息。"
     }
     </script>

@@ -134,7 +134,7 @@ function httpGet($url, $headers = [], $timeout = 30) {
 
 $code = isset($_GET['code']) ? $_GET['code'] : '';
 if (empty($code)) {
-    $redirect_uri = urlencode('https://www.jiaodao.fun/api/feishu_callback.php');
+    $redirect_uri = urlencode('https://www.jiaodaodadui.com.cn/api/feishu_callback.php');
     $auth_url = "https://accounts.feishu.cn/open-apis/authen/v1/authorize?app_id=" . FEISHU_APP_ID . "&redirect_uri=" . $redirect_uri . "&scope=contact:user.base:readonly";
     header('Location: ' . $auth_url);
     exit;
@@ -148,7 +148,7 @@ $token_data = json_encode([
     'client_id' => FEISHU_APP_ID,
     'client_secret' => FEISHU_APP_SECRET,
     'code' => $code,
-    'redirect_uri' => 'https://www.jiaodao.fun/api/feishu_callback.php'
+    'redirect_uri' => 'https://www.jiaodaodadui.com.cn/api/feishu_callback.php'
 ]);
 
 $result = httpPost($token_url, $token_data, [

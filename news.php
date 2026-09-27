@@ -73,8 +73,8 @@ function extractFirstImg($content) {
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>通知公告 - 学生志愿教导大队</title><meta name="description" content="学生志愿教导大队通知公告与新闻动态。">
-    <meta name="author" content="学生志愿教导大队"><meta name="robots" content="index, follow"><link rel="canonical" href="https://www.jiaodao.fun/news.php"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/logo.jpg">
-    <meta property="og:type" content="website"><meta property="og:url" content="https://www.jiaodao.fun/news.php"><meta property="og:title" content="通知公告 - 学生志愿教导大队"><meta property="og:image" content="https://www.jiaodao.fun/logo.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="通知公告 - 学生志愿教导大队">
+    <meta name="author" content="学生志愿教导大队"><meta name="robots" content="index, follow"><link rel="canonical" href="https://www.jiaodaodadui.com.cn/news.php"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/logo.jpg">
+    <meta property="og:type" content="website"><meta property="og:url" content="https://www.jiaodaodadui.com.cn/news.php"><meta property="og:title" content="通知公告 - 学生志愿教导大队"><meta property="og:image" content="https://www.jiaodaodadui.com.cn/logo.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="通知公告 - 学生志愿教导大队">
     <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="dns-prefetch" href="//cdn.tailwindcss.com"><link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="preload" href="/logo.jpg" as="image" fetchpriority="high">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -359,15 +359,6 @@ body{padding-top:64px}
 
         <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500 space-y-2">
             <p>学生志愿教导大队版权所有</p>
-            <p class="flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-1">
-                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors cursor-pointer">
-                    蜀ICP备2026028492号-1
-                </a>
-                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors cursor-pointer inline-flex items-center gap-1">
-                    <img src="https://www.beian.gov.cn/img/ghs.png" alt="公安备案图标" class="w-4 h-4">
-                    川公网安备51012202002408号
-                </a>
-            </p>
         </div>
     </div>
 </footer>

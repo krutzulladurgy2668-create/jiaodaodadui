@@ -1,6 +1,6 @@
 # 湖南涉外经济学院学生志愿教导大队 - robots.txt
 # 网站地图位置
-Sitemap: https://www.jiaodao.fun/sitemap.xml
+Sitemap: https://www.jiaodaodadui.com.cn/sitemap.xml
 
 # 允许所有主流搜索引擎爬虫
 User-agent: *
