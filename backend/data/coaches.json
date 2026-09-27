@@ -1,0 +1,22 @@
+[
+  {
+    "name": "姓名1",
+    "post": "教练员",
+    "photo": "coach_1.jpg"
+  },
+  {
+    "name": "姓名2",
+    "post": "教练员",
+    "photo": "coach_2.jpg"
+  },
+  {
+    "name": "姓名3",
+    "post": "教练员",
+    "photo": "coach_3.jpg"
+  },
+  {
+    "name": "姓名4",
+    "post": "教练员",
+    "photo": "coach_4.jpg"
+  }
+]

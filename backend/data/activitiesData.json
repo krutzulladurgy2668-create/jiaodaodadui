@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "title": "十五届换届仪式",
+    "date": "2026-05",
+    "image": "album1.jpg",
+    "desc": "第十五届学生志愿教导大队换届仪式"
+  },
+  {
+    "id": 2,
+    "title": "十五届换届晚会",
+    "date": "2026-05",
+    "image": "album2.jpg",
+    "desc": "第十五届换届晚会活动"
+  },
+  {
+    "id": 3,
+    "title": "十四届换届仪式",
+    "date": "2025-05",
+    "image": "album3.jpg",
+    "desc": "第十四届换届仪式"
+  },
+  {
+    "id": 4,
+    "title": "十四届换届晚会",
+    "date": "2025-05",
+    "image": "album4.jpg",
+    "desc": "第十四届换届晚会"
+  },
+  {
+    "id": 5,
+    "title": "2024届军训",
+    "date": "2024-09",
+    "image": "album5.jpg",
+    "desc": "2024级新生军训工作"
+  },
+  {
+    "id": 6,
+    "title": "2025届军训",
+    "date": "2025-09",
+    "image": "album6.jpg",
+    "desc": "2025级新生军训工作"
+  },
+  {
+    "id": 7,
+    "title": "精彩合集1",
+    "date": "",
+    "image": "album7.jpg",
+    "desc": "精彩活动照片集锦"
+  },
+  {
+    "id": 8,
+    "title": "精彩合集2",
+    "date": "",
+    "image": "album8.jpg",
+    "desc": ""
+  },
+  {
+    "id": 9,
+    "title": "精彩合集3",
+    "date": "",
+    "image": "album9.jpg",
+    "desc": ""
+  },
+  {
+    "id": 10,
+    "title": "日常训练1",
+    "date": "",
+    "image": "album10.jpg",
+    "desc": "日常训练照片"
+  },
+  {
+    "id": 11,
+    "title": "日常训练2",
+    "date": "",
+    "image": "album11.jpg",
+    "desc": ""
+  },
+  {
+    "id": 12,
+    "title": "日常训练3",
+    "date": "",
+    "image": "album12.jpg",
+    "desc": ""
+  },
+  {
+    "id": 13,
+    "title": "日常训练4",
+    "date": "",
+    "image": "album13.jpg",
+    "desc": ""
+  },
+  {
+    "id": 14,
+    "title": "日常训练5",
+    "date": "",
+    "image": "album14.jpg",
+    "desc": ""
+  },
+  {
+    "id": 15,
+    "title": "日常训练6",
+    "date": "",
+    "image": "album15.jpg",
+    "desc": ""
+  },
+  {
+    "id": 16,
+    "title": "日常训练7",
+    "date": "",
+    "image": "album16.jpg",
+    "desc": ""
+  },
+  {
+    "id": 17,
+    "title": "日常训练8",
+    "date": "",
+    "image": "album17.jpg",
+    "desc": ""
+  },
+  {
+    "id": 18,
+    "title": "日常训练9",
+    "date": "",
+    "image": "album18.jpg",
+    "desc": ""
+  },
+  {
+    "id": 19,
+    "title": "日常训练10",
+    "date": "",
+    "image": "album19.jpg",
+    "desc": ""
+  },
+  {
+    "id": 20,
+    "title": "日常训练11",
+    "date": "",
+    "image": "album20.jpg",
+    "desc": ""
+  }
+]

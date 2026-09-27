@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>常见问题 - 学生志愿教导大队</title>
+    <meta name="description" content="学生志愿教导大队常见问题解答FAQ，解答入队招新、训练安排、管理规定、日常学习工作等方面的常见疑问。">
+    <meta name="keywords" content="教导大队,常见问题,FAQ,入队问题,新生答疑">
+    <meta name="author" content="学生志愿教导大队">
+
+    <link rel="canonical" href="https://www.jiaodao.fun/faq.html">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/logo.jpg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.jiaodao.fun/faq.html">
+    <meta property="og:title" content="常见问题 - 学生志愿教导大队">
+    <meta property="og:description" content="教导大队常见问题解答，入队招新疑问一站式了解。">
+    <meta property="og:image" content="https://www.jiaodao.fun/logo.jpg">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pkured': '#8B0000', 'pkured-dark': '#6B0000',
+                        'deepblue': '#1E3A8A', 'golden': '#D4AF37',
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'SimSun', 'serif'],
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; touch-action: manipulation; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #fff; color: #333; line-height: 1.8; overflow-x: hidden; }
+
+        .page-header { background: linear-gradient(135deg, #8B0000 0%, #1E3A8A 100%); padding: 140px 0 80px; color: white; text-align: center; position: relative; overflow: hidden; }
+        .page-header::before { content: ''; position: absolute; top: -50%; right: -20%; width: 60%; height: 200%; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%); pointer-events: none; }
+
+        .nav-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: all 350ms ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .nav-header.scrolled { background: rgba(255,255,255,0.98); box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+        .nav-link { position: relative; color: #333; font-size: 15px; font-weight: 500; transition: color 250ms ease; padding: 8px 0; display: inline-block; }
+        .nav-link:hover { color: #8B0000; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background: #8B0000; transition: all 300ms ease; transform: translateX(-50%); }
+        .nav-link:hover::after { width: 70%; }
+        .nav-link.active { color: #8B0000; font-weight: 600; }
+        .nav-link.active::after { width: 70%; }
+
+        .dropdown-menu { position: absolute; top: 100%; left: 0; min-width: 160px; background: white; box-shadow: 0 4px 24px rgba(0,0,0,0.1); border-radius: 6px; opacity: 0; visibility: hidden; transform: translateY(8px); transition: all 280ms ease; z-index: 100; border: 1px solid #f0f0f0; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a { display: block; padding: 10px 18px; color: #555; font-size: 14px; transition: all 200ms ease; border-bottom: 1px solid #f9f9f9; }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover { background: #fef2f2; color: #8B0000; padding-left: 22px; }
+
+        .mobile-menu { position: fixed; top: 0; right: 0; width: 75%; max-width: 280px; height: 100%; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); box-shadow: -8px 0 40px rgba(0,0,0,0.12); transform: translateX(100%); transition: transform 380ms ease; z-index: 1000; overflow-y: auto; }
+        .mobile-menu-item { opacity: 0; transform: translateX(20px); transition: all 300ms ease-out; }
+        #mobileMenu.menu-open .mobile-menu-item { opacity: 1; transform: translateX(0); }
+
+        .section-header { position: relative; display: inline-block; margin-bottom: 32px; }
+        .section-header h2 { font-family: Georgia, SimSun, serif; font-size: 26px; font-weight: 600; color: #222; letter-spacing: 1px; }
+        .section-header::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 44px; height: 3px; background: #8B0000; border-radius: 2px; }
+
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: all 700ms ease; }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+        .faq-item { background: white; border-radius: 10px; border: 1px solid #eaeaea; margin-bottom: 12px; overflow: hidden; transition: all 300ms ease; }
+        .faq-item:hover { border-color: rgba(139,0,0,0.2); box-shadow: 0 6px 20px rgba(139,0,0,0.04); }
+        .faq-q { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; user-select: none; }
+        .faq-q-icon { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: linear-gradient(135deg, #8B0000, #1E3A8A); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+        .faq-q-text { flex: 1; font-weight: 600; color: #1f2937; font-size: 15px; padding-top: 2px; }
+        .faq-q-arrow { color: #9ca3af; transition: transform 300ms ease; padding-top: 4px; font-size: 13px; }
+        .faq-item.open .faq-q-arrow { transform: rotate(180deg); color: #8B0000; }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 400ms ease, padding 300ms ease; }
+        .faq-a-inner { padding: 0 22px 22px 64px; color: #4b5563; font-size: 14px; line-height: 1.85; }
+        .faq-a-inner p + p { margin-top: 10px; }
+        .faq-item.open .faq-a { max-height: 600px; }
+
+        .cat-tab { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 10px; background: white; border: 1px solid #e5e7eb; color: #555; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 200ms ease; }
+        .cat-tab:hover { border-color: #8B0000; color: #8B0000; }
+        .cat-tab.active { background: linear-gradient(135deg, #8B0000, #6B0000); color: white; border-color: transparent; }
+
+        .search-input { flex: 1; padding: 11px 16px 11px 44px; border-radius: 10px; border: 1px solid #e5e7eb; font-size: 14px; transition: all 200ms ease; outline: none; background: white; }
+        .search-input:focus { border-color: #8B0000; box-shadow: 0 0 0 3px rgba(139,0,0,0.08); }
+
+        .empty-hint { padding: 60px 20px; text-align: center; }
+        .empty-hint i { font-size: 44px; color: #d1d5db; margin-bottom: 14px; }
+
+        .faq-sidebar { position: sticky; top: 88px; }
+        .faq-quick { background: white; border-radius: 12px; border: 1px solid #eaeaea; padding: 20px; }
+        .faq-quick h4 { font-family: Georgia, serif; font-weight: 600; margin-bottom: 14px; color: #1f2937; font-size: 16px; padding-bottom: 10px; border-bottom: 1px solid #f3f4f6; }
+        .faq-quick a { display: block; padding: 8px 12px; border-radius: 6px; color: #555; font-size: 13px; transition: all 200ms ease; margin-bottom: 2px; }
+        .faq-quick a:hover { background: #fef2f2; color: #8B0000; }
+
+        .social-icon-wrapper { position: relative; display: inline-block; }
+        .qr-popup { position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: white; border-radius: 8px; box-shadow: 0 8px 28px rgba(0,0,0,0.14); padding: 10px; text-align: center; width: 130px; opacity: 0; visibility: hidden; transition: all 280ms ease; z-index: 50; }
+        .social-icon-wrapper:hover .qr-popup { opacity: 1; visibility: visible; }
+        .qr-popup::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 7px solid transparent; border-top-color: white; }
+    </style>
+</head>
+
+<body class="bg-gray-50/60">
+
+    <header id="mainNav" class="nav-header">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-18">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="/logo.jpg" alt="Logo" class="w-9 h-9 md:w-11 md:h-11 rounded-full object-cover shadow-sm flex-shrink-0" onerror="this.style.display='none'">
+                    <h1 class="text-lg md:text-xl font-semibold text-gray-800 font-serif tracking-wide">学生志愿教导大队</h1>
+                </a>
+                <nav class="hidden lg:flex items-center gap-7">
+                    <a href="index.html" class="nav-link">首页</a>
+                    <a href="about.html" class="nav-link">大队简介</a>
+                    <a href="org.html" class="nav-link">组织架构</a>
+                    <a href="news.php" class="nav-link">通知公告</a>
+
+                    <div class="relative dropdown">
+                        <a class="nav-link">人员信息 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="current.html">第十五届干部</a>
+                            <a href="history.html">历任干部</a>
+                        </div>
+                    </div>
+
+                    <div class="relative dropdown">
+                        <a class="nav-link">荣誉墙 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="honor2.html">个人荣誉墙</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a class="nav-link">训练活动 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="volunteer.html">志愿活动</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a class="nav-link active">服务中心 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="regulations.html">规章制度</a>
+                            <a href="downloads.html">资料下载</a>
+                            <a href="faq.html">常见问题</a>
+                        </div>
+                    </div>
+                    <a href="join.html" class="nav-link">招贤纳士</a>
+                </nav>
+                <button id="menuToggle" class="lg:hidden w-9 h-9 flex items-center justify-center rounded hover:bg-gray-100 active:bg-gray-200" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-gray-700 text-base"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/25 z-[60] hidden opacity-0 transition-opacity duration-400" onclick="toggleMobileMenu()"></div>
+    <div id="mobileMenu" class="mobile-menu overflow-y-auto">
+        <div class="p-5 border-b border-gray-100">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-pkured font-serif">导航菜单</h2>
+                <button onclick="toggleMobileMenu()" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100"><i class="fas fa-times text-gray-500"></i></button>
+            </div>
+        </div>
+        <nav class="p-3 space-y-0.5">
+            <a href="index.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">首页</a>
+            <a href="about.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">大队简介</a>
+            <a href="org.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">组织架构</a>
+            <a href="news.php" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">通知公告</a>
+
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">人员信息</p>
+                <a href="current.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">第十五届干部</a>
+                <a href="history.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">历任干部</a>
+            </div>
+
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">荣誉墙</p>
+                <a href="honor2.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">个人荣誉墙</a>
+            </div>
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">训练活动</p>
+                <a href="volunteer.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">志愿活动</a>
+            </div>
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">服务中心</p>
+                <a href="regulations.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">规章制度</a>
+                <a href="downloads.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">资料下载</a>
+                <a href="faq.html" class="block pl-8 pr-4 py-2.5 text-sm text-pkured font-semibold bg-red-50 rounded-md transition-all mobile-menu-item">常见问题</a>
+            </div>
+            <a href="join.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">招贤纳士</a>
+        </nav>
+    </div>
+
+    <main class="pt-20 md:pt-24 py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div class="hidden lg:block fade-in-up">
+                    <div class="faq-sidebar">
+                        <div class="faq-quick">
+                            <h4>问题分类</h4>
+                            <a href="#apply" onclick="scrollToCat('apply')">入队招新（8题）</a>
+                            <a href="#train" onclick="scrollToCat('train')">训练安排（6题）</a>
+                            <a href="#life" onclick="scrollToCat('life')">学习生活（5题）</a>
+                            <a href="#manage" onclick="scrollToCat('manage')">管理与福利（5题）</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <div class="flex flex-col md:flex-row gap-4 mb-8 fade-in-up">
+                        <div class="relative flex-1">
+                            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                            <input id="faqSearch" type="text" class="search-input w-full" placeholder="搜索关键词，如：入队时间、训练强度、学分..." oninput="renderFAQs()">
+                        </div>
+                        <div class="flex flex-wrap gap-2" id="catTabs">
+                            <button class="cat-tab active" data-cat="all" onclick="setCat('all')">全部</button>
+                            <button class="cat-tab" data-cat="apply" onclick="setCat('apply')">入队招新</button>
+                            <button class="cat-tab" data-cat="train" onclick="setCat('train')">训练安排</button>
+                            <button class="cat-tab" data-cat="life" onclick="setCat('life')">学习生活</button>
+                            <button class="cat-tab" data-cat="manage" onclick="setCat('manage')">管理福利</button>
+                        </div>
+                    </div>
+
+                    <div id="faqList"></div>
+
+                    <div id="faqEmpty" class="empty-hint hidden bg-white rounded-xl border border-gray-100 fade-in-up">
+                        <i class="fas fa-search"></i>
+                        <p class="text-gray-500 mb-1">没有找到相关问题</p>
+                        <p class="text-sm text-gray-400">试试其他关键词搜索</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12 md:py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="/logo.jpg" alt="Logo" class="w-11 h-11 rounded-lg object-cover" onerror="this.style.display='none'">
+                        <h3 class="text-lg font-bold font-serif text-white">学生志愿教导大队</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed">明理严军 · 自强不息</p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 text-white uppercase tracking-wider">快速链接</h4>
+                    <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition-colors">首页</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">大队简介</a></li>
+                        <li><a href="org.html" class="hover:text-white transition-colors">组织架构</a></li>
+                        <li><a href="news.php" class="hover:text-white transition-colors">通知公告</a></li>
+                        <li><a href="volunteer.html" class="hover:text-white transition-colors">志愿活动</a></li>
+                        <li><a href="current.html" class="hover:text-white transition-colors">第十五届干部</a></li>
+                        <li><a href="history.html" class="hover:text-white transition-colors">历任干部</a></li>
+                        <li><a href="honor2.html" class="hover:text-white transition-colors">个人荣誉墙</a></li>
+                        <li><a href="regulations.html" class="hover:text-white transition-colors">规章制度</a></li>
+                        <li><a href="downloads.html" class="hover:text-white transition-colors">资料下载</a></li>
+                        <li><a href="faq.html" class="hover:text-white transition-colors">常见问题</a></li>
+                        <li><a href="join.html" class="hover:text-white transition-colors">招贤纳士</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 text-white uppercase tracking-wider">联系方式</h4>
+                    <div class="space-y-2.5 text-sm text-gray-400 mb-6">
+                        <p><strong class="text-gray-300">办公地址：</strong>湖南涉外经济学院南四栋1楼102室</p>
+                        <p><strong class="text-gray-300">工作时间：</strong>周一至周五 9:00-19:00</p>
+                    </div>
+                    <div class="flex items-center gap-5">
+                        <div class="social-icon-wrapper"><i class="fab fa-weixin text-lg text-gray-400 hover:text-white cursor-pointer"></i><div class="qr-popup"><img src="/wechat-qr.jpg" class="w-24 h-24 rounded mx-auto" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))"><p class="text-[10px] text-gray-500 mt-1.5">扫码关注公众号</p></div></div>
+                        <div class="social-icon-wrapper"><i class="fab fa-tiktok text-lg text-gray-400 hover:text-white cursor-pointer"></i><div class="qr-popup"><img src="/douyin-qr.jpg" class="w-24 h-24 rounded mx-auto" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))"><p class="text-[10px] text-gray-500 mt-1.5">扫码关注官方抖音</p></div></div>
+                        <div class="social-icon-wrapper"><i class="fab fa-weibo text-lg text-gray-400 hover:text-white cursor-pointer"></i><div class="qr-popup"><img src="/weibo-qr.jpg" class="w-24 h-24 rounded mx-auto" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))"><p class="text-[10px] text-gray-500 mt-1.5">扫码关注官方微博</p></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500 space-y-2">
+                <p>学生志愿教导大队版权所有</p>
+                <p class="flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-1">
+                    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300">蜀ICP备2026028492号-1</a>
+                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 inline-flex items-center gap-1"><img src="https://www.beian.gov.cn/img/ghs.png" class="w-4 h-4">川公网安备51012202002408号</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const FAQ_DATA = [
+            {cat:'apply', q:'教导大队每年什么时候招新？', a:'<p>招新工作一般在每学年秋季学期开学后进行，通常在9月中下旬。具体时间、地点会通过学校官方渠道、各学院新生群、官方公众号等途径发布通知。请新生注意关注相关信息，及时报名。</p><p>春季学期视情况可能会有少量补录，具体以官方通知为准。</p>'},
+            {cat:'apply', q:'加入教导大队需要什么条件？', a:'<p>基本条件：</p><p>① 湖南涉外经济学院全日制在校学生（大一、大二为主，大三优秀者可酌情考虑）；</p><p>② 拥护党的路线方针，政治立场坚定，思想品德良好，无违纪处分记录；</p><p>③ 身体健康，无重大疾病或身体缺陷，能够适应半军事化训练要求；</p><p>④ 自愿入队，愿意遵守大队各项规章制度，服从命令听从指挥；</p><p>⑤ 有较强的组织纪律观念和团队协作精神，甘于奉献。</p>'},
+            {cat:'apply', q:'入队选拔流程是怎样的？', a:'<p>选拔流程一般分为以下环节：</p><p>① <strong>报名申请：</strong>填写入队申请表（可在资料下载中心获取），提交纸质或电子版；</p><p>② <strong>资格审查：</strong>综合办公室对报名材料进行初步审核；</p><p>③ <strong>初面考核：</strong>自我介绍、随机问答，考察形象气质、语言表达、综合素质等；</p><p>④ <strong>体能测试：</strong>男生1000米/女生800米、俯卧撑（男）/仰卧起坐（女）、立定跳远等；</p><p>⑤ <strong>复面终面：</strong>深入考察入队动机、抗压能力等；</p><p>⑥ <strong>考察授衔：</strong>通过者进入为期1个月的考察期，表现合格者正式授衔入队。</p>'},
+            {cat:'apply', q:'女生适合加入教导大队吗？', a:'<p>当然适合！教导大队各部门各中队都有很多优秀的女队员，她们在国旗护卫、宣传报道、后勤保障、组织协调等方面发挥着重要作用，很多女队员担任了重要干部职务。</p><p>女生的体能考核标准会相应调整，不会与男生完全一样。只要你有信念、肯吃苦，教导大队的大门永远向你敞开！</p>'},
+            {cat:'apply', q:'大二/大三还能加入吗？', a:'<p>可以。招新以大一新生为主，但大二、大三有相关经验或特别优秀的同学，也欢迎报名。高年级同学经过选拔后，可能会根据特长分配到不同岗位。</p><p>具体可在招新期间联系招新负责人，或到办公室咨询详情。</p>'},
+            {cat:'apply', q:'加入后发现不适应可以退出吗？', a:'<p>可以。入队是自愿的，退队同样是自由的。考察期内可以无理由申请退出；正式入队后，如因学业、身体、个人规划等原因确需退队，按规定提交书面申请，经常委会批准后可正常退队。</p><p>但我们希望每一位入队的同学都能有始有终，不负自己当初的选择。</p>'},
+            {cat:'apply', q:'一个人可以同时加入教导大队和其他社团吗？', a:'<p>可以。学校并未限制学生只能加入一个组织。但请结合自身时间和精力合理安排。</p><p>教导大队每周训练和活动约4-8小时，如果同时参加太多社团，可能会影响训练出勤率和训练效果。建议优先保证训练和学习时间。</p>'},
+            {cat:'apply', q:'加入教导队有面试经验或证书加分吗？', a:'<p>有相关学生干部经历、军训优秀学员、体育特长、文艺特长、播音主持、新媒体运营等经验或证书，在同等条件下会优先考虑。但这些不是必备条件，没有相关经验也没关系，关键看你的态度和潜力。</p>'},
+
+            {cat:'train', q:'每周训练几次？大概在什么时间？', a:'<p>一般每周4次训练，具体安排：</p><p>· 周一晚19:00-21:00（队列训练）</p><p>· 周三晚19:00-21:00（体能训练）</p><p>· 周五晚19:00-21:00（专业科目轮换）</p><p>· 周日下午14:30-17:30（综合合练+考核讲评）</p><p>如遇考试周、法定节假日等会适当调整，具体以通知为准。</p>'},
+            {cat:'train', q:'训练强度大吗？我体能不太好能坚持吗？', a:'<p>训练强度是循序渐进的，不会一开始就安排高强度训练。体能差不要紧，每一位老队员也是从零基础一步步练出来的。</p><p>我们会针对不同基础的队员制定个性化的训练计划，只要你肯坚持、不放弃，几个月后一定会看到自己的进步。很多刚入队时体能倒数的队员，经过一学期后都能名列前茅。</p>'},
+            {cat:'train', q:'训练影响上课怎么办？', a:'<p>训练一般安排在晚上和周末，不会占用正常上课时间。如因学校统一安排教学活动导致时间冲突，我们会提前调整训练计划。</p><p>如个人因课程、实验、补考等需请假，按<a href="regulations.html" class="text-pkured underline">考勤制度</a>提前申请即可，不会因此受处分。但无故缺席会影响评优评先。</p>'},
+            {cat:'train', q:'需要自己购买训练服装吗？', a:'<p>不需要。正式入队后，大队会统一配发全套作训服、体能服、腰带、帽子、肩章等装备。</p><p>请爱护公共物资，离队时按规定交还。如有损坏或丢失，需按价赔偿。</p>'},
+            {cat:'train', q:'受伤了怎么办？训练有保护措施吗？', a:'<p>训练前有充分的热身，训练中有科学的指导，训练后还有拉伸放松，目的就是最大限度减少受伤风险。</p><p>如在训练中受伤，现场会有专人提供基础急救处理，情况严重的会第一时间送往校医院或附近医院，并通知指导老师和家长。</p><p>我们始终把队员的安全和健康放在第一位。</p>'},
+            {cat:'train', q:'训练考核不通过会怎么样？', a:'<p>月度或期末考核不通过者，会安排额外的补训和补考。补考仍不通过的，会影响本学期的评优评先和积分排名；连续多次考核不合格的，可能会被调整岗位或建议退队。</p><p>但只要你态度端正、认真参训，一般都能通过考核。</p>'},
+
+            {cat:'life', q:'加入后会不会影响学习成绩？', a:'<p>大多数队员加入后，学习成绩不仅没有下降，反而因为作息更规律、时间管理能力更强而有所提升。教导队很多成员都是专业前几名、奖学金获得者。</p><p>我们始终强调"学习第一"的原则，如队员有考研、考公、四六级备考、期中期末复习等需求，可申请减少训练任务或临时休假。</p>'},
+            {cat:'life', q:'在教导大队能认识很多朋友吗？', a:'<p>当然！共同的训练、共同的目标、共同的汗水会让你们建立起战友般的深厚情谊。一起拉练、一起熬夜、一起奋斗过的伙伴，会成为你大学期间最珍贵的朋友。</p><p>很多队员毕业后依然保持着紧密联系，这种战友情谊会延续一生。</p>'},
+            {cat:'life', q:'大队有文体娱乐活动吗？还是只有训练？', a:'<p>不止有训练！"劳逸结合"是我们一贯的原则。每年都会组织丰富的文体活动：</p><p>· 迎新晚会、换届晚会、元旦晚会、生日会；</p><p>· "教导杯"篮球赛、足球赛、羽毛球赛、趣味运动会；</p><p>· 团建郊游、户外拓展、四十公里徒步拉练；</p><p>· 学雷锋志愿活动、红色教育参观、国防教育宣讲等。</p>'},
+            {cat:'life', q:'寒暑假有训练或任务吗？', a:'<p>寒暑假原则上不组织集中训练，队员可以回家好好休息、陪伴家人。但寒假期间可能会有少量线上学习任务，暑假新生军训前需要提前返校进行带训教官集训（具体时间另行通知）。</p>'},
+            {cat:'life', q:'住宿要和普通学生分开吗？', a:'<p>不用。队员住宿按照学校统一安排，和普通同学住在一起。不需要住校集训。</p><p>训练时段集中后，大家才会在训练场集合。</p>'},
+
+            {cat:'manage', q:'加入后在评优评先方面有什么优势？', a:'<p>教导大队是人民武装部直接领导的校级重点学生组织，表现优秀的队员在以下方面有优势：</p><p>· 优秀团员、优秀学生干部、三好学生等评选有推荐名额；</p><p>· 学校奖学金、国家励志奖学金评选时，担任学生干部经历和获表彰情况可作为加分项；</p><p>· 有机会参评校级"优秀教官""训练标兵""优秀志愿者"等专项荣誉；</p><p>· 毕业时可开具学生干部任职证明，对就业有一定帮助。</p>'},
+            {cat:'manage', q:'当干部是怎样选拔的？', a:'<p>干部选拔坚持"公开、公平、公正"原则，一般在每学期末或学年末进行换届：</p><p>① <strong>个人自荐或组织推荐：</strong>填写干部自荐表；</p><p>② <strong>资格审查：</strong>考察出勤、考核、纪律等综合情况；</p><p>③ <strong>公开竞聘演讲：</strong>现场答辩；</p><p>④ <strong>民主测评：</strong>队员打分投票；</p><p>⑤ <strong>常委会研究+指导老师批准；</strong></p><p>⑥ <strong>任前公示+正式任命。</strong></p>'},
+            {cat:'manage', q:'加入后能获得学分吗？', a:'<p>学分认定以学校最新政策为准。在部分情况下，参加新生军训带训、西部计划带训、重大志愿活动等可按学校规定申请第二课堂学分或实践学分。</p><p>具体事宜请咨询学校教务处或团委学工科。</p>'},
+            {cat:'manage', q:'队员有什么福利或待遇？', a:'<p>① 完成年度任务的队员可获得聘书或任职证明；</p><p>② 年度评优评先时有专项表彰和荣誉证书；</p><p>③ 新生军训带训等任务可获得相应的工作补贴（按学校规定执行）；</p><p>④ 统一配发全套训练装备；</p><p>⑤ 优先获得学校国防教育、征兵宣传等相关活动的参与机会；</p><p>⑥ 办公室提供自习场地、充电、饮用水等便利。</p>'},
+            {cat:'manage', q:'对队员的手机、发型等有要求吗？', a:'<p>有。参考军事化管理规范：</p><p>· 训练期间手机统一保管，不得随身携带；</p><p>· 男生发型要求清爽利落（前不遮额、侧不盖耳、后不触领），不允许染发烫发、留奇怪造型；</p><p>· 女生训练时需扎起长发，不允许浓妆艳抹、佩戴首饰；</p><p>· 训练时统一穿着指定服装。</p><p>这些要求既是作风养成的一部分，也是培养纪律意识的重要内容。</p>'},
+        ];
+
+        let curCat = 'all';
+
+        function toggleFaq(el) {
+            const isOpen = el.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) el.classList.add('open');
+        }
+
+        function setCat(c) {
+            curCat = c;
+            document.querySelectorAll('#catTabs .cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === c));
+            renderFAQs();
+        }
+
+        function scrollToCat(c) { setCat(c); document.getElementById('catTabs').scrollIntoView({behavior:'smooth', block:'start'}); }
+
+        function renderFAQs() {
+            const kw = document.getElementById('faqSearch').value.trim().toLowerCase();
+            const list = document.getElementById('faqList');
+            const empty = document.getElementById('faqEmpty');
+            const groups = {'apply':[],'train':[],'life':[],'manage':[]};
+            FAQ_DATA.forEach((item, idx) => {
+                const catOk = curCat === 'all' || item.cat === curCat;
+                const kwOk = !kw || item.q.toLowerCase().includes(kw) || item.a.toLowerCase().includes(kw);
+                if (catOk && kwOk) groups[item.cat].push({...item, idx});
+            });
+            const titles = {apply:'入队招新相关', train:'训练安排相关', life:'学习生活相关', manage:'管理与福利相关'};
+            const order = curCat === 'all' ? ['apply','train','life','manage'] : [curCat];
+            let html = '';
+            let total = 0;
+            order.forEach(key => {
+                const items = groups[key]; if (!items.length) return;
+                total += items.length;
+                html += '<div class="mb-10 fade-in-up" id="'+key+'"><h3 class="text-lg md:text-xl font-serif font-semibold text-gray-800 mb-5 flex items-center gap-2"><span class="w-1 h-6 bg-pkured rounded-full"></span>'+titles[key]+' <span class="text-sm text-gray-400 font-normal ml-2">('+items.length+'题)</span></h3>';
+                items.forEach(item => {
+                    html += '<div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><div class="faq-q-icon">Q</div><div class="faq-q-text">'+item.q+'</div><i class="fas fa-chevron-down faq-q-arrow"></i></div><div class="faq-a"><div class="faq-a-inner">'+item.a+'</div></div></div>';
+                });
+                html += '</div>';
+            });
+            list.innerHTML = html;
+            empty.classList.toggle('hidden', total > 0);
+            initScrollAnimations();
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu'); const overlay = document.getElementById('mobileMenuOverlay');
+            if (menu.classList.contains('menu-open')) {
+                menu.style.transform = 'translateX(100%)'; overlay.style.opacity = '0';
+                setTimeout(function() { menu.classList.remove('menu-open'); overlay.classList.add('hidden'); }, 400);
+            } else {
+                overlay.classList.remove('hidden');
+                setTimeout(function() { overlay.style.opacity = '1'; menu.classList.add('menu-open'); menu.style.transform = 'translateX(0)'; }, 10);
+            }
+        }
+
+        function initNavScrollEffect() { const nav = document.getElementById('mainNav'); const onScroll = () => { if (window.scrollY > 20) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }; window.addEventListener('scroll', onScroll, { passive: true }); onScroll(); }
+
+        function initScrollAnimations() {
+            const els = document.querySelectorAll('.fade-in-up');
+            const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.08 });
+            els.forEach(el => observer.observe(el));
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initNavScrollEffect();
+            renderFAQs();
+        });
+    </script>
+</body>
+</html>

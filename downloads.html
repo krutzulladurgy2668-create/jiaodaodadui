@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>资料下载 - 学生志愿教导大队</title>
+    <meta name="description" content="学生志愿教导大队资料下载中心，提供入队申请表、活动策划模板、请假条模板、训练计划表等常用文档下载。">
+    <meta name="keywords" content="教导大队,资料下载,申请表,模板下载,文档下载">
+    <meta name="author" content="学生志愿教导大队">
+
+    <link rel="canonical" href="https://www.jiaodao.fun/downloads.html">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/logo.jpg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.jiaodao.fun/downloads.html">
+    <meta property="og:title" content="资料下载 - 学生志愿教导大队">
+    <meta property="og:description" content="教导大队资料下载中心，常用文档模板一键获取。">
+    <meta property="og:image" content="https://www.jiaodao.fun/logo.jpg">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pkured': '#8B0000', 'pkured-dark': '#6B0000', 'pkured-light': '#A52A2A',
+                        'deepblue': '#1E3A8A', 'golden': '#D4AF37',
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'SimSun', 'serif'],
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; touch-action: manipulation; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #fff; color: #333; line-height: 1.8; overflow-x: hidden; }
+
+        .page-header { background: linear-gradient(135deg, #8B0000 0%, #1E3A8A 100%); padding: 140px 0 80px; color: white; text-align: center; position: relative; overflow: hidden; }
+        .page-header::before { content: ''; position: absolute; top: -50%; right: -20%; width: 60%; height: 200%; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%); pointer-events: none; }
+
+        .nav-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: all 350ms ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .nav-header.scrolled { background: rgba(255,255,255,0.98); box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+        .nav-link { position: relative; color: #333; font-size: 15px; font-weight: 500; transition: color 250ms ease; padding: 8px 0; display: inline-block; }
+        .nav-link:hover { color: #8B0000; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background: #8B0000; transition: all 300ms ease; transform: translateX(-50%); }
+        .nav-link:hover::after { width: 70%; }
+        .nav-link.active { color: #8B0000; font-weight: 600; }
+        .nav-link.active::after { width: 70%; }
+
+        .dropdown-menu { position: absolute; top: 100%; left: 0; min-width: 160px; background: white; box-shadow: 0 4px 24px rgba(0,0,0,0.1); border-radius: 6px; opacity: 0; visibility: hidden; transform: translateY(8px); transition: all 280ms ease; z-index: 100; border: 1px solid #f0f0f0; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a { display: block; padding: 10px 18px; color: #555; font-size: 14px; transition: all 200ms ease; border-bottom: 1px solid #f9f9f9; }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover { background: #fef2f2; color: #8B0000; padding-left: 22px; }
+
+        .mobile-menu { position: fixed; top: 0; right: 0; width: 75%; max-width: 280px; height: 100%; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); box-shadow: -8px 0 40px rgba(0,0,0,0.12); transform: translateX(100%); transition: transform 380ms ease; z-index: 1000; overflow-y: auto; }
+        .mobile-menu-item { opacity: 0; transform: translateX(20px); transition: all 300ms ease-out; }
+        #mobileMenu.menu-open .mobile-menu-item { opacity: 1; transform: translateX(0); }
+
+        .section-header { position: relative; display: inline-block; margin-bottom: 32px; }
+        .section-header h2 { font-family: Georgia, SimSun, serif; font-size: 26px; font-weight: 600; color: #222; letter-spacing: 1px; }
+        .section-header::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 44px; height: 3px; background: #8B0000; border-radius: 2px; }
+
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: all 700ms ease; }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+        .stagger-1 { transition-delay: 80ms; } .stagger-2 { transition-delay: 160ms; } .stagger-3 { transition-delay: 240ms; } .stagger-4 { transition-delay: 320ms; }
+
+        .download-card { background: white; border-radius: 12px; padding: 24px; border: 1px solid #eaeaea; transition: all 350ms ease; display: flex; gap: 18px; align-items: center; }
+        .download-card:hover { border-color: #8B0000; box-shadow: 0 16px 40px rgba(139,0,0,0.08); transform: translateY(-4px); }
+        .file-icon { width: 64px; height: 64px; min-width: 64px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: white; }
+        .ext-tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+        .btn-download { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 500; transition: all 200ms ease; cursor: pointer; border: none; }
+        .btn-download-primary { background: linear-gradient(135deg, #8B0000, #6B0000); color: white; }
+        .btn-download-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(139,0,0,0.25); }
+        .btn-download-outline { border: 1px solid #d1d5db; color: #374151; background: white; }
+        .btn-download-outline:hover { border-color: #8B0000; color: #8B0000; }
+
+        .cat-filter-btn { padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid #e5e7eb; background: white; color: #555; cursor: pointer; transition: all 200ms ease; }
+        .cat-filter-btn:hover { border-color: #8B0000; color: #8B0000; }
+        .cat-filter-btn.active { background: linear-gradient(135deg, #8B0000, #6B0000); color: white; border-color: transparent; }
+
+        .search-input { flex: 1; padding: 10px 14px 10px 40px; border-radius: 10px; border: 1px solid #e5e7eb; font-size: 14px; transition: all 200ms ease; outline: none; }
+        .search-input:focus { border-color: #8B0000; box-shadow: 0 0 0 3px rgba(139,0,0,0.08); }
+
+        .notice-box { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-left: 4px solid #D4AF37; padding: 18px 24px; border-radius: 10px; }
+
+        .social-icon-wrapper { position: relative; display: inline-block; }
+        .qr-popup { position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: white; border-radius: 8px; box-shadow: 0 8px 28px rgba(0,0,0,0.14); padding: 10px; text-align: center; width: 130px; opacity: 0; visibility: hidden; transition: all 280ms ease; z-index: 50; }
+        .social-icon-wrapper:hover .qr-popup { opacity: 1; visibility: visible; }
+        .qr-popup::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 7px solid transparent; border-top-color: white; }
+    </style>
+</head>
+
+<body class="bg-gray-50/60">
+
+    <header id="mainNav" class="nav-header">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-18">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="/logo.jpg" alt="Logo" class="w-9 h-9 md:w-11 md:h-11 rounded-full object-cover shadow-sm flex-shrink-0" onerror="this.style.display='none'">
+                    <h1 class="text-lg md:text-xl font-semibold text-gray-800 font-serif tracking-wide">学生志愿教导大队</h1>
+                </a>
+                <nav class="hidden lg:flex items-center gap-7">
+                    <a href="index.html" class="nav-link">首页</a>
+                    <a href="about.html" class="nav-link">大队简介</a>
+                    <a href="org.html" class="nav-link">组织架构</a>
+                    <a href="news.php" class="nav-link">通知公告</a>
+
+                    <div class="relative dropdown">
+                        <a class="nav-link">人员信息 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="current.html">第十五届干部</a>
+                            <a href="history.html">历任干部</a>
+                        </div>
+                    </div>
+
+                    <div class="relative dropdown">
+                        <a class="nav-link">荣誉墙 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="honor2.html">个人荣誉墙</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a class="nav-link">训练活动 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="volunteer.html">志愿活动</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a class="nav-link active">服务中心 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="regulations.html">规章制度</a>
+                            <a href="downloads.html">资料下载</a>
+                            <a href="faq.html">常见问题</a>
+                        </div>
+                    </div>
+                    <a href="join.html" class="nav-link">招贤纳士</a>
+                </nav>
+                <button id="menuToggle" class="lg:hidden w-9 h-9 flex items-center justify-center rounded hover:bg-gray-100 active:bg-gray-200" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-gray-700 text-base"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/25 z-[60] hidden opacity-0 transition-opacity duration-400" onclick="toggleMobileMenu()"></div>
+    <div id="mobileMenu" class="mobile-menu overflow-y-auto">
+        <div class="p-5 border-b border-gray-100">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-pkured font-serif">导航菜单</h2>
+                <button onclick="toggleMobileMenu()" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100"><i class="fas fa-times text-gray-500"></i></button>
+            </div>
+        </div>
+        <nav class="p-3 space-y-0.5">
+            <a href="index.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">首页</a>
+            <a href="about.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">大队简介</a>
+            <a href="org.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">组织架构</a>
+            <a href="news.php" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">通知公告</a>
+
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">人员信息</p>
+                <a href="current.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">第十五届干部</a>
+                <a href="history.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">历任干部</a>
+            </div>
+
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">荣誉墙</p>
+                <a href="honor2.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">个人荣誉墙</a>
+            </div>
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">训练活动</p>
+                <a href="volunteer.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">志愿活动</a>
+            </div>
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">服务中心</p>
+                <a href="regulations.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">规章制度</a>
+                <a href="downloads.html" class="block pl-8 pr-4 py-2.5 text-sm text-pkured font-semibold bg-red-50 rounded-md transition-all mobile-menu-item">资料下载</a>
+                <a href="faq.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">常见问题</a>
+            </div>
+            <a href="join.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">招贤纳士</a>
+        </nav>
+    </div>
+
+    <main class="pt-20 md:pt-24 py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 温馨提示 -->
+            <div class="notice-box mb-10 fade-in-up">
+                <div class="text-sm text-gray-700">
+                    <p class="font-semibold text-gray-800 mb-1">温馨提示</p>
+                    <p>文档仅供教导大队内部使用，请勿外传；使用文档前请仔细阅读填写说明；如有问题请联系教导大队综合办公室咨询。</p>
+                </div>
+            </div>
+
+            <!-- 搜索 + 分类筛选 -->
+            <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm mb-8 fade-in-up">
+                <div class="flex flex-col md:flex-row gap-5">
+                    <div class="relative flex-1">
+                        <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                        <input id="searchInput" type="text" class="search-input w-full" placeholder="搜索文档名称、关键词..." oninput="filterFiles()">
+                    </div>
+                    <div class="flex flex-wrap gap-2" id="filterBar">
+                        <button class="cat-filter-btn active" onclick="setCategory(this, 'all')">全部</button>
+                        <button class="cat-filter-btn" onclick="setCategory(this, 'apply')">入队招新</button>
+                        <button class="cat-filter-btn" onclick="setCategory(this, 'daily')">日常办公</button>
+                        <button class="cat-filter-btn" onclick="setCategory(this, 'train')">训练管理</button>
+                        <button class="cat-filter-btn" onclick="setCategory(this, 'plan')">策划总结</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文件分类：入队招新 -->
+            <div class="mb-10 fade-in-up">
+                <h3 class="text-lg md:text-xl font-serif font-semibold text-gray-800 mb-5 flex items-center gap-2" data-cat="apply">
+                    <span class="w-1 h-6 bg-pkured rounded-full"></span>
+                    入队招新资料
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="list-apply">
+                    <div class="download-card" data-cat="apply" data-key="入队申请表">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);"><i class="fas fa-file-word"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">入队申请表</h4>
+                                <span class="ext-tag" style="background:#eff6ff;color:#2563eb;">.docx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">新队员入队申请使用，填写个人基本信息、经历及入队动机</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>2386次</span>
+                                <span>2026更新</span>
+                                <span>38.5 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'入队申请表.docx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('入队申请表')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="apply" data-key="招新面试评分表">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #16a34a, #15803d);"><i class="fas fa-file-excel"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">招新面试评分表</h4>
+                                <span class="ext-tag" style="background:#f0fdf4;color:#16a34a;">.xlsx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">面试官对应试者进行多维度量化评分，含形象、表达、素质等项</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>1245次</span>
+                                <span>2026更新</span>
+                                <span>24.2 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'招新面试评分表.xlsx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('招新面试评分表')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="apply" data-key="入队承诺书">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);"><i class="fas fa-file-word"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">入队承诺书</h4>
+                                <span class="ext-tag" style="background:#eff6ff;color:#2563eb;">.docx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">正式入队前签署，承诺遵守队规、服从管理、保守秘密等事项</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>2108次</span>
+                                <span>2026更新</span>
+                                <span>32.1 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'入队承诺书.docx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('入队承诺书')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="apply" data-key="入队家长知情同意书">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);"><i class="fas fa-file-word"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">家长知情同意书</h4>
+                                <span class="ext-tag" style="background:#eff6ff;color:#2563eb;">.docx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">入队前告知家长训练内容及相关要求，取得家长书面同意</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>1896次</span>
+                                <span>2026更新</span>
+                                <span>28.0 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'家长知情同意书.docx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('家长知情同意书')">预览</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文件分类：日常办公 -->
+            <div class="mb-10 fade-in-up">
+                <h3 class="text-lg md:text-xl font-serif font-semibold text-gray-800 mb-5 flex items-center gap-2" data-cat="daily">
+                    <span class="w-1 h-6 bg-deepblue rounded-full"></span>
+                    日常办公资料
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="list-daily">
+                    <div class="download-card" data-cat="daily" data-key="请假申请单">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #8B0000, #6B0000);"><i class="fas fa-file-pdf"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">请假申请单</h4>
+                                <span class="ext-tag" style="background:#fef2f2;color:#8B0000;">.pdf</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">训练及会议请假使用，按审批权限逐级签字确认</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>3128次</span>
+                                <span>2026更新</span>
+                                <span>120 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'请假申请单.pdf')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('请假申请单')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="daily" data-key="考勤统计表模板">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #16a34a, #15803d);"><i class="fas fa-file-excel"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">考勤统计表模板</h4>
+                                <span class="ext-tag" style="background:#f0fdf4;color:#16a34a;">.xlsx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">中队月度考勤统计，自动汇总出勤率及请假情况</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>2654次</span>
+                                <span>2026更新</span>
+                                <span>45.8 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'考勤统计表模板.xlsx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('考勤统计表模板')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="daily" data-key="会议记录模板">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);"><i class="fas fa-file-word"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">会议记录模板</h4>
+                                <span class="ext-tag" style="background:#eff6ff;color:#2563eb;">.docx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">常委会、全体大会等各类会议记录规范模板</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>1987次</span>
+                                <span>2026更新</span>
+                                <span>35.6 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'会议记录模板.docx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('会议记录模板')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="daily" data-key="值班记录表">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #16a34a, #15803d);"><i class="fas fa-file-excel"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">值班记录表</h4>
+                                <span class="ext-tag" style="background:#f0fdf4;color:#16a34a;">.xlsx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">办公室日常值班登记，记录来访、电话、物资出入等情况</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>1562次</span>
+                                <span>2026更新</span>
+                                <span>28.4 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'值班记录表.xlsx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('值班记录表')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="daily" data-key="物资领用单">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);"><i class="fas fa-file-word"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">物资领用单</h4>
+                                <span class="ext-tag" style="background:#eff6ff;color:#2563eb;">.docx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">训练器材、服装等物资领用登记，领用人签字确认后生效</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>1384次</span>
+                                <span>2026更新</span>
+                                <span>22.7 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'物资领用单.docx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('物资领用单')">预览</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-10 fade-in-up">
+                <h3 class="text-lg md:text-xl font-serif font-semibold text-gray-800 mb-5 flex items-center gap-2" data-cat="train">
+                    <span class="w-1 h-6 bg-green-700 rounded-full"></span>
+                    训练管理资料
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="list-train">
+                    <div class="download-card" data-cat="train" data-key="训练计划表模板">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #16a34a, #15803d);"><i class="fas fa-file-excel"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">训练计划表模板</h4>
+                                <span class="ext-tag" style="background:#f0fdf4;color:#16a34a;">.xlsx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">月度/学期训练科目安排表，含时间、科目、场地、负责人等项</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>1823次</span>
+                                <span>2026更新</span>
+                                <span>42.1 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'训练计划表模板.xlsx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('训练计划表模板')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="train" data-key="考核成绩单模板">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #16a34a, #15803d);"><i class="fas fa-file-excel"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">考核成绩单模板</h4>
+                                <span class="ext-tag" style="background:#f0fdf4;color:#16a34a;">.xlsx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">月度/期末训练考核成绩单，含队列、体能、战术等多科目</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>1654次</span>
+                                <span>2026更新</span>
+                                <span>38.9 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'考核成绩单模板.xlsx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('考核成绩单模板')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="train" data-key="带训教案模板">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);"><i class="fas fa-file-word"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">带训教案模板</h4>
+                                <span class="ext-tag" style="background:#eff6ff;color:#2563eb;">.docx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">军训及日常训练科目教案编写规范模板，含目的、内容、方法</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>2136次</span>
+                                <span>2026更新</span>
+                                <span>56.3 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'带训教案模板.docx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('带训教案模板')">预览</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-10 fade-in-up">
+                <h3 class="text-lg md:text-xl font-serif font-semibold text-gray-800 mb-5 flex items-center gap-2" data-cat="plan">
+                    <span class="w-1 h-6 bg-golden rounded-full"></span>
+                    策划总结资料
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="list-plan">
+                    <div class="download-card" data-cat="plan" data-key="活动策划书模板">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);"><i class="fas fa-file-word"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">活动策划书模板</h4>
+                                <span class="ext-tag" style="background:#eff6ff;color:#2563eb;">.docx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">各类文体活动、比赛、志愿服务等活动策划书标准模板</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>2987次</span>
+                                <span>2026更新</span>
+                                <span>48.2 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'活动策划书模板.docx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('活动策划书模板')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="plan" data-key="工作总结模板">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #2563eb, #1e40af);"><i class="fas fa-file-word"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">工作总结模板</h4>
+                                <span class="ext-tag" style="background:#eff6ff;color:#2563eb;">.docx</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">月度、学期、年度工作总结及述职报告编写规范模板</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>2456次</span>
+                                <span>2026更新</span>
+                                <span>40.5 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'工作总结模板.docx')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('工作总结模板')">预览</button>
+                        </div>
+                    </div>
+
+                    <div class="download-card" data-cat="plan" data-key="评优申报材料模板">
+                        <div class="file-icon" style="background: linear-gradient(135deg, #8B0000, #6B0000);"><i class="fas fa-file-pdf"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-semibold text-gray-800">评优申报材料模板</h4>
+                                <span class="ext-tag" style="background:#fef2f2;color:#8B0000;">.pdf</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-2">先进个人、先进集体等荣誉评选申报材料格式参考</p>
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span>1725次</span>
+                                <span>2026更新</span>
+                                <span>128 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button class="btn-download btn-download-primary" onclick="downloadFile(this,'评优申报材料模板.pdf')">下载</button>
+                            <button class="btn-download btn-download-outline" onclick="previewFile('评优申报材料模板')">预览</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="emptyHint" class="hidden text-center py-16 bg-white rounded-xl border border-gray-100 fade-in-up">
+                <i class="fas fa-search text-4xl text-gray-300 mb-4"></i>
+                <p class="text-gray-500 mb-2">暂无匹配的文件</p>
+                <p class="text-sm text-gray-400">请尝试更换关键词或查看其他分类</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12 md:py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="/logo.jpg" alt="Logo" class="w-11 h-11 rounded-lg object-cover" onerror="this.style.display='none'">
+                        <h3 class="text-lg font-bold font-serif text-white">学生志愿教导大队</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed">明理严军 · 自强不息</p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 text-white uppercase tracking-wider">快速链接</h4>
+                    <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition-colors">首页</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">大队简介</a></li>
+                        <li><a href="org.html" class="hover:text-white transition-colors">组织架构</a></li>
+                        <li><a href="news.php" class="hover:text-white transition-colors">通知公告</a></li>
+                        <li><a href="volunteer.html" class="hover:text-white transition-colors">志愿活动</a></li>
+                        <li><a href="current.html" class="hover:text-white transition-colors">第十五届干部</a></li>
+                        <li><a href="history.html" class="hover:text-white transition-colors">历任干部</a></li>
+                        <li><a href="honor2.html" class="hover:text-white transition-colors">个人荣誉墙</a></li>
+                        <li><a href="regulations.html" class="hover:text-white transition-colors">规章制度</a></li>
+                        <li><a href="downloads.html" class="hover:text-white transition-colors">资料下载</a></li>
+                        <li><a href="faq.html" class="hover:text-white transition-colors">常见问题</a></li>
+                        <li><a href="join.html" class="hover:text-white transition-colors">招贤纳士</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 text-white uppercase tracking-wider">联系方式</h4>
+                    <div class="space-y-2.5 text-sm text-gray-400 mb-6">
+                        <p><strong class="text-gray-300">办公地址：</strong>湖南涉外经济学院南四栋1楼102室</p>
+                        <p><strong class="text-gray-300">工作时间：</strong>周一至周五 9:00-19:00</p>
+                    </div>
+                    <div class="flex items-center gap-5">
+                        <div class="social-icon-wrapper"><i class="fab fa-weixin text-lg text-gray-400 hover:text-white cursor-pointer"></i><div class="qr-popup"><img src="/wechat-qr.jpg" class="w-24 h-24 rounded mx-auto" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))"><p class="text-[10px] text-gray-500 mt-1.5">扫码关注公众号</p></div></div>
+                        <div class="social-icon-wrapper"><i class="fab fa-tiktok text-lg text-gray-400 hover:text-white cursor-pointer"></i><div class="qr-popup"><img src="/douyin-qr.jpg" class="w-24 h-24 rounded mx-auto" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))"><p class="text-[10px] text-gray-500 mt-1.5">扫码关注官方抖音</p></div></div>
+                        <div class="social-icon-wrapper"><i class="fab fa-weibo text-lg text-gray-400 hover:text-white cursor-pointer"></i><div class="qr-popup"><img src="/weibo-qr.jpg" class="w-24 h-24 rounded mx-auto" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))"><p class="text-[10px] text-gray-500 mt-1.5">扫码关注官方微博</p></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500 space-y-2">
+                <p>学生志愿教导大队版权所有</p>
+                <p class="flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-1">
+                    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300">蜀ICP备2026028492号-1</a>
+                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 inline-flex items-center gap-1"><img src="https://www.beian.gov.cn/img/ghs.png" class="w-4 h-4">川公网安备51012202002408号</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentCat = 'all';
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu'); const overlay = document.getElementById('mobileMenuOverlay');
+            if (menu.classList.contains('menu-open')) {
+                menu.style.transform = 'translateX(100%)'; overlay.style.opacity = '0';
+                setTimeout(function() { menu.classList.remove('menu-open'); overlay.classList.add('hidden'); }, 400);
+            } else {
+                overlay.classList.remove('hidden');
+                setTimeout(function() { overlay.style.opacity = '1'; menu.classList.add('menu-open'); menu.style.transform = 'translateX(0)'; }, 10);
+            }
+        }
+        function setCategory(btn, cat) { currentCat = cat; document.querySelectorAll('#filterBar .cat-filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); filterFiles(); }
+        function filterFiles() {
+            const kw = document.getElementById('searchInput').value.trim().toLowerCase();
+            const cards = document.querySelectorAll('.download-card'); let visibleCount = 0;
+            cards.forEach(card => {
+                const cCat = card.getAttribute('data-cat') || '';
+                const cKey = (card.getAttribute('data-key') || '').toLowerCase();
+                const parentCat = card.parentElement?.parentElement?.querySelector('[data-cat]')?.getAttribute('data-cat');
+                const catOk = (currentCat === 'all') || (cCat === currentCat) || (parentCat === currentCat);
+                const kwOk = !kw || cKey.includes(kw);
+                const show = catOk && kwOk; card.style.display = show ? '' : 'none'; if (show) visibleCount++;
+            });
+            document.getElementById('emptyHint').classList.toggle('hidden', visibleCount > 0);
+            document.querySelectorAll('[data-cat][id^="list-"]').forEach(list => list.parentElement.style.display = Array.from(list.querySelectorAll('.download-card')).some(c => c.style.display !== 'none') ? '' : 'none');
+        }
+        function initNavScrollEffect() { const nav = document.getElementById('mainNav'); const onScroll = () => { if (window.scrollY > 20) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }; window.addEventListener('scroll', onScroll, { passive: true }); onScroll(); }
+        function initScrollAnimations() { const els = document.querySelectorAll('.fade-in-up'); const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.08 }); els.forEach(el => observer.observe(el)); }
+        function downloadFile(btn, filename) {
+            btn.disabled = true; const original = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>准备中';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i>已开始';
+                alert;
+                btn.innerHTML = original; btn.disabled = false;
+            }, 700);
+        }
+        function previewFile(name) { alert; }
+        document.addEventListener('DOMContentLoaded', function() { initNavScrollEffect(); initScrollAnimations(); });
+    </script>
+</body>
+</html>

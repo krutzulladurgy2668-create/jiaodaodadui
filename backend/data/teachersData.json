@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "徐京都",
+    "position": "校长助理、学生工作处处长",
+    "photo": "leader1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "夏建平",
+    "position": "武装部副部长、教导大队指导老师",
+    "photo": "leader2.jpg"
+  }
+]

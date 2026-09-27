@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>勤务标兵 - 学生志愿教导大队</title>
+    <meta name="description" content="学生志愿教导大队勤务标兵展示，他们默默奉献、任劳任怨，是大队运转的坚实后盾。">
+    <meta name="author" content="学生志愿教导大队">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.jiaodao.fun/duty.html">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/logo.jpg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.jiaodao.fun/duty.html">
+    <meta property="og:title" content="勤务标兵 - 学生志愿教导大队">
+    <meta property="og:description" content="默默奉献、任劳任怨，是大队运转的坚实后盾。">
+    <meta property="og:image" content="https://www.jiaodao.fun/logo.jpg">
+    <meta property="og:locale" content="zh_CN">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+    <!-- 预加载关键图片 -->
+    <link rel="preload" href="/logo.jpg" as="image" fetchpriority="high">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pkured': '#8B0000',
+                        'pkured-dark': '#6B0000',
+                        'pkured-light': '#A52A2A',
+                        'deepblue': '#1E3A8A',
+                        'golden': '#D4AF37',
+                        'cloud': '#F8F5F0',
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'SimSun', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#333;line-height:1.8;overflow-x:hidden}
+        .nav-link{position:relative;transition:all 200ms}
+        .nav-link::after{content:'';position:absolute;bottom:-2px;left:50%;width:0;height:2px;background:#D4AF37;transition:all 300ms;transform:translateX(-50%)}
+        .nav-link:hover::after{width:80%}
+
+        /* 人物卡片 */
+        .person-card {
+            background: #fff;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            transition: all 400ms cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .person-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(139,0,0,0.12), 0 15px 30px rgba(0,0,0,0.08);
+        }
+        .honor-img-box{height:280px!important}
+        @media(max-width:767px){.honor-img-box{height:220px!important}}
+
+        /* 返回按钮 */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #8B0000, #6B0000);
+            color: white;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 300ms;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 8px 24px rgba(139,0,0,0.25);
+        }
+
+        /* 入场动画 */
+        .fade-in{opacity:0;transform:translateY(30px);transition:all 600ms cubic-bezier(0.4,0,0.2,1)}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .stagger-item{opacity:0;transform:translateY(25px);animation:staggerFadeIn 500ms ease forwards}
+        @keyframes staggerFadeIn{to{opacity:1;transform:translateY(0)}}
+
+        /* Hero */
+        .hero-bg{
+            background:linear-gradient(135deg,#8B0000 0%,#6B0000 30%,#1E3A8A 70%,#0f2557 100%);
+            position:relative;overflow:hidden
+        }
+        .hero-bg::before{
+            content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+            background:radial-gradient(circle at 30% 40%,rgba(212,175,55,0.08) 0%,transparent 50%),
+                       radial-gradient(circle at 70% 60%,rgba(30,58,138,0.15) 0%,transparent 50%);
+            animation:heroFloat 8s ease-in-out infinite alternate
+        }
+        @keyframes heroFloat{from{transform:translate(0,0)rotate(0deg)}to{transform:translate(-2%,1%)rotate(1deg)}}
+
+        /* 移动端菜单 */
+        .mobile-menu{position:fixed;top:0;right:0;width:75%;max-width:280px;height:100%;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);box-shadow:-10px 0 40px rgba(0,0,0,0.15);transform:translateX(100%);transition:transform 400ms cubic-bezier(0.25,0.46,0.45,0.94);z-index:1000;overflow-y:auto}
+        .mobile-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.3);z-index:999}
+        .mobile-menu-item{opacity:0;transform:translateX(20px);transition:all .3s ease-out}
+        #mobileMenu.menu-open .mobile-menu-item{opacity:1;transform:translateX(0)}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(1){transition-delay:.05s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(2){transition-delay:.1s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(3){transition-delay:.15s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(4){transition-delay:.2s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(5){transition-delay:.25s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(6){transition-delay:.3s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(7){transition-delay:.35s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(8){transition-delay:.4s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(9){transition-delay:.45s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(10){transition-delay:.5s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(11){transition-delay:.55s}
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(12){transition-delay:.6s}
+/* ========== 导航栏 - 与index.html完全一致 ========== */
+.nav-header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);transition:all .3s ease}
+.nav-header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
+.nav-link{position:relative;color:#374151;font-size:14px;font-weight:500;padding:4px 0;transition:color 200ms;white-space:nowrap}
+.nav-link:hover{color:#8B0000}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:50%;width:0;height:2px;background:#D4AF37;transition:all 300ms;transform:translateX(-50%)}
+.nav-link:hover::after{width:70%}
+.nav-link.active::after{width:70%}
+.dropdown{position:relative}
+.dropdown-menu{position:absolute;top:100%;left:0;min-width:160px;background:#fff;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:all 250ms;padding:8px 0;z-index:60}
+.dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-menu a{display:block;padding:8px 20px;font-size:13px;color:#4b5563;transition:all 150ms}
+.dropdown-menu a:hover{background:#fef2f2;color:#8B0000}
+.mobile-menu{position:fixed;top:0;right:0;width:75%;max-width:300px;height:100%;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);box-shadow:-10px 0 40px rgba(0,0,0,.15);transform:translateX(100%);transition:transform 400ms cubic-bezier(.4,0,.2,1);z-index:70;overflow-y:auto}
+.mobile-menu.menu-open{transform:translateX(0)}
+.mobile-menu-item{opacity:0;transform:translateX(20px);transition:all 300ms ease}
+#mobileMenu.menu-open .mobile-menu-item{opacity:1;transform:translateX(0)}
+.social-icon-wrapper{position:relative;display:inline-block}
+.social-icon-wrapper .qr-popup{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) scale(.9);background:#fff;border-radius:10px;padding:10px;box-shadow:0 8px 30px rgba(0,0,0,.18);opacity:0;visibility:hidden;transition:all 250ms;z-index:80;min-width:120px;pointer-events:none}
+.social-icon-wrapper .qr-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#fff}
+.social-icon-wrapper:hover .qr-popup{opacity:1;visibility:visible;transform:translateX(-50%) scale(1)}
+body{padding-top:64px}
+@media(min-width:768px){body{padding-top:72px}}
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- 强制同步预加载关键图片 -->
+    <div style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0">
+        <img src="/logo.jpg" alt="" onerror="console.log('')">
+    </div>
+
+    <!-- ==================== 导航栏 - 浮动在轮播图上方 ==================== -->
+    <header id="mainNav" class="nav-header">
+        <!-- 全宽容器：Logo左对齐，菜单自适应间距 -->
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-18">
+                <!-- Logo区域 -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="/logo.jpg" alt="学生志愿教导大队 Logo"
+                         class="w-9 h-9 md:w-11 md:h-11 rounded-full object-cover shadow-sm flex-shrink-0"
+                         loading="eager" fetchpriority="high" decoding="sync"
+                         onerror="this.style.display='none'">
+                    <div>
+                        <h1 class="text-lg md:text-xl font-semibold text-gray-800 font-serif tracking-wide">学生志愿教导大队</h1>
+                    </div>
+                </a>
+
+                <!-- PC端导航 -->
+                <nav class="hidden lg:flex items-center gap-7">
+                    <a href="index.html" class="nav-link">首页</a>
+                    <a href="about.html" class="nav-link">大队简介</a>
+                    <a href="org.html" class="nav-link">组织架构</a>
+                    <a href="news.php" class="nav-link">通知公告</a>
+
+                    <div class="relative dropdown">
+                        <a class="nav-link">人员信息 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="current.html">第十五届干部</a>
+                            <a href="history.html">历任干部</a>
+                        </div>
+                    </div>
+
+                    <div class="relative dropdown">
+                        <a class="nav-link">荣誉墙 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="honor2.html">个人荣誉墙</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a class="nav-link">训练活动 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="volunteer.html">志愿活动</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a class="nav-link">服务中心 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="regulations.html">规章制度</a>
+                            <a href="downloads.html">资料下载</a>
+                            <a href="faq.html">常见问题</a>
+                        </div>
+                    </div>
+                    <a href="join.html" class="nav-link">招贤纳士</a>
+                </nav>
+
+                <!-- 移动端汉堡菜单按钮 -->
+                <button id="menuToggle" class="lg:hidden w-9 h-9 flex items-center justify-center rounded hover:bg-gray-100 active:bg-gray-200 transition-colors duration-200" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-gray-700 text-base"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 移动端侧边菜单 -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/25 z-[60] hidden opacity-0 transition-opacity duration-400" onclick="toggleMobileMenu()"></div>
+
+    <div id="mobileMenu" class="mobile-menu overflow-y-auto">
+        <div class="p-5 border-b border-gray-100">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-pkured font-serif">导航菜单</h2>
+                <button onclick="toggleMobileMenu()" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-times text-gray-500"></i>
+                </button>
+            </div>
+        </div>
+
+        <nav class="p-3 space-y-0.5">
+            <a href="index.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">首页</a>
+            <a href="about.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">大队简介</a>
+            <a href="org.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">组织架构</a>
+            <a href="news.php" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">通知公告</a>
+
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">人员信息</p>
+                <a href="current.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">第十五届干部</a>
+                <a href="history.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">历任干部</a>
+            </div>
+
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">荣誉墙</p>
+                <a href="honor2.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">个人荣誉墙</a>
+            </div>
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">训练活动</p>
+                <a href="volunteer.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">志愿活动</a>
+            </div>
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">服务中心</p>
+                <a href="regulations.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">规章制度</a>
+                <a href="downloads.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">资料下载</a>
+                <a href="faq.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">常见问题</a>
+            </div>
+            <a href="join.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">招贤纳士</a>
+        </nav>
+    </div>
+
+    <!-- ==================== 主内容区 ==================== -->
+    <main>
+        <!-- Hero 区域 -->
+        <div class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+            <!-- 装饰背景 -->
+            <div class="absolute inset-0 opacity-30">
+                <div class="absolute top-0 left-0 w-96 h-96 bg-pkured/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 right-0 w-80 h-80 bg-deepblue/20 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+                <!-- 返回按钮 -->
+                <a href="honor2.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-sm font-medium hover:bg-white/20 transition-all mb-8">
+                    <i class="fas fa-arrow-left text-xs"></i> 返回个人荣誉墙
+                </a>
+
+                <!-- 标题区 -->
+                <h1 class="text-4xl md:text-5xl font-bold font-serif text-white mb-4">勤务标兵</h1>
+                <p class="text-lg text-white/70 max-w-2xl mb-8">默默奉献、任劳任怨，是大队运转的坚实后盾</p>
+
+                <!-- 计数徽章 -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-golden/15 border border-golden/25">
+                    <i class="fas fa-medal text-golden text-sm"></i>
+                    <span class="text-golden font-semibold text-sm">共 15 人</span>
+                </div>
+            </div>
+
+            <!-- 底部渐变过渡 -->
+            <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#fafaf9] to-transparent"></div>
+        </div>
+
+        <!-- 内容区域（原有内容保持不变） -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 -mt-8 relative z-10">
+            <section class="fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14">
+                    <h2 class="text-3xl md:text-4xl font-bold font-serif text-pkured section-title inline-block">勤务标兵</h2>
+                    <p class="mt-4 text-gray-600 max-w-xl mx-auto">共15位勤务标兵，他们用行动诠释了什么是真正的奉献</p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5">
+                    <!-- 卡片1 -->
+                    <div class="person-card stagger-item" style="animation-delay:0ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_1.jpg" alt="王梓全" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">王梓全</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">五中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片2 -->
+                    <div class="person-card stagger-item" style="animation-delay:80ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_2.jpg" alt="欧阳鑫宇" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">欧阳鑫宇</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">一中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片3 -->
+                    <div class="person-card stagger-item" style="animation-delay:160ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_3.jpg" alt="赵昊" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">赵昊</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">五中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片4 -->
+                    <div class="person-card stagger-item" style="animation-delay:240ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_4.jpg" alt="欧峻恺" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">欧峻恺</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">五中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片5 -->
+                    <div class="person-card stagger-item" style="animation-delay:320ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_5.jpg" alt="肖翔" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">肖翔</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">二中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片6 -->
+                    <div class="person-card stagger-item" style="animation-delay:400ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_6.jpg" alt="肖小燕" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">肖小燕</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">五中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片7 -->
+                    <div class="person-card stagger-item" style="animation-delay:480ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_7.jpg" alt="齐添齐" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">齐添齐</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">三中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片8 -->
+                    <div class="person-card stagger-item" style="animation-delay:560ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_8.jpg" alt="侯伟伦" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">侯伟伦</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">一中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片9 -->
+                    <div class="person-card stagger-item" style="animation-delay:640ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_9.jpg" alt="周钰钧" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">周钰钧</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">一中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片10 -->
+                    <div class="person-card stagger-item" style="animation-delay:720ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_10.jpg" alt="向伟强" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">向伟强</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">三中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片11 -->
+                    <div class="person-card stagger-item" style="animation-delay:800ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_11.jpg" alt="曹海艳" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">曹海艳</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">二中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片12 -->
+                    <div class="person-card stagger-item" style="animation-delay:880ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_12.jpg" alt="陈香" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">陈香</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">四中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片13 -->
+                    <div class="person-card stagger-item" style="animation-delay:960ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_13.jpg" alt="刘静" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">刘静</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">六中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片14 -->
+                    <div class="person-card stagger-item" style="animation-delay:1040ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_14.jpg" alt="夏家宝" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">夏家宝</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">六中队队员</p>
+                        </div>
+                    </div>
+                    <!-- 卡片15 -->
+                    <div class="person-card stagger-item" style="animation-delay:1120ms">
+                        <div class="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden honor-img-box">
+                            <img src="/duty_15.jpg" alt="范子优" class="w-full h-full object-cover absolute inset-0"
+                                 loading="lazy" onerror="this.style.opacity='0'">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 text-lg font-medium z-0"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="text-base font-semibold text-gray-800">范子优</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">六中队队员</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-gray-300 py-12 md:py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-10">
+                <!-- Logo与队训 -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="/logo.jpg" alt="Logo" class="w-11 h-11 rounded-lg object-cover" onerror="this.style.display='none'">
+                        <div>
+                            <h3 class="text-lg font-bold font-serif text-white">学生志愿教导大队</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed">明理严军 · 自强不息</p>
+                </div>
+
+                <!-- 快速链接 -->
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 text-white uppercase tracking-wider">快速链接</h4>
+                    <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition-colors">首页</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">大队简介</a></li>
+                        <li><a href="org.html" class="hover:text-white transition-colors">组织架构</a></li>
+                        <li><a href="news.php" class="hover:text-white transition-colors">通知公告</a></li>
+                        <li><a href="volunteer.html" class="hover:text-white transition-colors">志愿活动</a></li>
+                        <li><a href="current.html" class="hover:text-white transition-colors">第十五届干部</a></li>
+                        <li><a href="history.html" class="hover:text-white transition-colors">历任干部</a></li>
+                        <li><a href="honor2.html" class="hover:text-white transition-colors">个人荣誉墙</a></li>
+                        <li><a href="regulations.html" class="hover:text-white transition-colors">规章制度</a></li>
+                        <li><a href="downloads.html" class="hover:text-white transition-colors">资料下载</a></li>
+                        <li><a href="faq.html" class="hover:text-white transition-colors">常见问题</a></li>
+                        <li><a href="join.html" class="hover:text-white transition-colors">招贤纳士</a></li>
+                    </ul>
+                </div>
+
+                <!-- 联系方式与社交 -->
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 text-white uppercase tracking-wider">联系方式</h4>
+                    <div class="space-y-2.5 text-sm text-gray-400 mb-6">
+                        <p><strong class="text-gray-300">办公地址：</strong>湖南涉外经济学院南四栋1楼102室</p>
+                        <p><strong class="text-gray-300">工作时间：</strong>周一至周五 9:00-19:00</p>
+                    </div>
+
+                    <div class="flex items-center gap-5">
+                        <div class="social-icon-wrapper">
+                            <i class="fab fa-weixin text-lg text-gray-400 hover:text-white cursor-pointer transition-colors"></i>
+                            <div class="qr-popup">
+                                <img src="/wechat-qr.jpg" alt="微信二维码" class="w-24 h-24 rounded mx-auto block" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))">
+                                <p class="text-[10px] text-gray-500 mt-1.5">扫一扫关注公众号</p>
+                            </div>
+                        </div>
+                        <div class="social-icon-wrapper">
+                            <i class="fab fa-tiktok text-lg text-gray-400 hover:text-white cursor-pointer transition-colors"></i>
+                            <div class="qr-popup">
+                                <img src="/douyin-qr.jpg" alt="抖音二维码" class="w-24 h-24 rounded mx-auto block" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))">
+                                <p class="text-[10px] text-gray-500 mt-1.5">扫一扫关注官方抖音</p>
+                            </div>
+                        </div>
+                        <div class="social-icon-wrapper">
+                            <i class="fab fa-weibo text-lg text-gray-400 hover:text-white cursor-pointer transition-colors"></i>
+                            <div class="qr-popup">
+                                <img src="/weibo-qr.jpg" alt="微博二维码" class="w-24 h-24 rounded mx-auto block" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))">
+                                <p class="text-[10px] text-gray-500 mt-1.5">扫一扫关注官方微博</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500 space-y-2">
+                <p>学生志愿教导大队版权所有</p>
+                <p class="flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-1">
+                    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors cursor-pointer">
+                        蜀ICP备2026028492号-1
+                    </a>
+                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors cursor-pointer inline-flex items-center gap-1">
+                        <img src="https://www.beian.gov.cn/img/ghs.png" alt="公安备案图标" class="w-4 h-4">
+                        川公网安备51012202002408号
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ========== 移动端菜单控制 ==========
+        function toggleMobileMenu() {
+            var menu = document.getElementById('mobileMenu');
+            var overlay = document.getElementById('mobileMenuOverlay');
+            if (menu.classList.contains('menu-open')) {
+                menu.style.transform = 'translateX(100%)';
+                overlay.style.opacity = '0';
+                setTimeout(function() { menu.classList.remove('menu-open'); overlay.classList.add('hidden'); }, 400);
+            } else {
+                overlay.classList.remove('hidden');
+                setTimeout(function() { overlay.style.opacity = '1'; menu.classList.add('menu-open'); menu.style.transform = 'translateX(0)'; }, 10);
+            }
+        }
+
+        // ========== 滚动动画 ==========
+        function initScrollAnimations() {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) e.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+        }
+
+        // ========== 初始化 ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            initScrollAnimations();
+        });
+
+        // 百度推送 + Service Worker
+        (function(){var bp=document.createElement('script');var cp=window.location.protocol.split(':')[0];bp.src=(cp==='https')?'https://zz.bdstatic.com/linksubmit/push.js':'http://push.zhanzhang.baidu.com/push.js';var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();
+        (function(){if('serviceWorker'in navigator){navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(){},function(e){});}})();
+    </script>
+</body>
+</html>

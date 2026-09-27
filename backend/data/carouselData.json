@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "明理严军 自强不息",
+    "desc": "湖南涉外经济学院学生志愿教导大队",
+    "image": "slide1.jpg",
+    "active": true
+  },
+  {
+    "id": 2,
+    "title": "轮播图2",
+    "desc": "",
+    "image": "slide2.jpg",
+    "active": true
+  },
+  {
+    "id": 3,
+    "title": "轮播图3",
+    "desc": "",
+    "image": "slide3.jpg",
+    "active": true
+  },
+  {
+    "id": 4,
+    "title": "铁血军魂 青春无悔",
+    "desc": "半军事化管理 · 严格训练 · 甘于奉献",
+    "image": "slide5.jpg",
+    "active": true
+  },
+  {
+    "id": 5,
+    "title": "薪火相传 砥砺前行",
+    "desc": "自2011年成立至今 · 荣获多项省校级表彰",
+    "image": "slide6.jpg",
+    "active": true
+  },
+  {
+    "id": 6,
+    "title": "轮播图6",
+    "desc": "",
+    "image": "slide7.jpg",
+    "active": true
+  }
+]

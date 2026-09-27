@@ -1,0 +1,727 @@
+﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>通知公告详情 - 学生志愿教导大队</title>
+    <meta name="description" content="学生志愿教导大队通知公告详情页。">
+    <meta name="author" content="学生志愿教导大队">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.jiaodao.fun/news-detail.php">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/logo.jpg">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.jiaodao.fun/news-detail.php">
+    <meta property="og:title" content="通知公告详情 - 学生志愿教导大队">
+    <meta property="og:image" content="https://www.jiaodao.fun/logo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="通知公告详情 - 学生志愿教导大队">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+    <link rel="preload" href="/logo.jpg" as="image" fetchpriority="high">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pkured': '#8B0000',
+                        'pkured-dark': '#6B0000',
+                        'deepblue': '#1E3A8A',
+                        'golden': '#D4AF37',
+                        'cloud': '#F8F5F0',
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'SimSun', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: #fff; color: #333; line-height: 1.8; overflow-x: hidden; }
+
+        .card-hover { transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 600ms; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        .nav-link { position: relative; transition: all 200ms; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 2px; background: #D4AF37; transition: all 300ms; transform: translateX(-50%); }
+        .nav-link:hover::after { width: 80%; }
+
+        /* 文章内容样式 */
+        .article-content { font-size: 16px; line-height: 2; color: #374151; }
+        .article-content p { margin-bottom: 1.5em; text-indent: 2em; }
+        .article-content h3 { font-size: 20px; font-weight: 700; color: #1f2937; margin: 1.5em 0 0.8em; }
+        .article-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 1.5em auto; display: block; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+        .article-content blockquote { border-left: 4px solid #8B0000; padding-left: 1.5em; margin: 1.5em 0; color: #6b7280; font-style: italic; background: #fef2f2; padding: 1em 1.5em; border-radius: 0 8px 8px 0; }
+
+        @media (max-width: 768px) {
+            .article-content { font-size: 15px; line-height: 1.9; }
+            .article-content p { text-indent: 1.5em; }
+        }
+
+        .mobile-menu { position: fixed; top: 0; right: 0; width: 75%; max-width: 280px; height: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15); transform: translateX(100%); transition: transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 1000; overflow-y: auto; }
+        .mobile-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 999; }
+        .mobile-menu-item { opacity: 0; transform: translateX(20px); transition: all 0.3s ease-out; }
+        #mobileMenu.menu-open .mobile-menu-item { opacity: 1; transform: translateX(0); }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(1) { transition-delay: 0.05s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(2) { transition-delay: 0.1s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(3) { transition-delay: 0.15s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(4) { transition-delay: 0.2s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(5) { transition-delay: 0.25s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(6) { transition-delay: 0.3s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(7) { transition-delay: 0.35s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(8) { transition-delay: 0.4s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(9) { transition-delay: 0.45s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(10) { transition-delay: 0.5s; }
+
+        .share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 9999px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 250ms; border: none; outline: none; touch-action: manipulation; }
+        .share-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+        .share-btn.wechat { background: #07c160; color: white; }
+        .share-btn.weibo { background: #e6162d; color: white; }
+        .share-btn.qq { background: #12b7f5; color: white; }
+        .share-btn.link { background: #f3f4f6; color: #374151; }
+/* ========== 导航栏 - 与index.html完全一致 ========== */
+.nav-header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);transition:all .3s ease}
+.nav-header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
+.nav-link{position:relative;color:#374151;font-size:14px;font-weight:500;padding:4px 0;transition:color 200ms;white-space:nowrap}
+.nav-link:hover{color:#8B0000}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:50%;width:0;height:2px;background:#D4AF37;transition:all 300ms;transform:translateX(-50%)}
+.nav-link:hover::after{width:70%}
+.nav-link.active::after{width:70%}
+.dropdown{position:relative}
+.dropdown-menu{position:absolute;top:100%;left:0;min-width:160px;background:#fff;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:all 250ms;padding:8px 0;z-index:60}
+.dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-menu a{display:block;padding:8px 20px;font-size:13px;color:#4b5563;transition:all 150ms}
+.dropdown-menu a:hover{background:#fef2f2;color:#8B0000}
+.mobile-menu{position:fixed;top:0;right:0;width:75%;max-width:300px;height:100%;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);box-shadow:-10px 0 40px rgba(0,0,0,.15);transform:translateX(100%);transition:transform 400ms cubic-bezier(.4,0,.2,1);z-index:70;overflow-y:auto}
+.mobile-menu.menu-open{transform:translateX(0)}
+.mobile-menu-item{opacity:0;transform:translateX(20px);transition:all 300ms ease}
+#mobileMenu.menu-open .mobile-menu-item{opacity:1;transform:translateX(0)}
+.social-icon-wrapper{position:relative;display:inline-block}
+.social-icon-wrapper .qr-popup{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) scale(.9);background:#fff;border-radius:10px;padding:10px;box-shadow:0 8px 30px rgba(0,0,0,.18);opacity:0;visibility:hidden;transition:all 250ms;z-index:80;min-width:120px;pointer-events:none}
+.social-icon-wrapper .qr-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#fff}
+.social-icon-wrapper:hover .qr-popup{opacity:1;visibility:visible;transform:translateX(-50%) scale(1)}
+body{padding-top:64px}
+@media(min-width:768px){body{padding-top:72px}}</style>
+</head>
+
+<body class="bg-white">
+
+    <!-- 强制同步预加载关键图片 -->
+    <div style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;">
+        <img src="/logo.jpg" alt="" onload="">
+    </div>
+
+    <!-- ==================== 导航栏 - 浮动在内容上方 ==================== -->
+    <header id="mainNav" class="nav-header">
+        <!-- 全宽容器：Logo左对齐，菜单自适应间距 -->
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-18">
+                <!-- Logo区域 -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="/logo.jpg" alt="学生志愿教导大队 Logo"
+                         class="w-9 h-9 md:w-11 md:h-11 rounded-full object-cover shadow-sm flex-shrink-0"
+                         loading="eager" fetchpriority="high" decoding="sync"
+                         onerror="this.style.display='none'">
+                    <div>
+                        <h1 class="text-lg md:text-xl font-semibold text-gray-800 font-serif tracking-wide">学生志愿教导大队</h1>
+                    </div>
+                </a>
+
+                <!-- PC端导航 -->
+                <nav class="hidden lg:flex items-center gap-7">
+                    <a href="index.html" class="nav-link">首页</a>
+                    <a href="about.html" class="nav-link">大队简介</a>
+                    <a href="org.html" class="nav-link">组织架构</a>
+                    <a href="news.php" class="nav-link active">通知公告</a>
+
+                    <div class="relative dropdown">
+                        <a class="nav-link">人员信息 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="current.html">第十五届干部</a>
+                            <a href="history.html">历任干部</a>
+                        </div>
+                    </div>
+
+                    <div class="relative dropdown">
+                        <a class="nav-link">荣誉墙 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="honor2.html">个人荣誉墙</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a class="nav-link">训练活动 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="volunteer.html">志愿活动</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a class="nav-link">服务中心 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="regulations.html">规章制度</a>
+                            <a href="downloads.html">资料下载</a>
+                            <a href="faq.html">常见问题</a>
+                        </div>
+                    </div>
+                    <a href="join.html" class="nav-link">招贤纳士</a>
+                </nav>
+
+                <!-- 移动端汉堡菜单按钮 -->
+                <button id="menuToggle" class="lg:hidden w-9 h-9 flex items-center justify-center rounded hover:bg-gray-100 active:bg-gray-200 transition-colors duration-200" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-gray-700 text-base"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 移动端侧边菜单 -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/25 z-[60] hidden opacity-0 transition-opacity duration-400" onclick="toggleMobileMenu()"></div>
+
+    <div id="mobileMenu" class="mobile-menu overflow-y-auto">
+        <div class="p-5 border-b border-gray-100">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-pkured font-serif">导航菜单</h2>
+                <button onclick="toggleMobileMenu()" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-times text-gray-500"></i>
+                </button>
+            </div>
+        </div>
+
+        <nav class="p-3 space-y-0.5">
+            <a href="index.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">首页</a>
+            <a href="about.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">大队简介</a>
+            <a href="org.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">组织架构</a>
+            <a href="news.php" class="block px-5 py-3 text-pkured font-semibold bg-red-50 rounded-md transition-all mobile-menu-item">通知公告</a>
+
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">人员信息</p>
+                <a href="current.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">第十五届干部</a>
+                <a href="history.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">历任干部</a>
+            </div>
+
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">荣誉墙</p>
+                <a href="honor2.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">个人荣誉墙</a>
+            </div>
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">训练活动</p>
+                <a href="volunteer.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">志愿活动</a>
+            </div>
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">服务中心</p>
+                <a href="regulations.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">规章制度</a>
+                <a href="downloads.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">资料下载</a>
+                <a href="faq.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">常见问题</a>
+            </div>
+            <a href="join.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">招贤纳士</a>
+        </nav>
+    </div>
+
+    <!-- ==================== 通知公告详情内容 ==================== -->
+    <main>
+        <!-- 返回导航条 -->
+        <section class="py-6 bg-gray-50 border-b border-gray-200">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <a href="news.html" class="inline-flex items-center gap-2 text-pkured hover:text-pkured-dark font-medium transition-colors">
+                    <i class="fas fa-arrow-left"></i> 返回通知公告列表
+                </a>
+            </div>
+        </section>
+
+        <!-- 文章主体 -->
+        <section class="py-12 bg-white fade-in">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 加载中状态 -->
+                <div id="loadingState" class="text-center py-20">
+                    <i class="fas fa-spinner fa-spin text-4xl text-pkured mb-4"></i>
+                    <p class="text-gray-500">正在加载文章...</p>
+                </div>
+
+                <!-- 未找到状态 -->
+                <div id="notFoundState" class="text-center py-20 hidden">
+                    <i class="fas fa-exclamation-circle text-6xl text-gray-300 mb-6"></i>
+                    <h2 class="text-2xl font-bold text-gray-600 mb-4">未找到该文章</h2>
+                    <p class="text-gray-500 mb-8">该文章可能已被删除或链接无效</p>
+                    <a href="news.html" class="inline-flex items-center gap-2 bg-pkured text-white px-8 py-3 rounded-lg font-semibold hover:bg-pkured-dark transition-all">
+                        <i class="fas fa-newspaper"></i> 浏览全部通知
+                    </a>
+                </div>
+
+                <!-- 文章内容 -->
+                <article id="articleContent" class="hidden">
+                    <!-- 标题区 -->
+                    <header class="mb-10 pb-8 border-b border-gray-200 text-center">
+                        <h1 id="articleTitle" class="text-3xl md:text-4xl font-bold text-gray-900 font-serif leading-tight mb-6"></h1>
+                        <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500">
+                            <span id="articleDate"><span></span></span>
+                            <span id="articleAuthor"><span></span></span>
+                            <span id="articleViews"><span></span></span>
+                        </div>
+                    </header>
+
+                    <!-- 正文 -->
+                    <div id="articleBody" class="article-content"></div>
+
+                    <!-- 分享区域 -->
+                    <div class="mt-12 pt-8 border-t border-gray-200">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">分享文章</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="shareToWechat()" class="share-btn wechat"><i class="fab fa-weixin"></i> 微信</button>
+                            <button onclick="shareToWeibo()" class="share-btn weibo"><i class="fab fa-weibo"></i> 微博</button>
+                            <button onclick="shareToQQ()" class="share-btn qq"><i class="fab fa-qq"></i> QQ</button>
+                            <button onclick="copyLink()" class="share-btn link"><i class="fas fa-link"></i> 复制链接</button>
+                        </div>
+                    </div>
+
+                    <!-- 上下篇导航 -->
+                    <div class="mt-10 pt-8 border-t border-gray-200" id="articleNav"></div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-gray-300 py-12 md:py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-10">
+                <!-- Logo与队训 -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="/logo.jpg" alt="Logo" class="w-11 h-11 rounded-lg object-cover" onerror="this.style.display='none'">
+                        <div>
+                            <h3 class="text-lg font-bold font-serif text-white">学生志愿教导大队</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed">明理严军 · 自强不息</p>
+                </div>
+
+                <!-- 快速链接 -->
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 text-white uppercase tracking-wider">快速链接</h4>
+                    <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition-colors">首页</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">大队简介</a></li>
+                        <li><a href="org.html" class="hover:text-white transition-colors">组织架构</a></li>
+                        <li><a href="news.php" class="hover:text-white transition-colors">通知公告</a></li>
+                        <li><a href="volunteer.html" class="hover:text-white transition-colors">志愿活动</a></li>
+                        <li><a href="current.html" class="hover:text-white transition-colors">第十五届干部</a></li>
+                        <li><a href="history.html" class="hover:text-white transition-colors">历任干部</a></li>
+                        <li><a href="honor2.html" class="hover:text-white transition-colors">个人荣誉墙</a></li>
+                        <li><a href="regulations.html" class="hover:text-white transition-colors">规章制度</a></li>
+                        <li><a href="downloads.html" class="hover:text-white transition-colors">资料下载</a></li>
+                        <li><a href="faq.html" class="hover:text-white transition-colors">常见问题</a></li>
+                        <li><a href="join.html" class="hover:text-white transition-colors">招贤纳士</a></li>
+                    </ul>
+                </div>
+
+                <!-- 联系方式与社交 -->
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 text-white uppercase tracking-wider">联系方式</h4>
+                    <div class="space-y-2.5 text-sm text-gray-400 mb-6">
+                        <p><strong class="text-gray-300">办公地址：</strong>湖南涉外经济学院南四栋1楼102室</p>
+                        <p><strong class="text-gray-300">工作时间：</strong>周一至周五 9:00-19:00</p>
+                    </div>
+
+                    <div class="flex items-center gap-5">
+                        <div class="social-icon-wrapper">
+                            <i class="fab fa-weixin text-lg text-gray-400 hover:text-white cursor-pointer transition-colors"></i>
+                            <div class="qr-popup">
+                                <img src="/wechat-qr.jpg" alt="微信二维码" class="w-24 h-24 rounded mx-auto block" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))">
+                                <p class="text-[10px] text-gray-500 mt-1.5">扫一扫关注公众号</p>
+                            </div>
+                        </div>
+                        <div class="social-icon-wrapper">
+                            <i class="fab fa-tiktok text-lg text-gray-400 hover:text-white cursor-pointer transition-colors"></i>
+                            <div class="qr-popup">
+                                <img src="/douyin-qr.jpg" alt="抖音二维码" class="w-24 h-24 rounded mx-auto block" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))">
+                                <p class="text-[10px] text-gray-500 mt-1.5">扫一扫关注官方抖音</p>
+                            </div>
+                        </div>
+                        <div class="social-icon-wrapper">
+                            <i class="fab fa-weibo text-lg text-gray-400 hover:text-white cursor-pointer transition-colors"></i>
+                            <div class="qr-popup">
+                                <img src="/weibo-qr.jpg" alt="微博二维码" class="w-24 h-24 rounded mx-auto block" onerror="this.replaceWith(this.nextElementSibling || document.createElement('span'))">
+                                <p class="text-[10px] text-gray-500 mt-1.5">扫一扫关注官方微博</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500 space-y-2">
+                <p>学生志愿教导大队版权所有</p>
+                <p class="flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-1">
+                    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors cursor-pointer">
+                        蜀ICP备2026028492号-1
+                    </a>
+                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors cursor-pointer inline-flex items-center gap-1">
+                        <img src="https://www.beian.gov.cn/img/ghs.png" alt="公安备案图标" class="w-4 h-4">
+                        川公网安备51012202002408号
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== 移动端菜单控制 ==========
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            if (menu.classList.contains('menu-open')) {
+                menu.style.transform = 'translateX(100%)';
+                overlay.style.opacity = '0';
+                setTimeout(() => { menu.classList.remove('menu-open'); overlay.classList.add('hidden'); }, 400);
+            } else {
+                overlay.classList.remove('hidden');
+                setTimeout(() => { overlay.style.opacity = '1'; menu.classList.add('menu-open'); menu.style.transform = 'translateX(0)'; }, 10);
+            }
+        }
+
+        // ========== 通知公告数据加载 ==========
+        let newsData = [];
+        let currentArticleId = null;  // 当前文章ID，用于编辑跳转
+        var _INLINE_NEWS=[{"id":1780475086072,"title":"以步为链 同行致远 | 教导大队四十公里徒步拉练：十八岁学子用脚步书写青春同行答卷","desc":"6月3日，第十五届学生志愿教导大队全体干部开展四十公里徒步拉练活动。","date":"2026-06-03","author":"学生志愿教导大队、火麒六中队姜梦妮","views":1547,"status":"published","content":"<p>6月3日清晨，第十五届学生志愿教导大队全体干部整装待发，开展了一场意义非凡的四十公里徒步拉练活动。本次活动以\"以步为链 同行致远\"为主题，旨在通过长途徒步锤炼队员意志品质，增强团队凝聚力。</p><p>出发前，大队长进行了动员讲话，强调了拉练活动的纪律要求和安全注意事项。随着一声令下，全体干部迈着整齐的步伐踏上征程。沿途，队员们互相鼓励、相互扶持，充分展现了教导大队\"明理严军 自强不息\"的精神风貌。</p><p>经过近八小时的艰苦跋涉，全体队员成功完成全程。此次活动不仅是一次体能的考验，更是一次精神的洗礼。队员们纷纷表示，将在今后的学习和工作中继续发扬不怕苦、不怕累的精神，为学校国防教育事业贡献青春力量。</p>","images":[]},{"id":1780474086072,"title":"西部计划军事训练营带训工作完美收官","desc":"5月27日，第十五届学生志愿教导大队圆满完成2026年度西部计划军事训练营带训任务。","date":"2026-05-27","author":"宣传部","views":2450,"status":"published","content":"<p>5月27日，为期两周的西部计划军事训练营带训工作圆满结束。第十五届学生志愿教导大队选派优秀骨干担任教官，对参加西部计划的志愿者进行系统的军事化训练。</p><p>训练内容包括队列动作、内务整理、体能训练、战术基础等多个科目。在带训过程中，教官们严格要求、科学施教，参训学员刻苦训练、积极进取，展现了良好的精神风貌和过硬的作风素质。</p><p>结营仪式上，相关领导对本次带训工作给予了高度评价，对教导大队教官的专业素养和敬业精神表示充分肯定。此次任务的圆满完成，进一步彰显了学校国防教育的特色与成效。</p>","images":[]},{"id":1780304000001,"title":"教导大队第五届\"教导杯\"","desc":"5月20日下午，第十五届学生志愿教导大队召开常务委员会，决定于2026年6月1日晚举办第五届\"教导杯\"篮球赛。","date":"2026-05-20","author":"拓展部","views":2560,"status":"published","content":"<p>5月20日下午，第十五届学生志愿教导大队召开常务委员会，决定于2026年6月1日晚举办第五届\"教导杯\"篮球赛。此次赛事旨在丰富学生的课余生活，增强团队协作精神，同时为各部门成员提供一个相互交流、展示自我的平台。</p><p>据悉，本届\"教导杯\"篮球赛将延续往届的成功经验，采用分组循环赛与淘汰赛相结合的赛制。目前，各参赛队伍正在积极备战，训练场上随处可见队员们挥洒汗水的身影。</p><p>相关负责人表示，将全力做好赛事的各项筹备工作，包括场地安排、参赛队伍组织、裁判邀请以及宣传推广等事宜，确保比赛能够顺利、圆满地举行，为全校师生呈现一场精彩的体育盛宴。</p>","images":[]},{"id":1746460800002,"title":"第十五届学生志愿教导大队授衔暨入队宣誓仪式","desc":"5月14日，骄阳似火的校园里，第十五届学生志愿教导大队授衔暨入队宣誓仪式在此隆重举行。","date":"2026-05-14","author":"办公室","views":3120,"status":"published","content":"<p>5月14日，骄阳似火的校园里，第十五届学生志愿教导大队授衔暨入队宣誓仪式在此隆重举行。全体队员身着整齐的军装，仪式开始前，训练场上灯光璀璨，鲜红的队旗在夜风中猎猎生辉。</p><p>仪式伊始，主持人宣布授衔暨宣誓仪式正式开始。武装部领导为新任干部佩戴肩章、领花等标识，象征着责任的传承与使命的担当。随后，全体队员面向队旗庄严宣誓，铿锵有力的誓言响彻校园上空，展现了教导大队铁血军魂的铮铮誓言。</p><p>从队列前的敬礼声到宣誓时那直抵云霄的呼号，无不彰显着教导大队的铁血军魂。新队员们纷纷表示，将以更加饱满的热情投入到今后的训练和工作中，不负学校期望，不负青春韶华。</p>","images":[]},{"id":1746336000003,"title":"四十公里野外拉练","desc":"4月28日上午，春日的朝阳洒在训练场上，第十五届教导大队全体干部身着整齐的制服。","date":"2026-04-28","author":"拓展部","views":2450,"status":"published","content":"<p>4月28日上午，春日的朝阳洒在训练场上，第十五届教导大队全体干部身着整齐的制服，肩章在阳光下熠熠生辉。他们站姿挺拔如松，眼神坚定有神，展现出饱满的精神状态和昂扬的斗志。</p><p>本次四十公里野外拉练是教导大队年度训练计划的重要组成部分。拉练路线经过精心规划，途经多个地标性路段，既考验了队员们的体能耐力，也锻炼了大家在复杂环境下的应变能力。</p><p>一路上，队员们发扬\"不抛弃、不放弃\"的团队精神，互相帮助、携手前行。当最后一名队员抵达终点时，全场爆发出热烈的掌声。这次拉练不仅是一次体能的挑战，更是一次意志的磨砺，让每一位参与者都深刻体会到了坚持的意义。</p>","images":[]},{"id":1743744000004,"title":"心声共诉，聚力前行","desc":"4月4日晚19时，为了加强队伍建设、倾听大家心里话、让团队更有凝聚力。","date":"2026-04-04","author":"综合办公室","views":1980,"status":"published","content":"<p>4月4日晚19时，为了加强队伍建设、倾听大家心里话、让团队更有凝聚力，第十五届学生志愿教导大队开展了一场超轻松、超欢乐、超走心的思想交流分享会。</p><p>分享会上，队员们围坐在一起，畅谈加入教导大队以来的收获与感悟。有的队员分享了训练中的难忘瞬间，有的讲述了与队友并肩作战的感人故事，还有的表达了对未来工作的憧憬与期待。现场气氛温馨而热烈，不时传来阵阵掌声和欢笑声。</p><p>大队领导认真听取了每位队员的发言，并对大家提出的问题和建议进行了耐心解答。此次分享会不仅增进了队员之间的了解与信任，也为今后队伍的建设与发展凝聚了共识、汇聚了力量。</p>","images":[]},{"id":1741596800005,"title":"开训动员大会暨国防教育研讨班","desc":"3月10日晚，第十五届学生志愿教导大队召开本年度开训动员大会暨国防教育专题研讨班。","date":"2026-03-10","author":"宣传部","views":2890,"status":"published","content":"<p>3月10日晚，第十五届学生志愿教导大队召开本年度开训动员大会暨国防教育专题研讨班。武装部副部长、教导大队指导老师夏建平出席大会并作重要讲话。</p><p>夏建平老师在讲话中回顾了过去一年教导大队取得的成绩，对新学年的训练工作提出了明确要求和殷切期望。他强调，全体队员要牢记\"明理严军 自强不息\"的队训，以更高的标准要求自己，不断提升综合素质和能力水平。</p><p>随后开展的国防教育专题研讨班中，队员们围绕当前国际形势、国家安全、青年责任等主题展开了热烈讨论。大家纷纷表示，作为新时代的大学生，要自觉增强国防意识，主动担当时代使命，为实现强国梦贡献青春力量。</p>","images":[]},{"id":1739664000006,"title":"教导大队2026新年贺词","desc":"值此2026年新春佳节来临之际，湖南涉外经济学院学生志愿教导大队向全校师生致以最诚挚的新年祝福！","date":"2026-02-16","author":"宣传部","views":6578,"status":"published","content":"<p>值此2026年新春佳节来临之际，湖南涉外经济学院学生志愿教导大队向全校师生致以最诚挚的新年祝福！</p><p>回首过去的一年，教导大队在学校党委和人民武装部的正确领导下，全体队员团结一心、砥砺前行，圆满完成了各项训练任务和工作目标。从日常训练到大型活动保障，从新生军训到国防教育宣讲，处处都有教导大队队员的身影。</p><p>新的一年，我们将继续秉承\"明理严军 自强不息\"的精神，以更加饱满的热情、更加昂扬的斗志，投身到学校的国防教育和学生管理工作中去。祝愿全校师生新年快乐、万事如意、阖家幸福！</p>","images":[]},{"id":1735257600007,"title":"教导大队期末总结暨表彰大会","desc":"12月26日，第十五届学生志愿教导大队召开2025年度期末总结暨表彰大会。","date":"2025-12-26","author":"宣传部","views":3251,"status":"published","content":"<p>12月26日，第十五届学生志愿教导大队召开2025年度期末总结暨表彰大会。会议全面总结了本学期的工作成绩与不足，对表现突出的先进集体和个人进行了表彰奖励。</p><p>大会上，各部门负责人依次汇报了本部门的工作情况。一学期以来，教导大队在新生军训、国旗护卫、国防教育宣传、校园秩序维护等方面取得了显著成效，得到了学校领导和广大师生的一致好评。</p><p>表彰环节中，大会对优秀队员、优秀干部、训练标兵等多个奖项进行了隆重颁奖。获奖代表上台发言，分享了他们的成长经历和心得体会。大会号召全体队员以先进为榜样，在新的一年里再创佳绩。</p>","images":[]},{"id":1735123200008,"title":"教导大队成功举办\"体能大比武\"：在极限挑战中淬炼\"我们的力量\"","desc":"12月25日，第十五届学生志愿教导大队举办年度\"体能大比武\"竞赛活动。","date":"2025-12-25","author":"宣传部（图：殷晓玲、余梦婷）","views":2578,"status":"published","content":"<p>12月25日，第十五届学生志愿教导大队举办年度\"体能大比武\"竞赛活动。本次比赛设置了俯卧撑、引体向上、三千米跑、仰卧起坐等多个项目，全方位检验队员们的体能素质。</p><p>比赛现场气氛热烈，参赛队员们个个摩拳擦掌、斗志昂扬。在各项比赛中，队员们顽强拼搏、奋勇争先，充分展现了教导大队队员过硬的身体素质和顽强的意志品质。场边观众的加油呐喊声此起彼伏，为选手们注入了强大的动力。</p><p>经过激烈角逐，各项目的优胜者脱颖而出。大队领导为获奖队员颁发了荣誉证书和奖品。此次活动不仅检验了训练成果，也激发了全体队员的训练热情，营造了\"比学赶帮超\"的良好氛围。</p>","images":[]}];
+
+        function loadNewsData() {
+            const saved = localStorage.getItem('jiaodao_news');
+            if (saved) {
+                try {
+                    var p = JSON.parse(saved);
+                    if (p && Array.isArray(p) && p.length > 0) {
+                        newsData = p.map(function(i) {
+                            if (!i || typeof i !== 'object') return null;
+                            return {
+                                id: i.id || Date.now() + Math.random(),
+                                title: i.title || '(无标题)',
+                                author: i.author || '宣传部',
+                                date: i.date || new Date().toISOString().split('T')[0],
+                                desc: i.desc || '',
+                                content: i.content || '',
+                                status: i.status || 'published',
+                                views: i.views || 0,
+                                images: Array.isArray(i.images) ? i.images : [],
+                                category: i.category || '新闻动态',
+                                topic: i.topic || '',
+                                downloadUrl: i.downloadUrl || '',
+                                downloadName: i.downloadName || ''
+                            };
+                        }).filter(Boolean);
+                        _fetchServerNews();return;
+                    }
+                } catch(e) {}
+            }
+            _fetchServerNews();
+        }
+        function _fetchServerNews(){
+            fetch('/news_data.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(data){
+                if(data&&Array.isArray(data)&&data.length>0){newsData=data.map(function(i){return{id:i.id||Date.now()+Math.random(),title:i.title||'(无标题)',author:i.author||'宣传部',date:i.date||new Date().toISOString().split('T')[0],desc:i.desc||'',content:i.content||'',status:i.status||'published',views:i.views||0,images:Array.isArray(i.images)?i.images:[],category:i.category||'新闻动态',topic:i.topic||'',downloadUrl:i.downloadUrl||'',downloadName:i.downloadName||''}});}
+            }).catch(function(){if(!newsData||newsData.length===0){newsData=_INLINE_NEWS.map(function(i){return{id:i.id,title:i.title,author:i.author,date:i.date,desc:i.desc,content:i.content||'',status:'published',views:i.views||0,images:Array.isArray(i.images)?i.images:[],category:i.category||'新闻动态',topic:i.topic||'',downloadUrl:i.downloadUrl||'',downloadName:i.downloadName||''}});}});
+        }
+
+        // ========== HTML解码与内容处理 ==========
+        function _esc(str) { if (!str) return ''; var d = document.createElement('div'); d.textContent = String(str); return d.innerHTML; }
+
+        function _decodeContent(raw) {
+            if (!raw) return '';
+            var c = String(raw);
+            var n = (c.match(/&lt;\/?[a-zA-Z][^&]*?&gt;/g) || []).length;
+            if (n >= 2) { var t = document.createElement('div'); t.innerHTML = c; c = t.textContent || t.innerText || c; }
+            var am = c.match(/<article[^>]*class="[^"]*4ever[^"]*"[^]*>([\s\S]*?)<\/article>/i);
+            if (am && am[1].trim()) c = am[1].trim();
+            var sm = c.match(/<section[^>]*class="[^"]*4ever[^"]*"[^]*>([\s\S]*?)<\/section>/i);
+            if (sm && sm[1].trim()) c = sm[1].trim();
+            c = c.replace(/<span\s+data-type="text"\s*>\s*<\/span>/gi, '');
+            c = c.replace(/<p>\s*<span\s+data-type="text"\s*>\s*<\/span>\s*<\/p>/gi, '');
+            c = c.replace(/(&nbsp;){3,}/gi, '&nbsp;&nbsp;');
+            if (c.trim().length < 5) return raw;
+            return c;
+        }
+
+        // ========== 从URL hash获取通知公告ID ==========
+        function getNewsIdFromHash() {
+            var hash = window.location.hash;
+            var match = hash.match(/#news\/(\d+)/);
+            return match ? parseInt(match[1], 10) : null;
+        }
+
+        // ========== 渲染文章详情 ==========
+        function renderArticle(id) {
+            var loading = document.getElementById('loadingState');
+            var notFound = document.getElementById('notFoundState');
+            var article = document.getElementById('articleContent');
+
+            loading.classList.remove('hidden');
+            notFound.classList.add('hidden');
+            article.classList.add('hidden');
+
+            var news = newsData.find(function(n) { return n.id === id; });
+
+            if (!news) {
+                loading.classList.add('hidden');
+                notFound.classList.remove('hidden');
+                document.title = '未找到文章 - 学生志愿教导大队';
+                return;
+            }
+
+            // 记录当前文章ID（用于编辑跳转）
+            currentArticleId = id;
+
+            // 更新浏览量
+            news.views = (news.views || 0) + 1;
+            saveNewsViews();
+
+            // 设置标题
+            document.title = _esc(news.title) + ' - 学生志愿教导大队';
+
+            // 填充内容
+            document.getElementById('articleTitle').textContent = news.title;
+            document.getElementById('articleDate').innerHTML = '<span>新闻动态</span><span>日期：' + _esc(news.date) + '</span>';
+            document.getElementById('articleAuthor').innerHTML = '<span>作者：' + _esc(news.author || '宣传部') + '</span>';
+            document.getElementById('articleViews').innerHTML = '<span>浏览次数：' + (news.views || 0) + '</span>';
+
+            var bodyEl = document.getElementById('articleBody');
+            var bodyHtml = _decodeContent(news.content);
+            if (!bodyHtml || bodyHtml.trim().length === 0) {
+                bodyHtml = '<p>' + _esc(news.desc || '暂无详细内容') + '</p>';
+            }
+            bodyEl.innerHTML = bodyHtml;
+
+            // 上下篇导航
+            renderArticleNav(id);
+
+            // 显示
+            loading.classList.add('hidden');
+            article.classList.remove('hidden');
+
+            // 触发fade-in动画
+            setTimeout(function() {
+                article.closest('.fade-in').classList.add('visible');
+            }, 100);
+        }
+
+        // ========== 上下篇导航（事件委托，不刷新页面） ==========
+        function renderArticleNav(currentId) {
+            var sorted = [...newsData].sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+            var idx = sorted.findIndex(function(n) { return n.id === currentId; });
+            var navEl = document.getElementById('articleNav');
+            var html = '<div class="flex justify-between items-center gap-4">';
+
+            // 用data属性存ID，事件委托统一处理
+            if (idx > 0) {
+                html += '<button data-nav-id="' + sorted[idx-1].id + '" class="nav-next-btn inline-flex items-center gap-2 text-pkured hover:text-pkured-dark font-medium transition-colors px-4 py-2 rounded-lg hover:bg-red-50"><i class="fas fa-chevron-left"></i> 上一篇</button>';
+            } else {
+                html += '<span></span>';
+            }
+            if (idx < sorted.length - 1) {
+                html += '<button data-nav-id="' + sorted[idx+1].id + '" class="nav-next-btn inline-flex items-center gap-2 text-pkured hover:text-pkured-dark font-medium transition-colors px-4 py-2 rounded-lg hover:bg-red-50">下一篇 <i class="fas fa-chevron-right"></i></button>';
+            } else {
+                html += '<span></span>';
+            }
+            html += '</div>';
+            navEl.innerHTML = html;
+        }
+
+        // 导航容器的事件委托（在init中绑定一次，innerHTML重写不影响）
+        // 见下方 init() 函数中的绑定代码
+
+        // ========== 切换文章（直接替换，无动画避免内存溢出） ==========
+        let _isSwitching = false;
+
+        function switchArticle(newId) {
+            if (_isSwitching) return;
+            _isSwitching = true;
+
+            // 立即更新URL
+            history.replaceState(null, '', '#news/' + newId);
+
+            // 直接替换内容
+            _directRenderArticle(newId);
+
+            // 滚回顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            setTimeout(function() { _isSwitching = false; }, 200);
+        }
+
+        // 直接渲染文章（不重置loading/notFound状态，用于切换场景）
+        function _directRenderArticle(id) {
+            var news = newsData.find(function(n) { return n.id === id; });
+            if (!news) return;
+            currentArticleId = id;
+
+            // 只在内存中累加浏览量，不每次写localStorage（避免JSON序列化大内容导致OOM）
+            news.views = (news.views || 0) + 1;
+
+            document.title = _esc(news.title) + ' - 学生志愿教导大队';
+            document.getElementById('articleTitle').textContent = news.title;
+            document.getElementById('articleDate').innerHTML = '<span>新闻动态</span><span>日期：' + _esc(news.date) + '</span>';
+            document.getElementById('articleAuthor').innerHTML = '<span>作者：' + _esc(news.author || '宣传部') + '</span>';
+            document.getElementById('articleViews').innerHTML = '<span>浏览次数：' + (news.views || 0) + '</span>';
+
+            // 先清空旧内容（释放DOM节点和图片内存），再写入新内容
+            var bodyEl = document.getElementById('articleBody');
+            bodyEl.innerHTML = '';
+
+            var bodyHtml = _decodeContent(news.content);
+            if (!bodyHtml || bodyHtml.trim().length === 0) {
+                bodyHtml = '<p>' + _esc(news.desc || '暂无详细内容') + '</p>';
+            }
+            bodyEl.innerHTML = bodyHtml;
+
+            renderArticleNav(id);
+        }
+
+        // ========== 跳转到管理后台编辑当前文章 ==========
+        function goEditArticle() {
+            if (!currentArticleId) return;
+            // 通过localStorage传递编辑ID，管理后台读取后自动打开编辑器
+            localStorage.setItem('jiaodao_edit_news_id', String(currentArticleId));
+            window.open('admin.html#edit-news', '_blank');
+        }
+
+        // ========== 保存浏览量回localStorage ==========
+        function saveNewsViews() {
+            try {
+                localStorage.setItem('jiaodao_news', JSON.stringify(newsData));
+                // 通知其他标签页
+                if (typeof BroadcastChannel !== 'undefined') {
+                    try {
+                        var bc = new BroadcastChannel('jiaodao_news_sync');
+                        bc.postMessage({ type: 'news_updated' });
+                    } catch(e) {}
+                }
+            } catch(e) {}
+        }
+
+        // ========== 分享功能 ==========
+        function shareToWechat() {
+            alert('请使用微信扫描二维码分享，或复制链接后在微信中发送给好友');
+        }
+        function shareToWeibo() {
+            var url = encodeURIComponent(window.location.href);
+            var title = encodeURIComponent(document.getElementById('articleTitle').textContent);
+            window.open('https://service.weibo.com/share/share.php?url=' + url + '&title=' + title, '_blank', 'width=600,height=500');
+        }
+        function shareToQQ() {
+            var url = encodeURIComponent(window.location.href);
+            var title = encodeURIComponent(document.getElementById('articleTitle').textContent);
+            window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + url + '&title=' + title, '_blank', 'width=600,height=500');
+        }
+        function copyLink() {
+            var url = window.location.href;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(function() {
+                    alert('链接已复制到剪贴板！');
+                }).catch(function() {
+                    fallbackCopy(url);
+                });
+            } else {
+                fallbackCopy(url);
+            }
+        }
+        function fallbackCopy(text) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed'; ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); alert('链接已复制！'); } catch(e) { alert('复制失败，请手动复制地址栏链接'); }
+            document.body.removeChild(ta);
+        }
+
+        // ========== 初始化 ==========
+        function init() {
+            loadNewsData();
+
+            // 绑定上下篇导航事件委托（只绑一次，innerHTML重写不影响）
+            var navContainer = document.getElementById('articleNav');
+            if (navContainer) {
+                navContainer.addEventListener('click', function(e) {
+                    var btn = e.target.closest('.nav-next-btn');
+                    if (!btn || _isSwitching) return;
+                    var targetId = parseInt(btn.getAttribute('data-nav-id'), 10);
+                    if (!isNaN(targetId)) switchArticle(targetId);
+                });
+            }
+
+            var newsId = getNewsIdFromHash();
+            if (newsId) {
+                renderArticle(newsId);
+            } else {
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('notFoundState').classList.remove('hidden');
+            }
+
+            // 监听hash变化（用于浏览器前进/后退按钮，切换时跳过）
+            window.addEventListener('hashchange', function() {
+                if (_isSwitching) return; // 程序触发的hash变化，忽略
+                var id = getNewsIdFromHash();
+                if (id) renderArticle(id);
+            });
+
+            // 监听storage变化
+            window.addEventListener('storage', function(e) {
+                if (e.key && (e.key.startsWith('jiaodao_') || e.key === 'jiaodao_sync_trigger')) {
+                    loadNewsData();
+                    var id = getNewsIdFromHash();
+                    if (id) renderArticle(id);
+                }
+            });
+
+            // BroadcastChannel监听
+            if (typeof BroadcastChannel !== 'undefined') {
+                try {
+                    var channel = new BroadcastChannel('jiaodao_news_sync');
+                    channel.onmessage = function(e) {
+                        if (e.data && e.data.type === 'news_updated') {
+                            loadNewsData();
+                            var id = getNewsIdFromHash();
+                            if (id) renderArticle(id);
+                        }
+                    };
+                } catch(err) {}
+            }
+
+            // 离开页面时一次性保存浏览量（避免每次切换都JSON序列化导致OOM）
+            window.addEventListener('beforeunload', function() {
+                try { saveNewsViews(); } catch(e) {}
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+
+        // 百度站长平台自动推送 + Service Worker
+        (function(){
+            var bp=document.createElement('script');
+            bp.src=(location.protocol==='https')?'https://zz.bdstatic.com/linksubmit/push.js':'http://push.zhanzhang.baidu.com/push.js';
+            var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);
+        })();
+        (function(){
+            if('serviceWorker' in navigator){
+                navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(()=>{}).catch(function(e){});
+            }
+        })();
+    </script>
+</body>
+</html>

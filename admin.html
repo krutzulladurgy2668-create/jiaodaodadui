@@ -1,0 +1,3609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+
+    <!-- SEO / 分享元信息 -->
+    <title>学生志愿教导大队 - 管理后台</title>
+    <meta name="description" content="学生志愿教导大队管理后台，用于管理官网通知公告、轮播图、人员信息等内容。">
+    <meta name="keywords" content="学生志愿教导大队,管理后台,新闻管理,志愿队">
+    <meta name="author" content="学生志愿教导大队">
+
+    <!-- Open Graph / 微信分享卡片 -->
+    <meta property="og:title" content="学生志愿教导大队 - 管理后台">
+    <meta property="og:description" content="学生志愿教导大队管理后台，用于管理官网通知公告、轮播图、人员信息等内容。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.jiaodao.fun/admin.html">
+    <meta property="og:image" content="https://www.jiaodao.fun/logo.jpg">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
+
+    <!-- 微博/QQ 等 -->
+    <meta itemprop="name" content="学生志愿教导大队 - 管理后台">
+    <meta itemprop="description" content="学生志愿教导大队管理后台，用于管理官网通知公告、轮播图、人员信息等内容。">
+    <meta itemprop="image" content="https://www.jiaodao.fun/logo.jpg">
+
+    <!-- 图标 -->
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="logo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pkured': '#8B0000',
+                        'pkured-dark': '#6B0000',
+                        'deepblue': '#1E3A8A',
+                        'golden': '#D4AF37'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-color: #ffffff; line-height: 1.6; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-overlay { background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); }
+        .toast { animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-in 2.7s forwards; position: fixed; bottom: 20px; right: 20px; z-index: 9999; }
+        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        .sidebar-link { transition: all 0.2s ease; border-radius: 10px; color: #64748b; }
+        .sidebar-link:hover { background-color: rgba(51, 112, 255, 0.06); color: #3370FF; }
+        .sidebar-link.active { background-color: rgba(51, 112, 255, 0.1); color: #3370FF; font-weight: 600; }
+        .btn-primary { background-color: #3370FF; transition: all 0.2s ease; color: white; }
+        .btn-primary:hover { background-color: #2660E0; box-shadow: 0 4px 12px rgba(51, 112, 255, 0.25); }
+        .image-upload-area { border: 2px dashed #d1d5db; transition: all 0.3s ease; cursor: pointer; }
+        .image-upload-area:hover { border-color: #3370FF; background-color: rgba(51, 112, 255, 0.02); }
+        .captcha-box { background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); letter-spacing: 4px; font-weight: bold; user-select: none; cursor: pointer; }
+        @media (max-width: 1024px) {
+            .sidebar { position: fixed; left: -280px; transition: left 0.3s ease; z-index: 1000; height: 100vh; }
+            .sidebar.open { left: 0; }
+            .main-content { margin-left: 0 !important; }
+            .mobile-menu-btn { display: flex !important; }
+            
+            /* 管理后台底部备案号平板端 */
+            .admin-footer {
+                margin-left: 0 !important;
+            }
+        }
+
+        /* 登录页面整体布局：固定底部备案号 */
+        #loginPage {
+            position: relative;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 80px; /* 给底部备案号留空间 */
+        }
+        .login-footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+        }
+        .login-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 平板及以下：隐藏左侧模块，登录卡片居中 */
+        @media (max-width: 1023px) {
+            .login-left {
+                display: none !important;
+            }
+            .login-main > div {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            #loginPage > div:nth-child(2) {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+                padding-top: 12px !important;
+                padding-bottom: 8px !important;
+            }
+
+            #loginPage > div:nth-child(2) img {
+                width: 32px !important;
+                height: 32px !important;
+            }
+
+            #loginPage > div:nth-child(2) span {
+                font-size: 14px !important;
+            }
+
+            #loginPage > div:nth-child(3) {
+                padding: 0 16px !important;
+            }
+
+            #loginPage > div:nth-child(3) > div {
+                gap: 24px !important;
+            }
+
+            #loginPage > div:nth-child(3) > div > div:last-child {
+                width: 100% !important;
+                max-width: 400px !important;
+                margin: 0 auto !important;
+            }
+
+            #loginPage input[type="text"],
+            #loginPage input[type="password"] {
+                font-size: 16px !important; /* 防止iOS缩放 */
+            }
+
+            #loginPage > div:last-child {
+                padding-bottom: 20px !important;
+            }
+        }
+
+        .mobile-menu-btn { display: none; position: fixed; top: 16px; left: 16px; z-index: 40; background: #3370FF; color: white; padding: 12px; border-radius: 8px; box-shadow: 0 4px 12px rgba(51,112,255,0.25); cursor: pointer; }
+        .data-table th { background-color: #f8fafc; color: #475569; font-weight: 600; border-bottom: 1px solid #e2e8f0; }
+        .data-table tr:hover { background-color: rgba(51, 112, 255, 0.03); }
+        .rich-editor { min-height: 300px; outline: none; padding: 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: inherit; line-height: 1.6; }
+        .rich-editor:focus { border-color: #3370FF; box-shadow: 0 0 0 3px rgba(51, 112, 255, 0.1); }
+        .editor-toolbar button { transition: all 0.2s; padding: 8px; border-radius: 4px; border: none; background: transparent; cursor: pointer; }
+        .editor-toolbar button:hover { background-color: rgba(51, 112, 255, 0.1); color: #3370FF; }
+        .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; }
+        .status-published { background-color: #dcfce7; color: #166534; }
+        .status-draft { background-color: #fef3c7; color: #92400e; }
+        .stat-card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); border: 1px solid #f1f5f9; transition: transform 0.2s, box-shadow 0.2s; }
+        .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+        .content-card { background: white; border-radius: 16px; border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+        .content-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+
+        /* ========== 管理后台响应式适配 ========== */
+        
+        /* 侧边栏 */
+        #adminPanel { display: flex; flex-direction: column; overflow: hidden; }
+        
+        .admin-sidebar {
+            width: 260px !important;
+            min-width: 260px !important;
+            max-width: 260px !important;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 50;
+        }
+
+        @media (min-width: 1024px) {
+            .admin-footer {
+                margin-left: 260px !important;
+            }
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            margin-left: 0 !important;
+            padding: 16px !important;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+        
+        @media (min-width: 1024px) {
+            .main-content { 
+                margin-left: 260px !important; 
+                padding: 24px 32px !important;
+            }
+            .admin-sidebar {
+                position: fixed !important;
+                left: 0;
+                top: 0;
+                bottom: 0;
+            }
+        }
+        
+        @media (max-width: 1023px) and (min-width: 768px) {
+            .admin-sidebar {
+                position: fixed !important;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                transform: translateX(-100%);
+            }
+            .admin-sidebar.mobile-open {
+                transform: translateX(0);
+            }
+            .mobile-sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.4);
+                z-index: 40;
+            }
+            .mobile-sidebar-overlay.active { display: block; }
+        }
+        
+        @media (max-width: 767px) {
+            .admin-sidebar {
+                position: fixed !important;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 75% !important;
+                max-width: 280px !important;
+                transform: translateX(-100%);
+            }
+            .admin-sidebar.mobile-open {
+                transform: translateX(0);
+                box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+            }
+            
+            .main-content { padding: 12px !important; }
+            
+            /* 头部 */
+            header.mb-8 { margin-bottom: 16px !important; padding-bottom: 12px !important; }
+            header h1 { font-size: 1.25rem !important; }
+            
+            /* 统计卡片 */
+            .stat-card { padding: 12px !important; }
+            .stat-card .text-3xl { font-size: 1.5rem !important; }
+            
+            /* 表格容器 */
+            .overflow-x-auto { -webkit-overflow-scrolling: touch; }
+            
+            /* 表格 */
+            table th, table td { 
+                padding: 8px 10px !important; 
+                font-size: 13px !important;
+                white-space: nowrap;
+            }
+            
+            /* 操作按钮区 */
+            .action-bar { flex-wrap: wrap; gap: 8px !important; }
+            .action-bar button { 
+                font-size: 13px !important; 
+                padding: 6px 12px !important;
+            }
+            
+            /* 快捷操作网格 */
+            .grid.grid-cols-2.gap-3 { gap: 8px !important; }
+            
+            /* 模态框 */
+            .modal-overlay > div {
+                margin: 8px !important;
+                max-height: calc(100vh - 16px) !important;
+                border-radius: 12px !important;
+            }
+            .modal-overlay > div > div:first-child {
+                padding: 12px 16px !important;
+            }
+            .modal-overlay > div > div:nth-child(2) {
+                padding: 12px !important;
+            }
+            
+            /* 编辑器工具栏 */
+            .editor-toolbar { 
+                flex-wrap: wrap; 
+                padding: 8px !important;
+                gap: 2px !important;
+            }
+            .editor-toolbar button {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 12px !important;
+            }
+            
+            /* 表单元素 */
+            input[type="text"], input[type="date"], input[type="number"],
+            select, textarea { font-size: 15px !important; }
+            
+            /* 设置面板卡片 */
+            .bg-white.rounded-xl.shadow.p-6 { padding: 12px !important; }
+            
+            /* 日志面板 */
+            #recentLogs { max-height: 150px !important; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<!-- 登录页面 -->
+<div id="loginPage" class="min-h-screen w-full bg-white relative flex flex-col">
+    <!-- 背景装饰（与首页风格一致） -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-20 -left-20 w-80 h-80 bg-red-900/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-20 w-96 h-96 bg-blue-900/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 left-1/3 w-64 h-64 bg-gray-100/50 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- 顶部Logo栏（全宽） -->
+    <div class="relative z-10 px-6 sm:px-10 md:px-16 lg:px-24 pt-6 sm:pt-8 pb-4 flex items-center gap-3">
+        <img src="logo.jpg" alt="学生志愿教导大队 Logo" class="w-9 h-9 rounded-lg object-cover shadow-sm" onerror="this.outerHTML='<div class=\'w-9 h-9 rounded-lg bg-gradient-to-br from-red-900 to-red-700 flex items-center justify-center shadow-sm\'><i class=\'fas fa-shield-alt text-white text-sm\'></i></div>'">
+        <span class="text-gray-800 font-semibold text-base sm:text-lg tracking-tight">学生志愿教导大队管理后台</span>
+    </div>
+
+    <!-- 主内容区：左侧模块 + 右侧登录卡片（屏幕正中央） -->
+    <div class="login-main relative z-10 flex-1 flex items-center justify-center px-4 sm:px-8 lg:px-12">
+        <div class="w-full max-w-[900px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-center">
+            <!-- 左侧：功能模块展示 -->
+            <div class="login-left hidden lg:block max-w-[440px]">
+                <!-- 欢迎标题 -->
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">学生志愿教导大队</h2>
+                    <p class="text-sm text-gray-500">明理严军 · 自强不息</p>
+                </div>
+
+                <!-- 模块卡片网格 -->
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- 模块1：通知公告 -->
+                    <div class="group p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-white/80 hover:border-red-200 hover:shadow-md transition-all duration-300 cursor-default">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <div class="w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                                <i class="fas fa-newspaper text-blue-500 text-xs"></i>
+                            </div>
+                            <span class="font-semibold text-gray-800 text-xs">通知公告</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed">发布、编辑和管理网站新闻内容。</p>
+                    </div>
+
+                    <!-- 模块2：轮播图管理 -->
+                    <div class="group p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-white/80 hover:border-orange-200 hover:shadow-md transition-all duration-300 cursor-default">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <div class="w-7 h-7 rounded-lg bg-orange-50 flex items-center justify-center group-hover:bg-orange-100 transition-colors">
+                                <i class="fas fa-images text-orange-500 text-xs"></i>
+                            </div>
+                            <span class="font-semibold text-gray-800 text-xs">轮播图管理</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed">配置首页轮播图片与链接。</p>
+                    </div>
+
+                    <!-- 模块3：关于我们 -->
+                    <div class="group p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-white/80 hover:border-yellow-200 hover:shadow-md transition-all duration-300 cursor-default">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <div class="w-7 h-7 rounded-lg bg-yellow-50 flex items-center justify-center group-hover:bg-yellow-100 transition-colors">
+                                <i class="fas fa-info-circle text-yellow-600 text-xs"></i>
+                            </div>
+                            <span class="font-semibold text-gray-800 text-xs">关于我们</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed">编辑组织简介与指导老师。</p>
+                    </div>
+
+                    <!-- 模块4：登录日志 -->
+                    <div class="group p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-white/80 hover:border-green-200 hover:shadow-md transition-all duration-300 cursor-default">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <div class="w-7 h-7 rounded-lg bg-green-50 flex items-center justify-center group-hover:bg-green-100 transition-colors">
+                                <i class="fas fa-clipboard-list text-green-600 text-xs"></i>
+                            </div>
+                            <span class="font-semibold text-gray-800 text-xs">登录日志</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed">记录登录时间、Open ID与姓名。</p>
+                    </div>
+
+                    <!-- 模块5：人员信息 -->
+                    <div class="group p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-white/80 hover:border-purple-200 hover:shadow-md transition-all duration-300 cursor-default">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <div class="w-7 h-7 rounded-lg bg-purple-50 flex items-center justify-center group-hover:bg-purple-100 transition-colors">
+                                <i class="fas fa-users text-purple-500 text-xs"></i>
+                            </div>
+                            <span class="font-semibold text-gray-800 text-xs">人员信息</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed">维护干部档案信息。</p>
+                    </div>
+
+                    <!-- 模块6：招贤纳士 -->
+                    <div class="group p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-white/80 hover:border-pink-200 hover:shadow-md transition-all duration-300 cursor-default">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <div class="w-7 h-7 rounded-lg bg-pink-50 flex items-center justify-center group-hover:bg-pink-100 transition-colors">
+                                <i class="fas fa-user-plus text-pink-500 text-xs"></i>
+                            </div>
+                            <span class="font-semibold text-gray-800 text-xs">招贤纳士</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed">发布招新公告与报名信息。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：登录卡片 -->
+            <div class="w-full sm:w-[420px] lg:w-[400px] xl:w-[420px] mx-auto lg:mx-0 fade-in">
+                <div class="bg-white rounded-2xl shadow-lg shadow-black/[0.04] border border-gray-100/80 p-7 sm:p-8">
+                    <!-- 标题 -->
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">欢迎来到管理后台</h3>
+
+                    <!-- 登录表单 -->
+                    <div id="passwordLoginForm" class="space-y-4">
+                        <!-- 账号输入 -->
+                        <div>
+                            <input type="text" id="username"
+                                   class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3370FF]/20 focus:border-[#3370FF]/40 bg-gray-50/50 text-sm placeholder:text-gray-400 transition-all"
+                               placeholder="请输入管理员账号"
+                               autocomplete="username">
+                    </div>
+
+                    <!-- 密码输入 -->
+                    <div>
+                        <input type="password" id="password"
+                               class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3370FF]/20 focus:border-[#3370FF]/40 bg-gray-50/50 text-sm placeholder:text-gray-400 transition-all"
+                                   placeholder="请输入密码"
+                                   autocomplete="current-password"
+                                   onkeydown="if(event.keyCode===13||event.key==='Enter'){admin_do_login();}">
+                        </div>
+
+                        <!-- 登录按钮 -->
+                        <button type="button"
+                                onclick="admin_do_login()"
+                                class="w-full py-3 bg-[#3370FF] hover:bg-[#2660E0] text-white rounded-lg font-semibold text-sm shadow-sm hover:shadow-md transition-all duration-200 mt-4">
+                            登 录
+                        </button>
+
+                        <!-- 错误提示 -->
+                        <div id="loginError" class="hidden text-center text-red-600 text-xs py-2 bg-red-50 rounded-lg"></div>
+                    </div>
+
+                    <!-- 分割线 + 第三方登录 -->
+                    <div class="mt-6">
+                        <div class="relative flex items-center justify-center my-5">
+                            <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-100"></div></div>
+                            <span class="relative bg-white px-3 text-xs text-gray-400">采用其他方式登录</span>
+                        </div>
+
+                        <!-- 第三方登录图标行（与首页底部图标风格一致） -->
+                        <div class="flex items-center justify-center gap-5">
+                            <!-- 微信（提示开发中，不跳转） -->
+                            <button type="button" onclick="showToast('微信登录功能开发中', 'info')" title="微信登录" class="w-11 h-11 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-400 hover:text-white cursor-pointer transition-colors">
+                                <i class="fab fa-weixin text-lg"></i>
+                            </button>
+                            <!-- 微博（提示开发中，不跳转） -->
+                            <button type="button" onclick="showToast('微博登录功能开发中', 'info')" title="微博登录" class="w-11 h-11 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-400 hover:text-white cursor-pointer transition-colors">
+                                <i class="fab fa-weibo text-lg"></i>
+                            </button>
+                            <!-- 抖音（提示开发中，不跳转） -->
+                            <button type="button" onclick="showToast('抖音登录功能开发中', 'info')" title="抖音登录" class="w-11 h-11 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-400 hover:text-white cursor-pointer transition-colors">
+                                <i class="fab fa-tiktok text-lg"></i>
+                            </button>
+                            <!-- 飞书（正常跳转链接） -->
+                            <button type="button" onclick="handleFeishuLogin()" title="飞书登录" class="w-11 h-11 rounded-full hover:bg-gray-100 flex items-center justify-center cursor-pointer transition-colors overflow-hidden">
+                                <img src="icon.jpg" alt="飞书登录" class="w-5 h-5 object-contain">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部备案信息（固定在最底部，居中） -->
+    <div class="login-footer relative z-10 w-full py-5 text-center">
+        <p class="text-xs text-gray-400 mb-1">学生志愿教导大队版权所有</p>
+        <div class="text-xs text-gray-400 flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-1">
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-600 transition-colors cursor-pointer">
+                蜀ICP备2026028492号-1
+            </a>
+            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="hover:text-gray-600 transition-colors cursor-pointer inline-flex items-center gap-1">
+                <img src="https://www.beian.gov.cn/img/ghs.png" alt="公安备案图标" class="w-3.5 h-3.5 inline-block align-middle">
+                川公网安备51012202002408号
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- 验证码验证弹窗（点击登录后弹出） -->
+<div id="captchaModal" class="fixed inset-0 z-[200] hidden items-center justify-center" style="display:none;">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeCaptchaModal()"></div>
+    <div class="relative bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm mx-4 transform transition-all scale-95 opacity-0" id="captchaModalContent">
+        <!-- 关闭按钮 -->
+        <button onclick="closeCaptchaModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- 标题 -->
+        <div class="text-center mb-6">
+            <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-shield-alt text-[#3370FF] text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-800">请输入验证码</h3>
+            <p class="text-sm text-gray-500 mt-1">完成验证后将继续登录</p>
+        </div>
+
+        <!-- 验证码区域 -->
+        <div class="flex items-center gap-3 mb-4">
+            <input type="text" id="modalCaptchaInput" maxlength="4" placeholder="请输入验证码"
+                class="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all uppercase tracking-widest font-bold text-center text-lg"
+                onkeydown="if(event.keyCode===13||event.key==='Enter'){verifyCaptchaAndLogin();}">
+            <canvas id="modalCaptchaCanvas" width="100" height="44" onclick="refreshModalCaptcha()"
+                class="rounded-lg cursor-pointer border border-gray-200 hover:border-gray-300 transition-colors shrink-0" title="点击刷新验证码"></canvas>
+        </div>
+        <input type="hidden" id="modalCaptchaCode" value="">
+        <div id="modalCaptchaError" class="hidden text-red-500 text-xs text-center mb-4">验证码错误，请重新输入</div>
+
+        <!-- 确认按钮 -->
+        <button type="button" onclick="verifyCaptchaAndLogin()"
+            class="w-full py-3 bg-[#3370FF] hover:bg-[#2660E0] text-white rounded-lg font-semibold text-sm shadow-sm hover:shadow-md transition-all duration-200">
+            验证并登录
+        </button>
+    </div>
+</div>
+
+<!-- 飞书扫码登录弹窗（PC端） -->
+<div id="feishuQrModal" class="fixed inset-0 z-[200] hidden items-center justify-center" style="display:none;">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeFeishuQrModal()"></div>
+    <div class="relative bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm mx-4 transform transition-all scale-95 opacity-0" id="feishuQrContent">
+        <!-- 关闭按钮 -->
+        <button onclick="closeFeishuQrModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- 标题 -->
+        <div class="text-center mb-6">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-3">
+                <rect width="24" height="24" rx="6" fill="#3370FF"/>
+                <path d="M6 10C6 8.34315 7.34315 7 9 7H11C12.6569 7 14 8.34315 14 10V14C14 15.6569 12.6569 17 11 17H9C7.34315 17 6 15.6569 6 14V10Z" fill="white"/>
+                <path d="M10 10H13V13H10V10ZM16 8L18 6L19 7L17 9L16 8Z" fill="white" opacity="0.85"/>
+                <path d="M13 14C13 12.3431 14.3431 11 16 11H18C19.6569 11 21 12.3431 21 14V16C21 17.6569 19.6569 19 18 19H16C14.3431 19 13 17.6569 13 16V14Z" fill="white" opacity="0.75"/>
+            </svg>
+            <h3 class="text-lg font-bold text-gray-800">飞书扫码登录</h3>
+            <p class="text-sm text-gray-500 mt-1">请使用飞书App扫描二维码</p>
+        </div>
+
+        <!-- 二维码区域 -->
+        <div class="flex justify-center mb-4">
+            <div id="feishuQrWrapper" class="relative p-3 bg-white border-2 border-gray-100 rounded-xl inline-block">
+                <div id="feishuQrLoading" class="w-52 h-52 flex items-center justify-center">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#3370FF]"></div>
+                </div>
+                <img id="feishuQrImg" src="" alt="飞书扫码登录" class="w-52 h-52 hidden object-contain">
+                <!-- 二维码过期遮罩 -->
+                <div id="feishuQrExpired" class="absolute inset-0 bg-white/90 flex-col items-center justify-center hidden">
+                    <p class="text-gray-500 text-sm mb-3">二维码已过期</p>
+                    <button onclick="refreshFeishuQr()" class="px-5 py-2 bg-[#3370FF] text-white text-sm rounded-lg hover:bg-[#2660E0] transition-colors">刷新二维码</button>
+                </div>
+                <!-- 扫码成功遮罩 -->
+                <div id="feishuQrScanned" class="absolute inset-0 bg-white/90 flex-col items-center justify-center hidden">
+                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mb-2">
+                        <i class="fas fa-check text-green-500 text-lg"></i>
+                    </div>
+                    <p class="text-green-600 font-medium text-sm">扫码成功</p>
+                    <p class="text-gray-400 text-xs mt-1">正在登录...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 状态提示 -->
+        <p id="feishuQrStatus" class="text-center text-xs text-gray-400">打开飞书App · 扫描上方二维码</p>
+    </div>
+</div>
+
+<!-- ========== 独立登录脚本（零依赖，最先执行）========== -->
+<script>
+var _ACCOUNTS = [
+    {u:'admin1', p:'jiaodaodadui2011@'},
+    {u:'admin2', p:'jiaodaodadui2011.'},
+    {u:'admin3', p:'jiaodaodadui2011!'}
+];
+
+// ========== 飞书登录成功检测 ==========
+function checkFeishuLogin() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var feishuUserInfo = localStorage.getItem('feishu_login');
+
+    var fromUrlCallback = (urlParams.get('login') === 'feishu' && urlParams.get('success') === '1');
+    var hasFeishuInfo = !!feishuUserInfo;
+
+    if (fromUrlCallback || hasFeishuInfo) {
+        try {
+            var userInfo = feishuUserInfo ? JSON.parse(feishuUserInfo) : {};
+            console.log('飞书登录成功:', userInfo);
+
+            if (fromUrlCallback) {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+
+            sessionStorage.setItem('loggedIn', '1');
+            sessionStorage.setItem('user', userInfo.name || '飞书用户');
+            sessionStorage.setItem('loginMethod', 'feishu');
+            sessionStorage.setItem('openId', userInfo.open_id || '');
+            
+            if (typeof showPanel === 'function') showPanel();
+            if (typeof addLoginLog === 'function') addLoginLog(userInfo.open_id || '', userInfo.name || '飞书用户', 'feishu');
+            if (typeof addLog === 'function') addLog('登录', '用户 ' + (userInfo.name || '飞书用户') + '（Open ID: ' + (userInfo.open_id || '-') + '）通过飞书登录管理后台');
+        } catch (e) {
+            console.error('解析飞书用户信息失败:', e);
+        }
+    }
+}
+
+// ========== 飞书扫码登录（PC端弹窗 / 手机端跳转）==========
+var _feishuPollTimer = null;
+var _feishuQrKey = '';
+
+function handleFeishuLogin() {
+    // 必须与后端 feishu_callback.php 里的 redirect_uri 完全一致
+    var redirectUri = encodeURIComponent('https://www.jiaodao.fun/api/feishu_callback.php');
+    var authUrl = 'https://accounts.feishu.cn/open-apis/authen/v1/authorize?app_id=cli_aabc65cf3138dbd4&redirect_uri=' + redirectUri + '&scope=contact:user.base:readonly';
+
+    // 移动端直接跳转飞书授权链接，PC端走后端中间页
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // 先尝试通过 scheme 唤起飞书 App（国内版飞书）
+        var feishuScheme = 'feishu://open-apis/authen/v1/authorize?app_id=cli_aabc65cf3138dbd4&redirect_uri=' + redirectUri + '&scope=contact:user.base:readonly';
+        window.location.href = feishuScheme;
+
+        // 1.5秒后若未唤起，兜底到浏览器授权页
+        setTimeout(function() {
+            window.location.href = authUrl;
+        }, 1500);
+    } else {
+        window.location.href = 'api/feishu_callback.php';
+    }
+}
+
+function showFeishuQrModal() {
+    var modal = document.getElementById('feishuQrModal');
+    var content = document.getElementById('feishuQrContent');
+    modal.style.display = 'flex';
+    modal.classList.remove('hidden');
+    void modal.offsetWidth; // 触发reflow
+    content.classList.remove('scale-95', 'opacity-0');
+    content.classList.add('scale-100', 'opacity-100');
+
+    // 重置状态
+    document.getElementById('feishuQrLoading').style.display = 'flex';
+    document.getElementById('feishuQrImg').classList.add('hidden');
+    document.getElementById('feishuQrImg').src = '';
+    document.getElementById('feishuQrExpired').style.display = 'none';
+    document.getElementById('feishuQrScanned').style.display = 'none';
+    document.getElementById('feishuQrStatus').textContent = '正在获取二维码...';
+
+    // 请求二维码
+    fetchFeishuQrCode();
+}
+
+function closeFeishuQrModal() {
+    var modal = document.getElementById('feishuQrModal');
+    var content = document.getElementById('feishuQrContent');
+    content.classList.remove('scale-100', 'opacity-100');
+    content.classList.add('scale-95', 'opacity-0');
+    setTimeout(function() {
+        modal.style.display = 'none';
+        modal.classList.add('hidden');
+        stopFeishuPoll();
+    }, 250);
+}
+
+function refreshFeishuQr() {
+    document.getElementById('feishuQrExpired').style.display = 'none';
+    document.getElementById('feishuQrLoading').style.display = 'flex';
+    document.getElementById('feishuQrImg').classList.add('hidden');
+    document.getElementById('feishuQrStatus').textContent = '正在刷新二维码...';
+    fetchFeishuQrCode();
+}
+
+function fetchFeishuQrCode() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'api/feishu_qrcode.php?action=create', true);
+    xhr.timeout = 15000;
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            try {
+                var data = JSON.parse(xhr.responseText);
+                if (data.qr_code) {
+                    document.getElementById('feishuQrImg').src = data.qr_code;
+                    document.getElementById('feishuQrImg').classList.remove('hidden');
+                    document.getElementById('feishuQrLoading').style.display = 'none';
+                    document.getElementById('feishuQrStatus').textContent = '打开飞书App · 扫描上方二维码';
+                    _feishuQrKey = data.key || '';
+                    startFeishuPoll(data.key || '');
+                    // 二维码有效期120秒后过期提示
+                    setTimeout(function() {
+                        if (_feishuQrKey && document.getElementById('feishuQrModal').style.display !== 'none') {
+                            stopFeishuPoll();
+                            document.getElementById('feishuQrExpired').style.display = 'flex';
+                            document.getElementById('feishuQrStatus').textContent = '二维码已过期，请刷新';
+                        }
+                    }, 120000);
+                } else {
+                    showFeishuError(data.error || '获取二维码失败');
+                }
+            } catch(e) { showFeishuError('解析响应失败'); }
+        } else {
+            showFeishuError('网络错误 (' + xhr.status + ')');
+        }
+    };
+    xhr.onerror = function() { showFeishuError('网络连接失败'); };
+    xhr.ontimeout = function() { showFeishuError('请求超时，请重试'); };
+    xhr.send();
+}
+
+function startFeishuPoll(key) {
+    stopFeishuPoll();
+    var pollCount = 0;
+    _feishuPollTimer = setInterval(function() {
+        pollCount++;
+        if (pollCount > 60) { // 最多轮询60次(2分钟)
+            stopFeishuPoll();
+            document.getElementById('feishuQrExpired').style.display = 'flex';
+            document.getElementById('feishuQrStatus').textContent = '二维码已过期，请刷新';
+            return;
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'api/feishu_qrcode.php?action=poll&key=' + encodeURIComponent(key), true);
+        xhr.timeout = 8000;
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try {
+                    var data = JSON.parse(xhr.responseText);
+                    if (data.status === 'scanned') {
+                        document.getElementById('feishuQrScanned').style.display = 'flex';
+                        document.getElementById('feishuQrStatus').textContent = '扫码成功，等待确认...';
+                    } else if (data.status === 'confirmed') {
+                        stopFeishuPoll();
+                        document.getElementById('feishuQrScanned').style.display = 'flex';
+                        document.getElementById('feishuQrStatus').textContent = '登录成功！';
+
+                        // 存储用户信息并登录
+                        if (data.user_info) {
+                            localStorage.setItem('feishu_login', JSON.stringify(data.user_info));
+                        }
+
+                        setTimeout(function() {
+                            closeFeishuQrModal();
+
+                            // 存储用户信息并进入管理后台
+                            if (data.user_info) {
+                                localStorage.setItem('feishu_login', JSON.stringify(data.user_info));
+                                sessionStorage.setItem('loggedIn', '1');
+                                sessionStorage.setItem('user', data.user_info.name || '飞书用户');
+                                sessionStorage.setItem('loginMethod', 'feishu');
+                                sessionStorage.setItem('openId', data.user_info.open_id || '');
+                            }
+                            showPanel();
+                            if (data.user_info) {
+                                addLoginLog(data.user_info.open_id || '', data.user_info.name || '飞书用户', 'feishu');
+                                addLog('登录', '用户 ' + (data.user_info.name || '飞书用户') + '（Open ID: ' + (data.user_info.open_id || '-') + '）通过飞书登录管理后台');
+                            }
+
+                            if (data.user_info && data.user_info.name) {
+                                showToast('欢迎回来，' + data.user_info.name + '！', 'success');
+                            }
+                        }, 800);
+                    } else if (data.status === 'expired') {
+                        stopFeishuPoll();
+                        document.getElementById('feishuQrExpired').style.display = 'flex';
+                        document.getElementById('feishuQrStatus').textContent = '二维码已过期，请刷新';
+                    }
+                } catch(e) {}
+            }
+        };
+        xhr.send();
+    }, 2000); // 每2秒轮询一次
+}
+
+function stopFeishuPoll() {
+    if (_feishuPollTimer) {
+        clearInterval(_feishuPollTimer);
+        _feishuPollTimer = null;
+    }
+}
+
+function showFeishuError(msg) {
+    document.getElementById('feishuQrLoading').style.display = 'none';
+    document.getElementById('feishuQrStatus').innerHTML = '<span class="text-red-500">' + msg + '</span> · <a href="api/feishu_callback.php" class="text-[#3370FF] underline">点击跳转登录</a>';
+}
+
+// ========== 图片验证码 ==========
+function refreshCaptcha() {
+    var canvas = document.getElementById('captchaCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var w = canvas.width, h = canvas.height;
+
+    // 背景
+    ctx.fillStyle = '#f3f4f6';
+    ctx.fillRect(0, 0, w, h);
+
+    // 干扰线
+    for (var i = 0; i < 4; i++) {
+        ctx.strokeStyle = 'rgba(' + Math.floor(Math.random()*200) + ',' + Math.floor(Math.random()*200) + ',' + Math.floor(Math.random()*200) + ',0.3)';
+        ctx.beginPath();
+        ctx.moveTo(Math.random()*w, Math.random()*h);
+        ctx.lineTo(Math.random()*w, Math.random()*h);
+        ctx.stroke();
+    }
+
+    // 噪点
+    for (var i = 0; i < 30; i++) {
+        ctx.fillStyle = 'rgba(' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',0.4)';
+        ctx.fillRect(Math.random()*w, Math.random()*h, 1.5, 1.5);
+    }
+
+    // 生成4位数字验证码
+    var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    var code = '';
+    for (var i = 0; i < 4; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    document.getElementById('captchaCode').value = code;
+
+    // 绘制文字
+    ctx.font = 'bold 24px Arial';
+    ctx.textBaseline = 'middle';
+    for (var i = 0; i < 4; i++) {
+        ctx.save();
+        var x = 12 + i * 22;
+        var y = h / 2 + (Math.random()-0.5)*8;
+        ctx.translate(x, y);
+        ctx.rotate((Math.random()-0.5)*0.4);
+        var colors = ['#dc2626','#2563eb','#059669','#9333ea','#c2410c'];
+        ctx.fillStyle = colors[Math.floor(Math.random()*colors.length)];
+        ctx.fillText(code[i], 0, 0);
+        ctx.restore();
+    }
+}
+
+// ========== 滑动验证（保留兼容）==========
+var _slider = { dragging:false, startX:0, verified:false };
+
+function startSlider(e) {
+    if (_slider.verified) return;
+    e.preventDefault();
+    var btn = document.getElementById('sliderBtn');
+    var container = document.getElementById('sliderVerify');
+    _slider.dragging = true;
+    _slider.startX = (e.touches ? e.touches[0].clientX : e.clientX);
+    btn.style.transition = 'none';
+
+    document.addEventListener('mousemove', moveSlider);
+    document.addEventListener('mouseup', endSlider);
+    document.addEventListener('touchmove', moveSlider);
+    document.addEventListener('touchend', endSlider);
+}
+
+function moveSlider(e) {
+    if (!_slider.dragging) return;
+    e.preventDefault();
+    var container = document.getElementById('sliderVerify');
+    var btn = document.getElementById('sliderBtn');
+    var progress = document.getElementById('sliderProgress');
+    var textEl = document.getElementById('sliderText');
+    var maxX = container.offsetWidth - 40;
+    var currentX = (e.touches ? e.touches[0].clientX : e.clientX);
+    var diff = currentX - _slider.startX;
+    var pos = Math.max(0, Math.min(diff, maxX));
+
+    btn.style.left = pos + 'px';
+    progress.style.width = (pos + 40) + 'px';
+
+    if (pos >= maxX - 2) {
+        endSlider(e, true);
+    }
+}
+
+function endSlider(e, force) {
+    if (!_slider.dragging) return;
+    _slider.dragging = false;
+
+    var container = document.getElementById('sliderVerify');
+    var btn = document.getElementById('sliderBtn');
+    var progress = document.getElementById('sliderProgress');
+    var textEl = document.getElementById('sliderText');
+    var maxX = container.offsetWidth - 40;
+    var currentPos = parseInt(btn.style.left) || 0;
+
+    document.removeEventListener('mousemove', moveSlider);
+    document.removeEventListener('mouseup', endSlider);
+    document.removeEventListener('touchmove', moveSlider);
+    document.removeEventListener('touchend', endSlider);
+
+    if (currentPos >= maxX - 2 || force) {
+        // 验证成功
+        _slider.verified = true;
+        btn.style.left = maxX + 'px';
+        progress.style.width = '100%';
+        btn.innerHTML = '<i class="fas fa-check text-white text-sm"></i>';
+        btn.className = 'absolute left-0 top-0 h-10 w-10 bg-green-500 rounded-lg flex items-center justify-center z-20 transition-all duration-200';
+        textEl.textContent = '验证通过';
+        textEl.className = 'absolute inset-0 flex items-center justify-center text-white text-sm font-bold pointer-events-none z-10';
+        document.getElementById('sliderVerified').value = '1';
+    } else {
+        // 回弹
+        btn.style.transition = 'all 0.3s ease';
+        btn.style.left = '0px';
+        progress.style.transition = 'all 0.3s ease';
+        progress.style.width = '0px';
+    }
+}
+
+function admin_do_login() {
+    var usernameInput = document.getElementById('username');
+    var passwordInput = document.getElementById('password');
+    var errorDiv = document.getElementById('loginError');
+
+    if (!usernameInput || !passwordInput) {
+        alert('页面未加载完成');
+        return;
+    }
+
+    var u = usernameInput.value.trim();
+    var p = passwordInput.value;
+
+    if (errorDiv) { errorDiv.className = 'hidden'; errorDiv.textContent = ''; }
+
+    if (!u) { showLoginErr('请输入账号'); usernameInput.focus(); return; }
+    if (!p) { showLoginErr('请输入密码'); passwordInput.focus(); return; }
+
+    // 账号密码已填写，弹出验证码验证
+    showCaptchaModal();
+}
+
+// ========== 验证码弹窗逻辑 ==========
+function showCaptchaModal() {
+    var modal = document.getElementById('captchaModal');
+    var content = document.getElementById('captchaModalContent');
+    modal.style.display = 'flex';
+    modal.classList.remove('hidden');
+    void modal.offsetWidth;
+    content.classList.remove('scale-95', 'opacity-0');
+    content.classList.add('scale-100', 'opacity-100');
+    // 清空输入并刷新验证码
+    var inputEl = document.getElementById('modalCaptchaInput');
+    if (inputEl) inputEl.value = '';
+    var capErr = document.getElementById('modalCaptchaError');
+    if (capErr) capErr.className = 'hidden text-red-500 text-xs text-center mb-4';
+    refreshModalCaptcha();
+    setTimeout(function(){ if(inputEl) inputEl.focus(); }, 300);
+}
+
+function closeCaptchaModal() {
+    var modal = document.getElementById('captchaModal');
+    var content = document.getElementById('captchaModalContent');
+    content.classList.remove('scale-100', 'opacity-100');
+    content.classList.add('scale-95', 'opacity-0');
+    setTimeout(function(){
+        modal.style.display = 'none';
+        modal.classList.add('hidden');
+    }, 200);
+}
+
+function refreshModalCaptcha() {
+    var canvas = document.getElementById('modalCaptchaCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var w = canvas.width, h = canvas.height;
+
+    ctx.fillStyle = '#f3f4f6';
+    ctx.fillRect(0, 0, w, h);
+
+    for (var i = 0; i < 4; i++) {
+        ctx.strokeStyle = 'rgba(' + Math.floor(Math.random()*200) + ',' + Math.floor(Math.random()*200) + ',' + Math.floor(Math.random()*200) + ',0.3)';
+        ctx.beginPath();
+        ctx.moveTo(Math.random()*w, Math.random()*h);
+        ctx.lineTo(Math.random()*w, Math.random()*h);
+        ctx.stroke();
+    }
+
+    for (var i = 0; i < 30; i++) {
+        ctx.fillStyle = 'rgba(' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',0.4)';
+        ctx.fillRect(Math.random()*w, Math.random()*h, 1.5, 1.5);
+    }
+
+    var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    var code = '';
+    for (var i = 0; i < 4; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    document.getElementById('modalCaptchaCode').value = code;
+
+    ctx.font = 'bold 24px Arial';
+    ctx.textBaseline = 'middle';
+    for (var i = 0; i < 4; i++) {
+        ctx.save();
+        var x = 12 + i * 22;
+        var y = h / 2 + (Math.random()-0.5)*8;
+        ctx.translate(x, y);
+        ctx.rotate((Math.random()-0.5)*0.4);
+        var colors = ['#dc2626','#2563eb','#059669','#9333ea','#c2410c'];
+        ctx.fillStyle = colors[Math.floor(Math.random()*colors.length)];
+        ctx.fillText(code[i], 0, 0);
+        ctx.restore();
+    }
+}
+
+function verifyCaptchaAndLogin() {
+    var code = document.getElementById('modalCaptchaCode').value;
+    var inputEl = document.getElementById('modalCaptchaInput');
+    var inputCode = inputEl ? inputEl.value.trim().toUpperCase() : '';
+    var capErr = document.getElementById('modalCaptchaError');
+
+    if (!inputCode) {
+        if (capErr) { capErr.textContent = '请输入验证码'; capErr.className = 'text-red-500 text-xs text-center mb-4 block'; }
+        if (inputEl) inputEl.focus();
+        return;
+    }
+    if (inputCode !== code.toUpperCase()) {
+        if (capErr) { capErr.textContent = '验证码错误，请重新输入'; capErr.className = 'text-red-500 text-xs text-center mb-4 block'; }
+        if (inputEl) { inputEl.value = ''; inputEl.focus(); }
+        refreshModalCaptcha();
+        return;
+    }
+
+    // 验证码通过，关闭弹窗，校验账号密码
+    closeCaptchaModal();
+
+    var u = document.getElementById('username').value.trim();
+    var p = document.getElementById('password').value;
+
+    var ok = false;
+    for (var i = 0; i < _ACCOUNTS.length; i++) {
+        if (_ACCOUNTS[i].u === u && _ACCOUNTS[i].p === p) { ok = true; break; }
+    }
+
+    if (!ok) {
+        showLoginErr('账号或密码错误');
+        document.getElementById('password').value = '';
+        document.getElementById('password').focus();
+        return;
+    }
+
+    sessionStorage.setItem('loggedIn', '1');
+    sessionStorage.setItem('user', u);
+    sessionStorage.setItem('loginMethod', 'account');
+    sessionStorage.setItem('openId', '');
+
+    // 进入管理后台操作页面
+    showPanel();
+    addLoginLog('', u, 'account');
+    addLog('登录', '管理员 ' + u + ' 通过账号密码登录管理后台');
+}
+
+function showLoginErr(msg) {
+    var el = document.getElementById('loginError');
+    if (el) { el.textContent = msg; el.className = 'text-center text-red-600 text-sm py-2 bg-red-50 rounded'; }
+    else { alert(msg); }
+}
+
+(function() {
+    try {
+        if (sessionStorage.getItem('loggedIn') === '1') {
+            var lp = document.getElementById('loginPage');
+            var ap = document.getElementById('adminPanel');
+            if (lp) lp.style.display = 'none';
+            if (ap) ap.style.display = 'flex';
+            var cu = document.getElementById('currentUser');
+            if (cu) cu.textContent = sessionStorage.getItem('user') || '管理员';
+        }
+    } catch(e) {}
+})();
+</script>
+
+<!-- 管理后台主体 -->
+<div id="adminPanel" style="display:none;" class="flex min-h-screen bg-white">
+    <!-- 侧边栏 -->
+    <aside id="sidebar" class="admin-sidebar sidebar w-64 bg-white border-r border-gray-100 flex flex-col fixed h-full">
+        <div class="p-5 flex items-center gap-3 border-b border-gray-50">
+            <img src="logo.jpg" alt="学生志愿教导大队 Logo" class="w-9 h-9 rounded-lg object-cover shadow-sm" onerror="this.style.display='none'">
+            <div>
+                <h2 class="text-gray-800 font-bold text-base">管理后台</h2>
+                <p class="text-gray-400 text-xs">学生志愿教导大队</p>
+            </div>
+        </div>
+        <nav class="flex-1 p-4 space-y-1">
+            <a onclick="showTab('dashboard')" data-tab="dashboard" class="sidebar-link flex items-center gap-3 px-4 py-3 cursor-pointer"><i class="fas fa-chart-line w-5 text-center"></i>仪表盘</a>
+            <a onclick="showTab('news')" data-tab="news" class="sidebar-link active flex items-center gap-3 px-4 py-3 cursor-pointer"><i class="fas fa-newspaper w-5 text-center"></i>新闻管理</a>
+            <a onclick="showTab('carousel')" data-tab="carousel" class="sidebar-link flex items-center gap-3 px-4 py-3 cursor-pointer"><i class="fas fa-images w-5 text-center"></i>轮播图管理</a>
+            <a onclick="showTab('about')" data-tab="about" class="sidebar-link flex items-center gap-3 px-4 py-3 cursor-pointer"><i class="fas fa-info-circle w-5 text-center"></i>关于我们</a>
+            <a onclick="showTab('members')" data-tab="members" class="sidebar-link flex items-center gap-3 px-4 py-3 cursor-pointer"><i class="fas fa-users w-5 text-center"></i>人员管理</a>
+            <a onclick="showTab('settings')" data-tab="settings" class="sidebar-link flex items-center gap-3 px-4 py-3 cursor-pointer"><i class="fas fa-cog w-5 text-center"></i>系统设置</a>
+            <a onclick="showTab('backup')" data-tab="backup" class="sidebar-link flex items-center gap-3 px-4 py-3 cursor-pointer"><i class="fas fa-shield-alt w-5 text-center text-orange-500"></i>数据备份</a>
+        </nav>
+        <div class="p-4 border-t border-gray-50">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-[#3370FF] rounded-full flex items-center justify-center text-white"><i class="fas fa-user text-sm"></i></div>
+                <div class="flex-1 min-w-0">
+                    <div class="text-sm font-medium text-gray-700 truncate" id="currentUser">管理员</div>
+                    <div class="text-xs text-gray-400">已登录</div>
+                </div>
+                <button onclick="logout()" class="text-gray-400 hover:text-red-500 transition-colors"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 移动端侧边栏遮罩 -->
+    <div class="mobile-sidebar-overlay" id="sidebarOverlay" onclick="toggleMobileSidebar()"></div>
+
+    <!-- 主内容区 -->
+    <main class="main-content flex-1 ml-64 p-6 lg:p-8 pb-24">
+        <header class="content-card flex justify-between items-center mb-6 p-5">
+            <div class="flex items-center gap-3">
+                <button onclick="toggleMobileSidebar()" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-gray-50 hover:bg-gray-100">
+                    <i class="fas fa-bars text-gray-700"></i>
+                </button>
+                <div><h1 class="text-2xl font-bold text-gray-800" id="pageTitle">仪表盘</h1><p class="text-gray-400 text-sm" id="pageSubtitle">数据概览与快速操作</p></div>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-green-600 bg-green-50 px-4 py-2 rounded-full" id="syncStatus"><span class="w-2 h-2 bg-green-500 rounded-full inline-block mr-2"></span>已同步</span>
+            </div>
+        </header>
+
+        <!-- 仪表盘面板 -->
+        <div id="dashboardPanel" class="management-panel fade-in">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+                <div class="stat-card"><div class="text-gray-500 text-sm">新闻总数</div><div class="text-3xl font-bold text-[#3370FF]" id="statNewsCount">0</div><div class="text-green-600 text-sm mt-2">已发布 <span id="statPublished">0</span> 条</div></div>
+                <div class="stat-card"><div class="text-gray-500 text-sm">轮播图</div><div class="text-3xl font-bold text-blue-600" id="statCarouselCount">0</div></div>
+                <div class="stat-card"><div class="text-gray-500 text-sm">团队成员</div><div class="text-3xl font-bold text-green-600" id="statMembersCount">0</div></div>
+                <div class="stat-card"><div class="text-gray-500 text-sm">登录次数</div><div class="text-3xl font-bold text-yellow-600" id="statLoginCount">0</div></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
+                <div class="content-card p-6"><h3 class="font-bold text-gray-800 mb-4">快速操作</h3><div class="grid grid-cols-2 gap-3">
+                    <button onclick="showTab('news');openNewsEditor();" class="p-4 bg-blue-50 hover:bg-blue-100 rounded-xl text-left transition-colors"><i class="fas fa-plus-circle text-[#3370FF] mr-2"></i>添加新闻</button>
+                    <button onclick="showTab('carousel');openCarouselEditor();" class="p-4 bg-blue-50 hover:bg-blue-100 rounded-xl text-left transition-colors"><i class="fas fa-image text-[#3370FF] mr-2"></i>轮播图</button>
+                    <button onclick="showTab('members');openMemberEditor();" class="p-4 bg-blue-50 hover:bg-blue-100 rounded-xl text-left transition-colors"><i class="fas fa-user-plus text-[#3370FF] mr-2"></i>添加成员</button>
+                    <button onclick="syncToFrontend()" class="p-4 bg-blue-50 hover:bg-blue-100 rounded-xl text-left transition-colors"><i class="fas fa-sync text-[#3370FF] mr-2"></i>同步数据</button>
+                </div></div>
+                <div class="content-card p-6"><h3 class="font-bold text-gray-800 mb-4">最近操作</h3><div id="recentLogs" class="space-y-2 max-h-64 overflow-auto text-sm"><p class="text-gray-400">暂无记录</p></div></div>
+            </div>
+            <div class="content-card p-6">
+                <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fas fa-clipboard-list text-[#3370FF]"></i>登录日志</h3>
+                <div class="overflow-x-auto">
+                    <table class="data-table w-full text-sm">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-3 text-left">时间</th>
+                                <th class="px-4 py-3 text-left">姓名</th>
+                                <th class="px-4 py-3 text-left">Open ID</th>
+                                <th class="px-4 py-3 text-left">登录方式</th>
+                                <th class="px-4 py-3 text-left">IP 地址</th>
+                            </tr>
+                        </thead>
+                        <tbody id="loginLogsBody"><tr><td colspan="5" class="px-4 py-6 text-center text-gray-400">暂无登录记录</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 新闻管理面板 -->
+        <div id="newsManagement" class="management-panel hidden fade-in">
+            <div class="content-card p-5 mb-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div class="flex gap-3">
+                    <button onclick="openNewsEditor()" class="btn-primary px-5 py-2.5 rounded-lg font-semibold text-sm"><i class="fas fa-plus mr-2"></i>添加新闻</button>
+                    <button onclick="batchDeleteNews()" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2.5 rounded-lg text-sm"><i class="fas fa-trash mr-2"></i>批量删除</button>
+                </div>
+                <div class="flex gap-3">
+                    <select id="filterStatus" onchange="renderNewsList()" class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-white"><option value="all">全部状态</option><option value="published">已发布</option><option value="draft">草稿</option></select>
+                    <input type="text" id="searchNews" placeholder="搜索新闻..." class="px-4 py-2.5 border border-gray-200 rounded-lg w-56 text-sm" oninput="filterNews()">
+                </div>
+            </div>
+            <div class="content-card overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="data-table w-full">
+                        <thead><tr><th class="px-4 py-3"><input type="checkbox" onchange="toggleSelectAll()"></th><th class="px-6 py-3 text-left">标题</th><th class="px-6 py-3 text-left">栏目</th><th class="px-6 py-3 text-left">日期</th><th class="px-6 py-3 text-left">作者</th><th class="px-6 py-3 text-center">浏览量</th><th class="px-6 py-3 text-center">状态</th><th class="px-6 py-3 text-center">操作</th></tr></thead>
+                        <tbody id="newsListBody"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="newsPagination" class="mt-6 flex justify-center gap-2"></div>
+        </div>
+
+        <!-- 轮播图管理面板 -->
+        <div id="carouselManagement" class="management-panel hidden fade-in">
+            <div class="content-card p-5 mb-5"><button onclick="openCarouselEditor()" class="btn-primary px-5 py-2.5 rounded-lg font-semibold text-sm"><i class="fas fa-plus mr-2"></i>添加轮播图</button></div>
+            <div class="content-card p-6">
+                <div id="carouselList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                <p id="emptyCarouselState" class="hidden text-center py-12 text-gray-400">暂无轮播图</p>
+            </div>
+        </div>
+
+        <!-- 关于我们面板 -->
+        <div id="aboutManagement" class="management-panel hidden fade-in">
+            <div class="grid grid-cols-1 gap-5">
+                <div class="content-card p-6"><div class="flex justify-between items-center mb-4"><h3 class="font-bold text-gray-800 text-lg">组织简介</h3><button onclick="editAboutIntro()" class="btn-primary px-4 py-2 rounded-lg text-sm">编辑</button></div><div id="aboutIntroContent" class="prose text-gray-600">点击编辑按钮添加内容</div></div>
+                <div class="content-card p-6"><div class="flex justify-between items-center mb-4"><h3 class="font-bold text-gray-800 text-lg">使命愿景</h3><button onclick="editAboutMission()" class="btn-primary px-4 py-2 rounded-lg text-sm">编辑</button></div><div id="aboutMissionContent" class="prose text-gray-600">点击编辑按钮添加内容</div></div>
+                <div class="content-card p-6"><div class="flex justify-between items-center mb-4"><h3 class="font-bold text-gray-800 text-lg">指导老师</h3><button onclick="addTeacher()" class="btn-primary px-4 py-2 rounded-lg text-sm"><i class="fas fa-plus mr-1"></i>添加</button></div><div id="teacherList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div></div>
+            </div>
+        </div>
+
+        <!-- 人员管理面板 -->
+        <div id="membersManagement" class="management-panel hidden fade-in">
+            <div class="content-card p-5 mb-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <button onclick="openMemberEditor()" class="btn-primary px-5 py-2.5 rounded-lg font-semibold text-sm"><i class="fas fa-user-plus mr-2"></i>添加成员</button>
+                <select id="memberFilter" onchange="renderMembersList()" class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-white"><option value="all">全部</option><option value="current">第十五届</option><option value="former">历任</option></select>
+            </div>
+            <div class="content-card overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="data-table w-full">
+                        <thead><tr><th class="px-6 py-3">头像</th><th class="px-6 py-3 text-left">姓名</th><th class="px-6 py-3 text-left">职务</th><th class="px-6 py-3 text-left">部门</th><th class="px-6 py-3 text-center">届别</th><th class="px-6 py-3 text-center">操作</th></tr></thead>
+                        <tbody id="membersListBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 系统设置面板 -->
+        <div id="settingsManagement" class="management-panel hidden fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                
+                <!-- 卡片1: 个人信息 -->
+                <div class="content-card p-6">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fas fa-user-circle text-[#3370FF]"></i>个人信息</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 bg-blue-50 rounded-xl">
+                            <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center"><i class="fas fa-user text-[#3370FF] text-xl"></i></div>
+                            <div><div class="font-bold text-lg text-gray-800" id="settingsCurrentUser">管理员</div><div class="text-sm text-gray-500">当前登录账号</div></div>
+                        </div>
+                        <button onclick="openChangePasswordModal()" class="w-full bg-yellow-50 hover:bg-yellow-100 text-yellow-700 border border-yellow-200 py-3 rounded-lg font-medium transition-colors">
+                            <i class="fas fa-key mr-2"></i>修改我的密码
+                        </button>
+                        <button onclick="logout()" class="w-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 py-3 rounded-lg font-medium transition-colors">
+                            <i class="fas fa-sign-out-alt mr-2"></i>退出登录
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 卡片2: 账号管理 -->
+                <div class="content-card p-6">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fas fa-shield-alt text-green-500"></i>管理员账号</h3>
+                    <p class="text-sm text-gray-500 mb-4">管理系统员账号，可添加、修改或删除。至少保留一个可用账号。</p>
+                    <div id="accountList" class="space-y-2 mb-4 max-h-64 overflow-auto"></div>
+                    <div class="flex gap-2">
+                        <button onclick="openAddAccountModal()" class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2.5 rounded-lg text-sm font-medium transition-colors">
+                            <i class="fas fa-plus mr-1"></i>添加账号
+                        </button>
+                        <button onclick="refreshAccounts()" class="px-4 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm" title="刷新"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                </div>
+
+                <!-- 卡片3: 站点配置 -->
+                <div class="content-card p-6">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fas fa-cog text-gray-500"></i>站点配置</h3>
+                    <form onsubmit="saveSettings(event)" class="space-y-4">
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">联系电话</label><input type="text" id="settingPhone" placeholder="如：0731-8888888" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#3370FF]/20 focus:border-[#3370FF] transition-all"></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">联系邮箱</label><input type="email" id="settingEmail" placeholder="如：admin@example.com" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#3370FF]/20 focus:border-[#3370FF] transition-all"></div>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-1">备案号</label><input type="text" id="settingIcp" placeholder="如：蜀ICP备xxxxxxxx号" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#3370FF]/20 focus:border-[#3370FF] transition-all"></div>
+                        <button type="submit" class="btn-primary w-full py-3 rounded-lg font-bold mt-2"><i class="fas fa-save mr-2"></i>保存配置</button>
+                    </form>
+                </div>
+
+                <!-- 卡片4: 数据管理 -->
+                <div class="content-card p-6">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fas fa-database text-purple-500"></i>数据管理</h3>
+                    <div class="space-y-3">
+                        <button onclick="exportNewsData()" class="w-full bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 py-3 rounded-lg font-medium transition-colors text-left px-4">
+                            <i class="fas fa-cloud-upload-alt mr-2"></i>导出新闻数据（同步到官网）
+                        </button>
+                        <button onclick="exportData()" class="w-full bg-green-50 hover:bg-green-100 text-green-700 border border-green-200 py-3 rounded-lg font-medium transition-colors text-left px-4">
+                            <i class="fas fa-download mr-2"></i>导出全部数据备份
+                        </button>
+                        <label class="w-full bg-blue-50 hover:bg-blue-100 text-[#3370FF] border border-blue-200 py-3 rounded-lg font-medium transition-colors block text-left cursor-pointer px-4">
+                            <i class="fas fa-upload mr-2"></i>导入数据恢复<input type="file" accept=".json" onchange="importData(event)" class="hidden">
+                        </label>
+                        <hr class="my-3">
+                        <button onclick="clearAllData()" class="w-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 py-3 rounded-lg font-medium transition-colors text-left px-4">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>清空所有数据（危险操作）
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 数据备份面板 -->
+        <div id="backupManagement" class="management-panel hidden fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">
+                <!-- 一键备份卡片 -->
+                <div class="content-card p-6 border-l-4 border-green-500">
+                    <h3 class="font-bold text-gray-800 text-lg mb-3 flex items-center gap-2"><i class="fas fa-save text-green-500"></i>一键备份</h3>
+                    <p class="text-sm text-gray-500 mb-4">立即创建当前所有数据的完整快照，保存到服务器备份目录。</p>
+                    <button onclick="createBackup()" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-bold transition-colors flex items-center justify-center gap-2" id="backupBtn">
+                        <i class="fas fa-cloud-upload-alt"></i> 创建全量备份
+                    </button>
+                    <p class="text-xs text-gray-400 mt-2 text-center">上次备份：<span id="lastBackupTime">暂无</span></p>
+                </div>
+
+                <!-- 备份统计卡片 -->
+                <div class="content-card p-6 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-gray-800 text-lg mb-3 flex items-center gap-2"><i class="fas fa-info-circle text-blue-500"></i>备份状态</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span class="text-gray-500">全量备份数</span><span class="font-bold text-blue-600" id="fullBackupCount">--</span></div>
+                        <div class="flex justify-between"><span class="text-gray-500">增量备份数</span><span class="font-bold text-blue-600" id="singleBackupCount">--</span></div>
+                        <div class="flex justify-between"><span class="text-gray-500">最新备份</span><span class="font-bold text-green-600" id="latestBackupTime">--</span></div>
+                        <hr class="my-2">
+                        <div class="flex justify-between"><span class="text-gray-500">服务器状态</span><span class="font-bold text-green-600" id="serverStatus">检测中...</span></div>
+                    </div>
+                </div>
+
+                <!-- 安全提示卡片 -->
+                <div class="content-card p-6 border-l-4 border-orange-500">
+                    <h3 class="font-bold text-gray-800 text-lg mb-3 flex items-center gap-2"><i class="fas fa-exclamation-triangle text-orange-500"></i>安全说明</h3>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-green-500 mt-0.5"></i>每次保存数据前自动创建增量备份</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-green-500 mt-0.5"></i>恢复操作前自动备份当前数据（防误操作）</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-green-500 mt-0.5"></i>全量备份最多保留10个，增量最多20个</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-green-500 mt-0.5"></i>服务器JSON文件为唯一真实数据源</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 备份列表 -->
+            <div class="content-card p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fas fa-history text-purple-500"></i>备份历史记录</h3>
+                    <button onclick="loadBackupList()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition-colors"><i class="fas fa-sync-alt mr-1"></i>刷新列表</button>
+                </div>
+                <div id="backupListContainer" class="space-y-2">
+                    <div class="text-center py-8 text-gray-400"><i class="fas fa-spinner fa-spin mr-2"></i>正在加载备份列表...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- 管理后台底部备案信息 -->
+    <div class="admin-footer fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 py-3 z-10" style="margin-left: 260px;">
+        <div class="flex items-center justify-center gap-x-2 text-xs text-gray-400 flex-wrap px-4">
+            <span>© 2026 学生志愿教导大队版权所有</span>
+            <span>·</span>
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="text-[#3370FF] hover:text-[#2660E0] hover:underline">
+                蜀ICP备2026028492号
+            </a>
+            <span>·</span>
+            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="text-[#3370FF] hover:text-[#2660E0] hover:underline inline-flex items-center gap-1">
+                <img src="https://www.beian.gov.cn/img/ghs.png" alt="公安备案图标" style="width:14px;height:14px;flex-shrink:0;">
+                <span>川公网安备51012202002408号</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- 新闻编辑器模态框 -->
+<div id="newsModal" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+        <div class="bg-[#3370FF] text-white p-6 flex justify-between items-center">
+            <h3 class="text-xl font-bold" id="newsModalTitle">添加新闻</h3>
+            <button onclick="closeModal('newsModal')" class="text-2xl hover:text-white/80 transition-colors">&times;</button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6 space-y-4">
+            <form onsubmit="saveNews(event)" id="newsForm">
+                <input type="hidden" id="editId">
+                <div><label class="block text-sm mb-1">标题 *</label><input type="text" id="newsTitle" required class="w-full px-4 py-2 border rounded-lg"></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-sm mb-1">作者</label><input type="text" id="newsAuthor" value="宣传部" class="w-full px-4 py-2 border rounded-lg"></div>
+                    <div><label class="block text-sm mb-1">日期</label><input type="date" id="newsDate" class="w-full px-4 py-2 border rounded-lg" onchange="updateReviewPreview()"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label class="block text-sm mb-1">栏目 *</label>
+                        <select id="newsCategory" class="w-full px-4 py-2 border rounded-lg" onchange="toggleNoticeCategoryFields()">
+                            <option value="新闻动态">新闻动态</option>
+                            <option value="专题专栏">专题专栏</option>
+                            <option value="资料下载">资料下载</option>
+                        </select>
+                    </div>
+                    <div id="newsTopicWrap" class="hidden"><label class="block text-sm mb-1">专题子栏目</label>
+                        <select id="newsTopic" class="w-full px-4 py-2 border rounded-lg">
+                            <option value="">普通专题</option>
+                            <option value="军训专栏">军训专栏</option>
+                            <option value="换届专题专栏">换届专题专栏</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="newsDownloadWrap" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label class="block text-sm mb-1">资料下载地址</label><input type="text" id="newsDownloadUrl" placeholder="文件URL或网盘链接" class="w-full px-4 py-2 border rounded-lg"></div>
+                    <div><label class="block text-sm mb-1">下载按钮文字</label><input type="text" id="newsDownloadName" placeholder="如：下载报名表" class="w-full px-4 py-2 border rounded-lg"></div>
+                </div>
+                <div><label class="block text-sm mb-1">简介</label><textarea id="newsDesc" rows="2" class="w-full px-4 py-2 border rounded-lg"></textarea></div>
+                <div><label class="block text-sm mb-1">正文 *</label>
+                    <div class="editor-toolbar bg-gray-50 p-2 rounded-t-lg border flex flex-wrap gap-1">
+                        <button type="button" onclick="execCmd('bold')"><i class="fas fa-bold"></i></button>
+                        <button type="button" onclick="execCmd('italic')"><i class="fas fa-italic"></i></button>
+                        <button type="button" onclick="execCmd('underline')"><i class="fas fa-underline"></i></button>
+                        <button type="button" onclick="execCmd('insertUnorderedList')"><i class="fas fa-list-ul"></i></button>
+                        <button type="button" onclick="execCmd('insertOrderedList')"><i class="fas fa-list-ol"></i></button>
+                        <button type="button" onclick="execCmd('justifyLeft')"><i class="fas fa-align-left"></i></button>
+                        <button type="button" onclick="execCmd('justifyCenter')"><i class="fas fa-align-center"></i></button>
+                        <button type="button" onclick="insertEditorLink()"><i class="fas fa-link"></i> 链接</button>
+                        <button type="button" onclick="showInsertImgMenu(event)" title="插入图片（URL或本地上传）">图片 <i class="fas fa-caret-down text-xs"></i></button>
+                        <!-- 正文图片本地上传用隐藏input -->
+                        <input type="file" id="editorImageFileInput" accept="image/*" multiple class="hidden" onchange="handleEditorImageUpload(event)">
+                    </div>
+                    <div id="newsContent" class="rich-editor rounded-b-lg" contenteditable="true"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-sm mb-1">状态</label>
+                        <select id="newsStatus" class="px-4 py-2 border rounded-lg"><option value="published">发布</option><option value="draft">草稿</option></select>
+                    </div>
+                    <div><label class="block text-sm mb-1">浏览量</label>
+                        <input type="number" id="newsViews" min="0" class="w-full px-4 py-2 border rounded-lg" placeholder="0">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm mb-2 font-medium"><i class="fas fa-images mr-1"></i>新闻图片</label>
+                    <div id="newsImagesContainer" class="space-y-3">
+                        <!-- 已添加的图片列表将动态渲染在这里 -->
+                    </div>
+                    <!-- 添加图片：两种方式 -->
+                    <div class="mt-3 grid grid-cols-2 gap-3">
+                        <button type="button" onclick="addNewsImageByUrl()" class="border-2 border-dashed border-gray-300 rounded-lg py-3 text-gray-500 hover:border-blue-500 hover:text-blue-500 transition-colors text-sm">
+                            <i class="fas fa-link mr-1"></i>URL链接
+                        </button>
+                        <button type="button" onclick="document.getElementById('newsImageFileInput').click()" class="border-2 border-dashed border-gray-300 rounded-lg py-3 text-gray-500 hover:border-green-500 hover:text-green-500 transition-colors text-sm">
+                            <i class="fas fa-upload mr-1"></i>本地上传
+                        </button>
+                        <input type="file" id="newsImageFileInput" accept="image/*" multiple class="hidden" onchange="handleNewsImageUpload(event)">
+                    </div>
+                </div>
+                <!-- 审核信息预览（根据日期自动匹配） -->
+                <div id="newsReviewPreview" class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <p class="text-sm font-medium text-blue-800 mb-2"><i class="fas fa-clipboard-check mr-1"></i>审核信息预览</p>
+                    <div class="space-y-1 text-sm text-gray-700">
+                        <p><strong>一审：</strong><span id="adminReviewer1" class="text-red-700 font-medium">请选择日期</span></p>
+                        <p><strong>二审：</strong>夏建平</p>
+                        <p><strong>终审：</strong>学生工作处（人民武装部）</p>
+                    </div>
+                    <p id="reviewDateHint" class="text-xs text-gray-500 mt-2"></p>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="btn-primary flex-1 py-3 rounded-lg font-bold">保存</button>
+                    <button type="button" onclick="closeModal('newsModal')" class="flex-1 bg-gray-200 py-3 rounded-lg font-bold">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 其他模态框（简化版） -->
+<div id="carouselModal" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6"><h3 class="font-bold text-lg mb-4" id="carouselModalTitle">添加轮播图</h3>
+        <form onsubmit="saveCarousel(event)" class="space-y-4"><input type="hidden" id="carouselEditId">
+            <input type="text" id="carouselTitle" required placeholder="标题" class="w-full px-4 py-2 border rounded-lg">
+            <input type="text" id="carouselSubtitle" placeholder="副标题" class="w-full px-4 py-2 border rounded-lg">
+            <input type="text" id="carouselImage" placeholder="图片URL" class="w-full px-4 py-2 border rounded-lg">
+            <div class="flex gap-4"><button type="submit" class="btn-primary flex-1 py-2 rounded-lg">保存</button><button type="button" onclick="closeModal('carouselModal')" class="flex-1 bg-gray-200 py-2 rounded-lg">取消</button></div>
+        </form>
+    </div>
+</div>
+
+<div id="memberModal" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6"><h3 class="font-bold text-lg mb-4" id="memberModalTitle">添加成员</h3>
+        <form onsubmit="saveMember(event)" class="space-y-4"><input type="hidden" id="memberEditId">
+            <div class="grid grid-cols-2 gap-4">
+                <input type="text" id="memberName" required placeholder="姓名 *" class="px-4 py-2 border rounded-lg">
+                <input type="text" id="memberPosition" required placeholder="职务 *" class="px-4 py-2 border rounded-lg">
+            </div>
+            <select id="memberDept" class="w-full px-4 py-2 border rounded-lg"><option>常委会</option><option>办公室</option><option>宣传部</option><option>训练部</option><option>拓展部</option><option>后勤部</option></select>
+            <select id="memberTerm" class="w-full px-4 py-2 border rounded-lg"><option value="第十五届">第十五届</option><option value="第十四届">第十四届</option><option value="其他">其他</option></select>
+            <div class="flex gap-4"><button type="submit" class="bg-green-600 text-white flex-1 py-2 rounded-lg">保存</button><button type="button" onclick="closeModal('memberModal')" class="flex-1 bg-gray-200 py-2 rounded-lg">取消</button></div>
+        </form>
+    </div>
+</div>
+
+<!-- 修改密码模态框 -->
+<div id="changePwdModal" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+        <div class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-5 flex justify-between items-center">
+            <h3 class="text-lg font-bold"><i class="fas fa-key mr-2"></i>修改密码</h3>
+            <button onclick="closeModal('changePwdModal')" class="text-2xl leading-none hover:opacity-80">&times;</button>
+        </div>
+        <form onsubmit="changePassword(event)" class="p-6 space-y-4" action="javascript:void(0);">
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+                <i class="fas fa-info-circle mr-1"></i>为保障账户安全，修改密码需要验证当前密码。
+            </div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">当前密码 *</label>
+                <input type="password" id="oldPassword" required class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400" placeholder="请输入当前密码"></div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">新密码 *</label>
+                <input type="password" id="newPassword1" required minlength="6" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400" placeholder="至少6位字符"></div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">确认新密码 *</label>
+                <input type="password" id="newPassword2" required minlength="6" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400" placeholder="再次输入新密码"></div>
+            <div id="pwdError" class="hidden text-red-600 text-sm py-2 bg-red-50 rounded px-3"></div>
+            <div class="flex gap-3 pt-2">
+                <button type="submit" class="flex-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">确认修改</button>
+                <button type="button" onclick="closeModal('changePwdModal')" class="flex-1 bg-gray-200 py-3 rounded-lg font-bold hover:bg-gray-300 transition-colors">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 添加账号模态框 -->
+<div id="addAccountModal" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+        <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-5 flex justify-between items-center">
+            <h3 class="text-lg font-bold"><i class="fas fa-user-plus mr-2"></i>添加管理员账号</h3>
+            <button onclick="closeModal('addAccountModal')" class="text-2xl leading-none hover:opacity-80">&times;</button>
+        </div>
+        <form onsubmit="doAddAccount(event)" class="p-6 space-y-4" action="javascript:void(0);">
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">用户名 *</label>
+                <input type="text" id="newAccUsername" required class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" placeholder="输入用户名（英文+数字）"></div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">密码 *</label>
+                <input type="password" id="newAccPassword1" required minlength="6" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" placeholder="至少6位字符"></div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">确认密码 *</label>
+                <input type="password" id="newAccPassword2" required minlength="6" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400" placeholder="再次输入密码"></div>
+            <div id="addAccError" class="hidden text-red-600 text-sm py-2 bg-red-50 rounded px-3"></div>
+            <div class="flex gap-3 pt-2">
+                <button type="submit" class="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">确认添加</button>
+                <button type="button" onclick="closeModal('addAccountModal')" class="flex-1 bg-gray-200 py-3 rounded-lg font-bold hover:bg-gray-300 transition-colors">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 编辑账号模态框（改密码） -->
+<div id="editAccountModal" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+        <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-5 flex justify-between items-center">
+            <h3 class="text-lg font-bold"><i class="fas fa-user-edit mr-2"></i>编辑账号 · <span id="editAccNameDisplay">-</span></h3>
+            <button onclick="closeModal('editAccountModal')" class="text-2xl leading-none hover:opacity-80">&times;</button>
+        </div>
+        <form onsubmit="doEditAccount(event)" class="p-6 space-y-4" action="javascript:void(0);">
+            <input type="hidden" id="editAccIndex">
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800 mb-2">
+                <i class="fas fa-shield-alt mr-1"></i>需要验证当前密码才能修改此账号的密码。
+            </div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">当前密码（用于验证）*</label>
+                <input type="password" id="editAccOldPwd" required class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="输入你的登录密码以验证身份"></div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">新密码 *</label>
+                <input type="password" id="editAccNewPwd1" required minlength="6" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="至少6位字符"></div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">确认新密码 *</label>
+                <input type="password" id="editAccNewPwd2" required minlength="6" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="再次输入新密码"></div>
+            <div id="editAccError" class="hidden text-red-600 text-sm py-2 bg-red-50 rounded px-3"></div>
+            <div class="flex gap-3 pt-2">
+                <button type="submit" class="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">确认修改</button>
+                <button type="button" onclick="closeModal('editAccountModal')" class="flex-1 bg-gray-200 py-3 rounded-lg font-bold hover:bg-gray-300 transition-colors">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="toastContainer"></div>
+
+<script>
+// ========== 后端API配置 ==========
+const API_BASE = '';  // 同域名，使用相对路径
+const API_ENDPOINTS = {
+    news: '/api/data/newsData',
+    carousel: '/api/data/carouselData',
+    members: '/api/data/membersData',
+    about: '/api/data/aboutData',
+    teachers: '/api/data/teachersData'
+};
+
+// ========== 配置和数据 ==========
+const ADMIN_ACCOUNTS = [
+    { username: 'admin1', password: 'jiaodaodadui2011@' },
+    { username: 'admin2', password: 'jiaodaodadui2011.' },
+    { username: 'admin3', password: 'jiaodaodadui2011!' }
+];
+
+// ========== 登录已由独立脚本处理 ==========
+// admin_do_login() 函数定义在登录页面后的独立script标签中
+
+// ========== 轮播图默认数据 ==========
+const DEFAULT_CAROUSEL = [
+    { id: 1, title: '明理严军 自强不息', desc: '湖南涉外经济学院学生志愿教导大队', image: 'slide1.jpg', active: true },
+    { id: 2, title: '轮播图2', desc: '', image: 'slide2.jpg', active: true },
+    { id: 3, title: '轮播图3', desc: '', image: 'slide3.jpg', active: true },
+    { id: 4, title: '铁血军魂 青春无悔', desc: '半军事化管理 · 严格训练 · 甘于奉献', image: 'slide5.jpg', active: true },
+    { id: 5, title: '薪火相传 砥砺前行', desc: '自2011年成立至今 · 荣获多项省校级表彰', image: 'slide6.jpg', active: true },
+    { id: 6, title: '轮播图6', desc: '', image: 'slide7.jpg', active: true }
+];
+
+// ========== 大队简介默认数据 ==========
+const DEFAULT_ABOUT = {
+    intro: '湖南涉外经济学院学生志愿教导大队是一支半军事化队伍，接受学校学生工作处（人民武装部）的领导，新生军训期间由军训领导小组直接领导管理。日常由学生工作处（人民武装部）直接领导管理。\n\n教导大队成立于2011年，是一支由武装部领导的军事化队伍。大队以"明理严军、自强不息"为队训，实行严格的半军事化管理，坚持纪律严明、训练刻苦、作风扎实、甘于奉献。\n\n教导大队设有六个部门，分别为教导大队常务委员会、综合办公室、宣传部、拓展部、后勤部、纪检部。教导大队设有七个中队，分别为凌云骨干队；烽火一中队；雷霆二中队；雪狼三中队；虎贲四中队；苍龙五中队；火麒六中队。\n\n学生志愿教导大队的主要职能是：承担学校新生军训及国防安全教育，执行校园文明教育与劝导，协助执行校园秩序巡逻、重大活动值勤，每周举行校园升旗仪式。\n\n学生志愿教导大队的队员是由在校大一大二学生自主报名、教官推荐、经大队严格选拔，高强度集中训练之后组成。实行军事化管理，统一着装。教导大队严格实行考核淘汰制，以维护队伍的组织性和纪律性。',
+    images: ['about-img1.jpg', 'about-img2.jpg', 'about-img3.jpg', 'about-img4.jpg']
+};
+
+// ========== 人员默认数据 ==========
+const DEFAULT_MEMBERS = [
+    // 第十五届负责同志
+    { id: 1, name: '何俊杰', position: '大队长', photo: 'member1.jpg', department: '负责同志' },
+    { id: 2, name: '张钰', position: '教导员', photo: 'member2.jpg', department: '负责同志' },
+    { id: 3, name: '陈启蕊', position: '骨干中队长', photo: 'member3.jpg', department: '负责同志' },
+    { id: 4, name: '郑佳旺', position: '副大队长', photo: 'member4.jpg', department: '负责同志' },
+    // 综合办公室
+    { id: 5, name: '欧家', position: '办公室主任', photo: 'office1.jpg', department: '综合办公室' },
+    { id: 6, name: '潘妍妍', position: '办公室副主任', photo: 'office2.jpg', department: '综合办公室' },
+    // 中队长
+    { id: 7, name: '刘仕鹏', position: '中队长', photo: 'captain1.jpg', department: '中队长' },
+    { id: 8, name: '刘姿', position: '中队长', photo: 'captain2.jpg', department: '中队长' },
+    { id: 9, name: '单荣祺', position: '中队长', photo: 'captain3.jpg', department: '中队长' },
+    { id: 10, name: '李涛', position: '中队长', photo: 'captain4.jpg', department: '中队长' },
+    { id: 11, name: '江涵', position: '中队长', photo: 'captain5.jpg', department: '中队长' },
+    { id: 12, name: '符森', position: '中队长', photo: 'captain6.jpg', department: '中队长' },
+    // 纪检部
+    { id: 13, name: '江珧', position: '纪检部长', photo: 'jicheng1.jpg', department: '纪检部' },
+    { id: 14, name: '桂祺欣', position: '纪检副部长', photo: 'jicheng2.jpg', department: '纪检部' },
+    // 宣传部
+    { id: 15, name: '艾彦廷', position: '宣传部长', photo: 'xuanchuan1.jpg', department: '宣传部' },
+    { id: 16, name: '廖敏婕', position: '宣传副部长', photo: 'xuanchuan2.jpg', department: '宣传部' },
+    // 后勤部
+    { id: 17, name: '钟曼怡', position: '后勤部长', photo: 'houqin1.jpg', department: '后勤部' },
+    { id: 18, name: '钱瑞鑫', position: '后勤副部长', photo: 'houqin2.jpg', department: '后勤部' },
+    // 拓展部
+    { id: 19, name: '黄一倩', position: '拓展部长', photo: 'tuozhan1.jpg', department: '拓展部' },
+    { id: 20, name: '聂玲飞', position: '拓展副部长', photo: 'tuozhan2.jpg', department: '拓展部' },
+    // 骨干班长
+    { id: 21, name: '寻婉如', position: '骨干班长', photo: 'squad1.jpg', department: '骨干班长' },
+    { id: 22, name: '胡超', position: '骨干班长', photo: 'squad2.jpg', department: '骨干班长' },
+    { id: 23, name: '刘恒烨', position: '骨干班长', photo: 'squad4.jpg', department: '骨干班长' },
+    { id: 24, name: '刘嘉玲', position: '骨干班长', photo: 'squad5.jpg', department: '骨干班长' },
+    { id: 25, name: '吕尚卿', position: '骨干班长', photo: 'squad6.jpg', department: '骨干班长' },
+    { id: 26, name: '夏敏辉', position: '骨干班长', photo: 'squad7.jpg', department: '骨干班长' },
+    { id: 27, name: '张晨鹏', position: '骨干班长', photo: 'squad8.jpg', department: '骨干班长' },
+    { id: 28, name: '雷艳婷', position: '骨干班长', photo: 'squad9.jpg', department: '骨干班长' }
+];
+
+// ========== 现任领导默认数据 ==========
+const DEFAULT_TEACHERS = [
+    { id: 1, name: '徐京都', position: '校长助理、学生工作处处长', photo: 'leader1.jpg' },
+    { id: 2, name: '夏建平', position: '武装部副部长、教导大队指导老师', photo: 'leader2.jpg' }
+];
+
+const DEFAULT_NEWS = [];
+
+let newsData = [];
+let carouselData = [];
+let membersData = [];
+let aboutData = { intro: '', mission: '' };
+let teachersData = [];
+let settingsData = {};
+let logs = [];
+let loginLogs = [];
+let currentPage = 1;
+const PER_PAGE = 10;
+
+function normalizeNoticeItem(item) {
+    if (!item || typeof item !== 'object') return null;
+    var category = item.category || (item.downloadUrl ? '资料下载' : '新闻动态');
+    if (['新闻动态', '专题专栏', '资料下载'].indexOf(category) === -1) category = '新闻动态';
+    var topic = category === '专题专栏' && ['军训专栏', '换届专题专栏'].indexOf(item.topic || '') !== -1 ? item.topic : '';
+    return Object.assign({}, item, {
+        category: category,
+        topic: topic,
+        downloadUrl: category === '资料下载' ? (item.downloadUrl || '') : '',
+        downloadName: category === '资料下载' ? (item.downloadName || '') : ''
+    });
+}
+
+// ========== 初始化 ==========
+document.addEventListener('DOMContentLoaded', function() {
+    if (sessionStorage.getItem('loggedIn') === '1') showPanel();
+    loadData();
+    setupSync();
+    loadAccountSettings();
+
+    checkFeishuLogin();
+
+    // 生成验证码
+    refreshCaptcha();
+
+    // 检查是否从新闻详情页跳转过来编辑（通过localStorage传递ID）
+    var editIdFromDetail = localStorage.getItem('jiaodao_edit_news_id');
+    if (editIdFromDetail) {
+        localStorage.removeItem('jiaodao_edit_news_id'); // 清除标记
+        // 延迟确保数据已加载完毕
+        setTimeout(function() {
+            if (typeof openNewsEditor === 'function') {
+                openNewsEditor(editIdFromDetail);
+            }
+        }, 500);
+    }
+});
+
+function loadData() {
+    try {
+        // 新闻
+        var storedNews = localStorage.getItem('jiaodao_news');
+        newsData = (storedNews ? JSON.parse(storedNews) : [...DEFAULT_NEWS]).map(normalizeNoticeItem).filter(Boolean);
+        if (!storedNews) saveToStorage('jiaodao_news', newsData);
+    } catch (e) { newsData = [...DEFAULT_NEWS]; }
+
+    try {
+        // 轮播图
+        var storedCarousel = localStorage.getItem('jiaodao_carousel');
+        carouselData = storedCarousel ? JSON.parse(storedCarousel) : [...DEFAULT_CAROUSEL];
+        if (!storedCarousel) saveToStorage('jiaodao_carousel', carouselData);
+    } catch (e) { carouselData = [...DEFAULT_CAROUSEL]; }
+
+    try {
+        // 人员
+        var storedMembers = localStorage.getItem('jiaodao_members');
+        membersData = storedMembers ? JSON.parse(storedMembers) : [...DEFAULT_MEMBERS];
+        if (!storedMembers) saveToStorage('jiaodao_members', membersData);
+    } catch (e) { membersData = [...DEFAULT_MEMBERS]; }
+
+    try {
+        // 大队简介
+        var storedAbout = localStorage.getItem('jiaodao_about');
+        aboutData = storedAbout ? JSON.parse(storedAbout) : {...DEFAULT_ABOUT};
+        if (!storedAbout) saveToStorage('jiaodao_about', aboutData);
+    } catch (e) { aboutData = {...DEFAULT_ABOUT}; }
+
+    try {
+        // 现任领导
+        var storedTeachers = localStorage.getItem('jiaodao_teachers');
+        teachersData = storedTeachers ? JSON.parse(storedTeachers) : [...DEFAULT_TEACHERS];
+        if (!storedTeachers) saveToStorage('jiaodao_teachers', teachersData);
+    } catch (e) { teachersData = [...DEFAULT_TEACHERS]; }
+
+    // 设置
+    settingsData = loadItem('jiaodao_settings', {});
+    logs = loadItem('jiaodao_logs', []);
+    loginLogs = [];
+
+    // 尝试从服务器拉取最新数据覆盖本地
+    syncFromServer();
+
+    updateStats();
+    renderNews();
+    renderLogs();
+    loadLoginLogs();
+    loadAccountSettings();
+    
+    console.log('✅ 数据加载完成 - 新闻:' + newsData.length + ' 轮播:' + carouselData.length + ' 人员:' + membersData.length);
+}
+
+// 同步状态管理
+var _syncStatus = {
+    news: { pending: false, lastSuccess: 0, lastError: null, retryCount: 0 }
+};
+
+// 合并两组新闻：以 id 为键，保留 updatedAt 更大的
+function mergeNewsData(localNews, serverNews) {
+    if (!Array.isArray(localNews)) localNews = [];
+    if (!Array.isArray(serverNews)) serverNews = [];
+    var map = {};
+    localNews.map(normalizeNoticeItem).filter(Boolean).forEach(function(n) { if (n && n.id) map[n.id] = n; });
+    serverNews.forEach(function(s) {
+        s = normalizeNoticeItem(s);
+        if (!s || !s.id) return;
+        var local = map[s.id];
+        if (!local) {
+            map[s.id] = s;
+        } else {
+            var localTs = local.updatedAt || 0;
+            var serverTs = s.updatedAt || 0;
+            if (serverTs > localTs) map[s.id] = s;
+        }
+    });
+    var merged = Object.values(map);
+    merged.sort(function(a, b) { return (b.date || '').localeCompare(a.date || ''); });
+    return merged;
+}
+
+// 从服务器同步最新数据到本地
+function syncFromServer() {
+    // ========== 新闻数据：通过高可靠接口读取并智能合并 ==========
+    fetch('/api/save_news.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'read', _t: Date.now() })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(result) {
+        if (!result.success) {
+            console.warn('⚠️ 读取服务器新闻失败:', result.message);
+            return;
+        }
+        var serverNews = result.data;
+        if (!Array.isArray(serverNews)) {
+            console.warn('⚠️ 服务器新闻数据格式错误，保留本地数据');
+            return;
+        }
+
+        // 获取本地最新数据
+        var localNews = [];
+        try {
+            var localRaw = localStorage.getItem('jiaodao_news');
+            if (localRaw) localNews = JSON.parse(localRaw);
+        } catch(e) { localNews = []; }
+        if (!Array.isArray(localNews)) localNews = [];
+
+        // 如果服务器为空且本地有数据，把本地推送到服务器（反向同步）
+        if (serverNews.length === 0 && localNews.length > 0) {
+            console.warn('⚠️ 服务器新闻为空，但本地有 ' + localNews.length + ' 条，准备反向同步到服务器');
+            syncToServer('jiaodao_news', localNews);
+            return;
+        }
+
+        var merged = mergeNewsData(localNews, serverNews);
+        localStorage.setItem('jiaodao_news', JSON.stringify(merged));
+        newsData = merged;
+        renderNews();
+        updateStats();
+        console.log('📥 新闻同步完成：本地' + localNews.length + '条，服务器' + serverNews.length + '条，合并后' + merged.length + '条');
+    })
+    .catch(function(err) {
+        console.warn('⚠️ 新闻同步失败（使用本地数据）:', err.message);
+    });
+
+    // ========== 其他数据：保持原有同步逻辑 ==========
+    var keys = [
+        { local: 'jiaodao_carousel', server: 'carouselData' },
+        { local: 'jiaodao_members', server: 'membersData' },
+        { local: 'jiaodao_about', server: 'aboutData' },
+        { local: 'jiaodao_teachers', server: 'teachersData' }
+    ];
+
+    keys.forEach(function(item) {
+        fetch(API_BASE + '/api/data/' + item.server)
+            .then(function(res) { return res.json(); })
+            .then(function(result) {
+                if (result.success && result.data && Array.isArray(result.data)) {
+                    if (result.data.length > 0) {
+                        localStorage.setItem(item.local, JSON.stringify(result.data));
+                        console.log('📥 从服务器同步:', item.server, '(' + result.data.length + '条)');
+                    }
+                } else if (result.success && result.data && typeof result.data === 'object' && !Array.isArray(result.data)) {
+                    localStorage.setItem(item.local, JSON.stringify(result.data));
+                    console.log('📥 从服务器同步:', item.server);
+                }
+            })
+            .catch(function(err) {
+                // 服务器不可用时静默失败，使用本地数据
+            });
+    });
+}
+
+function loadItem(key, def) {
+    try { const d = localStorage.getItem(key); return d ? JSON.parse(d) : def; } catch (e) { return def; }
+}
+
+function saveToStorage(key, data) {
+    var isSlimMode = false;  // 标记是否使用了精简模式
+
+    // 1. 立即保存到 localStorage（保留base64图片，确保前端能显示）
+    try {
+        localStorage.setItem(key, JSON.stringify(data));
+        localStorage.setItem('jiaodao_lastUpdate', new Date().toISOString());
+        localStorage.setItem('jiaodao_sync_trigger', String(Date.now()));
+        localStorage.setItem('jiaodao_sync_key', key);
+    } catch(e) {
+        console.warn('⚠️ localStorage空间不足，使用精简模式保存');
+        try {
+            var slimData = createSlimData(key, data);
+            localStorage.setItem(key, JSON.stringify(slimData));
+            localStorage.setItem('jiaodao_lastUpdate', new Date().toISOString());
+            localStorage.setItem('jiaodao_sync_trigger', String(Date.now()));
+            isSlimMode = true;
+            console.warn('⚠️ 精简模式已启用：仅保存到本地，不同步到服务器（防止丢失正文）');
+        } catch(e2) {
+            console.error('❌ localStorage完全无法写入:', e2.message);
+            isSlimMode = true;
+        }
+    }
+
+    // 派发自定义事件（同页面）
+    try { window.dispatchEvent(new CustomEvent('storageChanged', { detail: { key: key, timestamp: Date.now() } })); } catch(e) {}
+
+    // postMessage 跨窗口通信
+    try { window.postMessage({ type: 'jiaodao_data_changed', key: key, timestamp: Date.now() }, '*'); } catch(e) {}
+
+    // BroadcastChannel 毫秒级实时同步（通知所有同源页面）
+    if (typeof BroadcastChannel !== 'undefined') {
+        try {
+            var bc = new BroadcastChannel('jiaodao_news_sync');
+            bc.postMessage({ type: 'news_updated', key: key, timestamp: Date.now() });
+            console.log('📡 已通过BroadcastChannel发送实时更新信号');
+        } catch(e) { /* 降级静默 */ }
+    }
+
+    showToast('保存成功！', 'success');
+
+    // 2. 后台异步：上传base64图片到服务器 + 同步数据到API（不阻塞保存）
+    // 即使精简模式也要同步完整数据到服务器，确保官网能实时看到
+    var dataCopy = JSON.parse(JSON.stringify(data));
+    uploadBase64Images(dataCopy).then(function() {
+        // 图片上传成功后，用URL版本更新localStorage（如果空间够）
+        if (!isSlimMode) {
+            try { localStorage.setItem(key, JSON.stringify(dataCopy)); } catch(e) {}
+        }
+        // 同步到后端服务器
+        syncToServer(key, dataCopy);
+    }).catch(function(err) {
+        console.warn('⚠️ 图片上传失败（不影响数据同步）:', err.message);
+        // 仍然尝试同步原始数据到服务器（即使图片还是base64）
+        syncToServer(key, data);
+    });
+}
+
+/**
+ * 上传数据中所有base64图片到服务器，替换为URL
+ * 返回Promise，完成后data对象中的base64会被替换为服务器URL
+ */
+function uploadBase64Images(dataObj) {
+    return new Promise(function(resolve, reject) {
+        var imagesToUpload = []; // 收集所有需要上传的base64图片
+        
+        // 1. 收集 images 字段中的 base64 图片
+        if (Array.isArray(dataObj)) {
+            for (var i = 0; i < dataObj.length; i++) {
+                collectBase64FromItem(dataObj[i], imagesToUpload, i);
+            }
+        } else {
+            collectBase64FromItem(dataObj, imagesToUpload, 0);
+        }
+        
+        if (imagesToUpload.length === 0) {
+            resolve(); // 没有需要上传的图片
+            return;
+        }
+        
+        console.log('📤 发现 ' + imagesToUpload.length + ' 张本地图片，正在上传到服务器...');
+        showToast('正在上传 ' + imagesToUpload.length + ' 张图片...', 'info');
+        
+        // 2. 批量上传到服务器
+        fetch(API_BASE + '/api/upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ images: imagesToUpload })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(result) {
+            if (result.success && result.results) {
+                // 3. 用返回的URL替换原数据中的base64
+                result.results.forEach(function(r, idx) {
+                    if (r.success && r.url && imagesToUpload[idx]) {
+                        var imgInfo = imagesToUpload[idx];
+                        replaceBase64InData(dataObj, imgInfo.base64, r.url);
+                    }
+                });
+                console.log('✅ 图片上传完成');
+                resolve();
+            } else {
+                reject(new Error(result.message || '上传失败'));
+            }
+        })
+        .catch(function(err) {
+            reject(err);
+        });
+    });
+}
+
+/**
+ * 从单个数据项中收集所有base64图片
+ */
+function collectBase64FromItem(item, imageList, index) {
+    // 收集 images 数组中的 base64
+    if (item.images && Array.isArray(item.images)) {
+        item.images.forEach(function(img, imgIdx) {
+            if (img.src && img.src.startsWith('data:image')) {
+                imageList.push({
+                    base64: img.src,
+                    filename: img.fileName || '',
+                    location: 'images',
+                    itemIndex: index,
+                    imageIndex: imgIdx,
+                    content: img.src
+                });
+            }
+        });
+    }
+    
+    // 收集 content 正文中的 base64 图片
+    if (item.content && typeof item.content === 'string' && item.content.includes('data:image')) {
+        // 兼容性处理：优先使用matchAll，降级使用match+exec
+        var contentIdx = 0;
+        if (typeof String.prototype.matchAll === 'function') {
+            try {
+                var matches = item.content.matchAll(/src=["'](data:image\/[^"']+)["']/g);
+                var match;
+                while (!(match = matches()).done) {
+                    imageList.push({
+                        base64: match[1],
+                        filename: '',
+                        location: 'content',
+                        itemIndex: index,
+                        contentIndex: contentIdx++,
+                        content: match[1]
+                    });
+                }
+            } catch(e) {
+                // matchAll不支持，使用降级方案
+                _fallbackCollectBase64(item.content, imageList, index);
+            }
+        } else {
+            _fallbackCollectBase64(item.content, imageList, index);
+        }
+    }
+}
+
+// 降级方案：用match+exec收集base64图片（兼容旧浏览器）
+function _fallbackCollectBase64(content, imageList, index) {
+    var regex = /src=["'](data:image\/[^"']+)["']/g;
+    var contentIdx = 0;
+    var match;
+    while ((match = regex.exec(content)) !== null) {
+        imageList.push({
+            base64: match[1],
+            filename: '',
+            location: 'content',
+            itemIndex: index,
+            contentIndex: contentIdx++,
+            content: match[1]
+        });
+    }
+}
+
+/**
+ * 在数据中用URL替换指定的base64字符串
+ */
+function replaceBase64InData(dataObj, base64Str, url) {
+    if (Array.isArray(dataObj)) {
+        dataObj.forEach(function(item) { replaceInItem(item, base64Str, url); });
+    } else {
+        replaceInItem(dataObj, base64Str, url);
+    }
+}
+
+function replaceInItem(item, base64Str, url) {
+    // 替换 images 字段
+    if (item.images && Array.isArray(item.images)) {
+        item.images.forEach(function(img) {
+            if (img.src === base64Str) {
+                img.src = url;
+                img.isLocal = false;
+            }
+        });
+    }
+    
+    // 替换 content 字段
+    if (item.content && typeof item.content === 'string') {
+        item.content = item.content.split(base64Str).join(url);
+    }
+}
+
+// 兜底：当API不可用时，用旧的strip方式（至少不报错）
+function stripBase64ImagesFallback(dataObj) {
+    if (!dataObj) return;
+    if (Array.isArray(dataObj)) { dataObj.forEach(stripBase64ImagesFallback); return; }
+    
+    if (dataObj.images && Array.isArray(dataObj.images)) {
+        dataObj.images = dataObj.images.filter(function(img) {
+            return !img.src || !img.src.startsWith('data:');
+        });
+    }
+    if (dataObj.content && typeof dataObj.content === 'string' && dataObj.content.includes('data:image')) {
+        dataObj.content = dataObj.content.replace(/src=["']data:image\/[^"']+["']/g, 'src="[图片上传失败]"');
+    }
+}
+
+// 创建精简版数据（localStorage满时的降级方案）
+function createSlimData(key, rawData) {
+    if (key === 'jiaodao_news' && Array.isArray(rawData)) {
+        return rawData.map(function(item) {
+            return {
+                id: item.id,
+                title: item.title || '',
+                author: item.author || '',
+                date: item.date || '',
+                desc: (item.desc || '').substring(0, 200),
+                content: item.content || '',  // 修复：必须保留正文内容，否则会导致前端显示undefined
+                status: item.status || 'published',
+                views: item.views || 0,
+                images: (item.images || []).filter(function(img) {
+                    return img && img.src && !img.src.startsWith('data:');
+                }).map(function(img) { return { src: img.src, caption: img.caption || '' }; })
+            };
+        });
+    }
+    // 其他类型数据返回空对象或基本字段
+    return { _slim: true, _ts: Date.now() };
+}
+
+// 同步数据到后端服务器
+function syncToServer(storageKey, data, retryCount) {
+    retryCount = retryCount || 0;
+
+    // 新闻数据使用高可靠 PHP 接口同步
+    if (storageKey === 'jiaodao_news') {
+        if (_syncStatus.news.pending) {
+            console.log('⏳ 新闻同步进行中，跳过重复请求');
+            return;
+        }
+        _syncStatus.news.pending = true;
+
+        var payload = {
+            mode: 'save',
+            data: data,
+            operator: {
+                name: sessionStorage.getItem('user') || '未知',
+                openId: sessionStorage.getItem('openId') || '',
+                method: sessionStorage.getItem('loginMethod') || ''
+            }
+        };
+
+        fetch('/api/save_news.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(result) {
+            _syncStatus.news.pending = false;
+            if (result.success) {
+                _syncStatus.news.lastSuccess = Date.now();
+                _syncStatus.news.lastError = null;
+                _syncStatus.news.retryCount = 0;
+                console.log('✅ 已同步到官网:', result.message);
+                showToast('已同步到官网（' + result.count + '条）', 'success');
+
+                // 如果服务器从备份恢复了，拉取最新合并数据到本地
+                if (result.recoveredFromBackup) {
+                    setTimeout(syncFromServer, 500);
+                }
+            } else {
+                _syncStatus.news.lastError = result.message;
+                console.warn('⚠️ 同步失败:', result.message);
+
+                // 如果是空数据被拒绝，且服务器返回了数据，拉取到本地合并
+                if (result.serverData && Array.isArray(result.serverData) && result.serverData.length > 0) {
+                    console.warn('⚠️ 服务器返回了 ' + result.serverData.length + ' 条新闻，将合并到本地');
+                    var localNews = [];
+                    try {
+                        var raw = localStorage.getItem('jiaodao_news');
+                        if (raw) localNews = JSON.parse(raw);
+                    } catch(e) { localNews = []; }
+                    var merged = mergeNewsData(localNews, result.serverData);
+                    localStorage.setItem('jiaodao_news', JSON.stringify(merged));
+                    newsData = merged;
+                    renderNews();
+                    updateStats();
+                    showToast('已合并服务器新闻数据', 'info');
+                } else {
+                    showToast('同步失败：' + result.message, 'error');
+                }
+            }
+        })
+        .catch(function(err) {
+            _syncStatus.news.pending = false;
+            _syncStatus.news.lastError = err.message;
+            console.warn('⚠️ 同步失败（离线模式）:', err.message);
+
+            // 自动重试，最多3次
+            if (retryCount < 3) {
+                _syncStatus.news.retryCount = retryCount + 1;
+                console.log('🔄 ' + (retryCount + 1) + '秒后第' + (retryCount + 1) + '次重试同步...');
+                setTimeout(function() {
+                    syncToServer(storageKey, data, retryCount + 1);
+                }, 1000 * (retryCount + 1));
+            } else {
+                showToast('同步失败，已保存到本地，请检查网络', 'error');
+            }
+        });
+        return;
+    }
+
+    // 其他数据的后端同步（Node.js，如需启用）
+    var keyMap = {
+        'jiaodao_news': 'newsData',
+        'jiaodao_carousel': 'carouselData',
+        'jiaodao_members': 'membersData',
+        'jiaodao_about': 'aboutData',
+        'jiaodao_teachers': 'teachersData'
+    };
+
+    var serverKey = keyMap[storageKey];
+    if (!serverKey) return;
+
+    var apiUrl = API_BASE + '/api/data/' + serverKey;
+
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(result) {
+        if (result.success) {
+            console.log('✅ 已同步到服务器:', serverKey);
+        } else {
+            console.warn('⚠️ 服务器同步失败:', result.message);
+        }
+    })
+    .catch(function(err) {
+        console.warn('⚠️ 无法连接服务器（离线模式）:', err.message);
+        console.info('   数据已保存在本地localStorage，联网后将自动同步');
+    });
+}
+
+// 新闻增量同步：只发送变更的数据，避免全量 50 条新闻 payload 过大导致保存失败
+function syncNewsChangeToServer(mode, payloadData, retryCount) {
+    retryCount = retryCount || 0;
+    if (_syncStatus.news.pending) {
+        console.log('⏳ 新闻同步进行中，跳过重复请求');
+        return;
+    }
+    _syncStatus.news.pending = true;
+
+    var payload = { mode: mode };
+    if (mode === 'delete') {
+        payload.ids = Array.isArray(payloadData) ? payloadData : [payloadData];
+    } else {
+        payload.data = Array.isArray(payloadData) ? payloadData : [payloadData];
+    }
+    payload.operator = {
+        name: sessionStorage.getItem('user') || '未知',
+        openId: sessionStorage.getItem('openId') || '',
+        method: sessionStorage.getItem('loginMethod') || ''
+    };
+
+    fetch('/api/save_news.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(result) {
+        _syncStatus.news.pending = false;
+        if (result.success) {
+            _syncStatus.news.lastSuccess = Date.now();
+            _syncStatus.news.lastError = null;
+            _syncStatus.news.retryCount = 0;
+            console.log('✅ 新闻增量同步成功:', result.message);
+            showToast('已同步到官网', 'success');
+            if (result.recoveredFromBackup) setTimeout(syncFromServer, 500);
+        } else {
+            _syncStatus.news.lastError = result.message;
+            console.warn('⚠️ 新闻增量同步失败:', result.message);
+            showToast('同步失败：' + result.message, 'error');
+        }
+    })
+    .catch(function(err) {
+        _syncStatus.news.pending = false;
+        _syncStatus.news.lastError = err.message;
+        console.warn('⚠️ 新闻增量同步失败（离线模式）:', err.message);
+        if (retryCount < 3) {
+            _syncStatus.news.retryCount = retryCount + 1;
+            setTimeout(function() {
+                syncNewsChangeToServer(mode, payloadData, retryCount + 1);
+            }, 1000 * (retryCount + 1));
+        } else {
+            showToast('同步失败，已保存到本地，请检查网络', 'error');
+        }
+    });
+}
+
+// ========== 数据备份与恢复功能 ==========
+var _backupListCache = null;
+
+// 创建全量备份
+function createBackup() {
+    var btn = document.getElementById('backupBtn');
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 备份中...'; }
+
+    fetch(API_BASE + '/api/backup', { method: 'POST', headers: {'Content-Type': 'application/json'} })
+        .then(function(res) { return res.json(); })
+        .then(function(result) {
+            if (result.success) {
+                showToast('备份创建成功！共 ' + (result.backupCount || 1) + ' 个备份', 'success');
+                document.getElementById('lastBackupTime').textContent = new Date().toLocaleString();
+                loadBackupList();
+            } else {
+                showToast('备份失败：' + (result.message || '未知错误'), 'error');
+            }
+        })
+        .catch(function(err) {
+            showToast('备份失败：无法连接服务器（' + err.message + '）', 'error');
+        })
+        .finally(function() {
+            if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> 创建全量备份'; }
+        });
+}
+
+// 加载备份列表
+function loadBackupList() {
+    var container = document.getElementById('backupListContainer');
+    if (!container) return;
+    container.innerHTML = '<div class="text-center py-8 text-gray-400"><i class="fas fa-spinner fa-spin mr-2"></i>正在加载备份列表...</div>';
+
+    fetch(API_BASE + '/api/backup')
+        .then(function(res) { return res.json(); })
+        .then(function(result) {
+            _backupListCache = result;
+
+            // 更新统计信息
+            if (result.backups && result.backups.length > 0) {
+                var fullCount = result.backups.filter(function(b) { return b.type === 'full'; }).length;
+                var singleCount = result.backups.filter(function(b) { return b.type !== 'full'; }).length;
+                var elFull = document.getElementById('fullBackupCount');
+                var elSingle = document.getElementById('singleBackupCount');
+                var elLatest = document.getElementById('latestBackupTime');
+                var elStatus = document.getElementById('serverStatus');
+                if (elFull) elFull.textContent = fullCount;
+                if (elSingle) elSingle.textContent = singleCount;
+                if (elLatest) elLatest.textContent = result.backups[0].time;
+                if (elStatus) { elStatus.textContent = '正常'; elStatus.className = 'font-bold text-green-600'; }
+            } else {
+                var elStatus = document.getElementById('serverStatus');
+                if (elStatus) { elStatus.textContent = '无备份'; elStatus.className = 'font-bold text-gray-400'; }
+            }
+
+            // 渲染列表
+            if (!result.success || !result.backups || result.backups.length === 0) {
+                container.innerHTML = '<div class="text-center py-8 text-gray-400"><i class="fas fa-archive text-4xl mb-3 block opacity-30"></i>暂无备份记录<br><span class="text-sm">点击上方"创建全量备份"按钮开始</span></div>';
+                return;
+            }
+
+            var html = '';
+            for (var i = 0; i < result.backups.length; i++) {
+                var b = result.backups[i];
+                var typeLabel = b.type === 'full' ? '<span class="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded">全量</span>' : '<span class="bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded">' + b.type + '</span>';
+                html += '<div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">';
+                html += '    <div class="w-10 h-10 rounded-full flex items-center justify-center ' + (b.type === 'full' ? 'bg-blue-100' : 'bg-purple-100') + '"><i class="fas ' + (b.type === 'full' ? 'fa-database text-blue-500' : 'fa-file-alt text-purple-500') + '"></i></div>';
+                html += '    <div class="flex-1 min-w-0">';
+                html += '        <div class="font-medium text-sm truncate">' + b.filename + '</div>';
+                html += '        <div class="flex items-center gap-3 mt-1 text-xs text-gray-500">';
+                html += '            <span><i class="far fa-clock mr-1"></i>' + b.time + '</span>';
+                html += '            <span><i class="far fa-hdd mr-1"></i>' + b.size + '</span>';
+                html += '            ' + typeLabel;
+                html += '        </div>';
+                html += '    </div>';
+                html += '    <div class="flex items-center gap-2">';
+                html += '        <button onclick="restoreFromBackup(\'' + b.filename + '\')" class="px-3 py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-sm transition-colors" title="恢复此备份"><i class="fas fa-undo mr-1"></i>恢复</button>';
+                html += '        <button onclick="deleteBackup(\'' + b.filename + '\')" class="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg text-sm transition-colors" title="删除此备份"><i class="fas fa-trash mr-1"></i></button>';
+                html += '    </div>';
+                html += '</div>';
+            }
+            container.innerHTML = html;
+        })
+        .catch(function(err) {
+            container.innerHTML = '<div class="text-center py-8 text-red-400"><i class="fas fa-exclamation-circle text-4xl mb-3 block"></i>加载失败<br><span class="text-sm">' + err.message + '</span></div>';
+            var elStatus = document.getElementById('serverStatus');
+            if (elStatus) { elStatus.textContent = '连接失败'; elStatus.className = 'font-bold text-red-600'; }
+        });
+}
+
+// 从备份恢复数据
+function restoreFromBackup(filename) {
+    if (!confirm('确定要恢复到该备份吗？\n\n⚠️ 恢复前系统会自动备份当前数据\n⚠️ 恢复后当前数据将被覆盖')) return;
+
+    showToast('正在恢复，请稍候...', 'info');
+
+    fetch(API_BASE + '/api/backup/restore', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename: filename })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(result) {
+        if (result.success) {
+            showToast('恢复成功！页面即将刷新...', 'success');
+            setTimeout(function() {
+                localStorage.clear();
+                location.reload();
+            }, 1500);
+        } else {
+            showToast('恢复失败：' + (result.message || '未知错误'), 'error');
+        }
+    })
+    .catch(function(err) {
+        showToast('恢复失败：' + err.message, 'error');
+    });
+}
+
+// 删除备份
+function deleteBackup(filename) {
+    if (!confirm('确定要删除备份 "' + filename + '" 吗？此操作不可撤销。')) return;
+
+    fetch(API_BASE + '/api/backup/' + encodeURIComponent(filename), { method: 'DELETE' })
+        .then(function(res) { return res.json(); })
+        .then(function(result) {
+            if (result.success) {
+                showToast('备份已删除', 'success');
+                loadBackupList();
+            } else {
+                showToast('删除失败：' + (result.message || '未知错误'), 'error');
+            }
+        })
+        .catch(function(err) {
+            showToast('删除失败：' + err.message, 'error');
+        });
+}
+
+function setupSync() {
+    window.addEventListener('storage', (e) => {
+        if (e.key && e.key.startsWith('jiaodao_')) {
+            loadData();
+            showToast('数据已自动更新', 'info');
+            refreshCurrentTab();
+        }
+    });
+    window.addEventListener('message', (e) => {
+        if (e.data?.type === 'requestSync') syncToFrontend();
+    });
+}
+
+// ========== 登录相关 ==========
+function logout() {
+    try {
+        // 先清除登录状态
+        sessionStorage.removeItem('loggedIn');
+        sessionStorage.removeItem('user');
+        sessionStorage.removeItem('openId');
+        sessionStorage.removeItem('loginMethod');
+        // 清除飞书登录的 localStorage 数据（防止刷新后自动登录）
+        localStorage.removeItem('feishu_login');
+        
+        // 切换显示
+        var lp = document.getElementById('loginPage');
+        var ap = document.getElementById('adminPanel');
+        if (lp) lp.style.display = 'flex';
+        if (ap) ap.style.display = 'none';
+        
+        // 重置滑动验证状态（如果存在）
+        if (typeof _slider !== 'undefined') {
+            _slider.verified = false;
+            var sBtn = document.getElementById('sliderBtn');
+            var sProg = document.getElementById('sliderProgress');
+            var sTxt = document.getElementById('sliderText');
+            if(sBtn){sBtn.style.left='0px';sBtn.className='absolute left-0 top-0 h-10 w-10 bg-white rounded-lg shadow-md flex items-center justify-center z-20 transition-all duration-200';sBtn.innerHTML='<i class="fas fa-arrow-right text-pkured text-sm"></i>';}
+            if(sProg)sProg.style.width='0px';
+            if(sTxt){sTxt.textContent='滑动完成验证';sTxt.className='absolute inset-0 flex items-center justify-center text-gray-500 text-sm pointer-events-none z-10';}
+        }
+        
+        // 清空输入框
+        var uInput = document.getElementById('username');
+        var pInput = document.getElementById('password');
+        if(uInput) uInput.value = '';
+        if(pInput) pInput.value = '';
+        
+        // 记录日志（独立try-catch，不影响退出）
+        try {
+            var logoutName = sessionStorage.getItem('user') || '管理员';
+            var logoutOpenId = sessionStorage.getItem('openId') || '';
+            addLog('退出', '用户 ' + logoutName + (logoutOpenId ? '（Open ID: ' + logoutOpenId + '）' : '') + ' 退出管理后台');
+        } catch(e) {}
+
+        // 用轻提示替代 alert
+        if (typeof showToast === 'function') {
+            showToast('已退出登录', 'success');
+        }
+    } catch(err) {
+        // 即使出错也要强制退出
+        sessionStorage.clear();
+        location.reload();
+    }
+}
+
+// ========== 移动端侧边栏 ==========
+function toggleMobileSidebar() {
+    var sidebar = document.querySelector('.admin-sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (!sidebar) return;
+    
+    sidebar.classList.toggle('mobile-open');
+    if (overlay) overlay.classList.toggle('active');
+}
+
+// 点击菜单项后自动关闭移动端侧边栏
+var _origShowTab = null;
+
+function showPanel() {
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'flex';
+    document.getElementById('currentUser').textContent = sessionStorage.getItem('user') || '管理员';
+    showTab('dashboard');
+}
+
+// ========== 标签页切换 ==========
+function showTab(tab) {
+    // 移动端自动关闭侧边栏
+    if (window.innerWidth < 1024) {
+        var sb = document.querySelector('.admin-sidebar');
+        var ov = document.getElementById('sidebarOverlay');
+        if (sb) sb.classList.remove('mobile-open');
+        if (ov) ov.classList.remove('active');
+    }
+    
+    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+    document.querySelector(`[data-tab="${tab}"]`)?.classList.add('active');
+
+    document.querySelectorAll('.management-panel').forEach(p => p.classList.add('hidden'));
+    const panels = { dashboard:'dashboardPanel', news:'newsManagement', carousel:'carouselManagement', about:'aboutManagement', members:'membersManagement', settings:'settingsManagement', backup:'backupManagement' };
+    document.getElementById(panels[tab])?.classList.remove('hidden');
+
+    const titles = { dashboard:['仪表盘','数据概览'], news:['新闻管理','管理新闻内容'], carousel:['轮播图管理','首页展示'], about:['关于我们','组织信息'], members:['人员管理','团队成员'], settings:['系统设置','站点配置'], backup:['数据备份','安全备份与恢复'] };
+    document.getElementById('pageTitle').textContent = titles[tab][0];
+    document.getElementById('pageSubtitle').textContent = titles[tab][1];
+
+    switch(tab) {
+        case 'dashboard': updateStats(); renderLogs(); renderLoginLogs(); break;
+        case 'news': renderNews(); break;
+        case 'carousel': renderCarousel(); break;
+        case 'about': renderAbout(); break;
+        case 'members': renderMembers(); break;
+        case 'settings': loadSettingsUI(); break;
+        case 'backup': loadBackupList(); break;
+    }
+}
+
+function refreshCurrentTab() {
+    const active = document.querySelector('.sidebar-link.active');
+    if (active) showTab(active.dataset.tab);
+}
+
+// ========== 统计 ==========
+function updateStats() {
+    document.getElementById('statNewsCount').textContent = newsData.length;
+    document.getElementById('statPublished').textContent = newsData.filter(n => n.status !== 'draft').length;
+    document.getElementById('statCarouselCount').textContent = carouselData.length;
+    document.getElementById('statMembersCount').textContent = membersData.length;
+    document.getElementById('statLoginCount').textContent = loginLogs.length;
+}
+
+// ========== 新闻管理 ==========
+function renderNews(filter = '') {
+    const tbody = document.getElementById('newsListBody');
+    let list = [...newsData].sort((a,b) => new Date(b.date) - new Date(a.date));
+
+    const statusFilter = document.getElementById('filterStatus')?.value;
+    if (statusFilter === 'published') list = list.filter(n => n.status !== 'draft');
+    else if (statusFilter === 'draft') list = list.filter(n => n.status === 'draft');
+
+    if (filter) list = list.filter(n => n.title.includes(filter) || (n.author||'').includes(filter) || (n.category||'新闻动态').includes(filter) || (n.topic||'').includes(filter));
+
+    const totalPages = Math.ceil(list.length / PER_PAGE) || 1;
+    const start = (currentPage - 1) * PER_PAGE;
+    const page = list.slice(start, start + PER_PAGE);
+
+    tbody.innerHTML = page.map(n => `
+        <tr class="border-t"><td><input type="checkbox" class="news-cb" value="${n.id}"></td>
+        <td class="px-6 py-3"><div class="font-medium">${esc(n.title)}</div></td>
+        <td class="px-6 py-3"><span class="px-2 py-1 rounded text-xs bg-blue-50 text-blue-700">${esc(n.category||'新闻动态')}${n.topic?' · '+esc(n.topic):''}</span></td>
+        <td class="px-6 py-3">${n.date}</td><td class="px-6 py-3">${n.author||'-'}</td>
+        <td class="px-6 py-3 text-center">${n.views||0}</td>
+        <td class="px-6 py-3 text-center"><span class="status-badge ${n.status==='draft'?'status-draft':'status-published'}" onclick="toggleStatus(${n.id})">${n.status==='draft'?'草稿':'已发布'}</span></td>
+        <td class="px-6 py-3 text-center"><button onclick="editNews(${n.id})" class="text-yellow-600 hover:text-yellow-800 mr-2"><i class="fas fa-edit"></i></button><button onclick="delNews(${n.id})" class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button></td></tr>
+    `).join('');
+
+    // 分页
+    const pg = document.getElementById('newsPagination');
+    pg.innerHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = `px-4 py-2 rounded ${i===currentPage?'bg-[#3370FF] text-white':'bg-white border hover:bg-blue-50'}`;
+        btn.onclick = () => { currentPage = i; renderNews(document.getElementById('searchNews')?.value); };
+        pg.appendChild(btn);
+    }
+}
+
+function filterNews() { currentPage = 1; renderNews(document.getElementById('searchNews').value); }
+function toggleSelectAll() { document.querySelectorAll('.news-cb').forEach(cb => cb.checked = event.target.checked); }
+
+function toggleStatus(id) {
+    const n = newsData.find(x => x.id === id);
+    if (n) { n.status = n.status === 'draft' ? 'published' : 'draft'; saveToStorage('jiaodao_news', newsData); syncNewsChangeToServer('merge', [n]); renderNews(); addLog('状态变更', n.title); }
+}
+
+function toggleNoticeCategoryFields() {
+    var categoryEl = document.getElementById('newsCategory');
+    var topicWrap = document.getElementById('newsTopicWrap');
+    var downloadWrap = document.getElementById('newsDownloadWrap');
+    var category = categoryEl ? categoryEl.value : '新闻动态';
+    if (topicWrap) topicWrap.classList.toggle('hidden', category !== '专题专栏');
+    if (downloadWrap) downloadWrap.classList.toggle('hidden', category !== '资料下载');
+    if (category !== '专题专栏') {
+        var topicEl = document.getElementById('newsTopic');
+        if (topicEl) topicEl.value = '';
+    }
+}
+
+function openNewsEditor(id) {
+    var titleEl = document.getElementById('newsModalTitle');
+    var editIdEl = document.getElementById('editId');
+    var newsTitleEl = document.getElementById('newsTitle');
+    var newsAuthorEl = document.getElementById('newsAuthor');
+    var newsDateEl = document.getElementById('newsDate');
+    var newsDescEl = document.getElementById('newsDesc');
+    var newsContentEl = document.getElementById('newsContent');
+    var newsStatusEl = document.getElementById('newsStatus');
+    var newsViewsEl = document.getElementById('newsViews');
+    var newsCategoryEl = document.getElementById('newsCategory');
+    var newsTopicEl = document.getElementById('newsTopic');
+    var newsDownloadUrlEl = document.getElementById('newsDownloadUrl');
+    var newsDownloadNameEl = document.getElementById('newsDownloadName');
+    var newsFormEl = document.querySelector('#newsForm');
+
+    // 关键DOM元素防护
+    if (!titleEl || !editIdEl || !newsContentEl) {
+        console.error('❌ 编辑器DOM元素未找到');
+        showToast('编辑器未就绪', 'error');
+        return;
+    }
+
+    titleEl.textContent = id ? '编辑新闻' : '添加新闻';
+    editIdEl.value = id || '';
+    if (id) {
+        const n = newsData.find(function(x) { return String(x.id) === String(id); });
+        if (n) {
+            if (newsTitleEl) newsTitleEl.value = n.title || '';
+            if (newsAuthorEl) newsAuthorEl.value = n.author || '';
+            if (newsDateEl) newsDateEl.value = n.date || '';
+            if (newsDescEl) newsDescEl.value = n.desc || '';
+            newsContentEl.innerHTML = n.content || '';
+            if (newsStatusEl) newsStatusEl.value = n.status || 'published';
+            if (newsViewsEl) newsViewsEl.value = n.views || 0;
+            if (newsCategoryEl) newsCategoryEl.value = n.category || '新闻动态';
+            if (newsTopicEl) newsTopicEl.value = n.topic || '';
+            if (newsDownloadUrlEl) newsDownloadUrlEl.value = n.downloadUrl || '';
+            if (newsDownloadNameEl) newsDownloadNameEl.value = n.downloadName || '';
+            // 加载已有图片
+            renderNewsImagesEditor(n.images || []);
+        }
+    } else {
+        if (newsFormEl) newsFormEl.reset();
+        if (newsAuthorEl) newsAuthorEl.value = '宣传部';
+        if (newsDateEl) newsDateEl.value = new Date().toISOString().split('T')[0];
+        newsContentEl.innerHTML = '';
+        if (newsViewsEl) newsViewsEl.value = '0';
+        if (newsCategoryEl) newsCategoryEl.value = '新闻动态';
+        if (newsTopicEl) newsTopicEl.value = '';
+        if (newsDownloadUrlEl) newsDownloadUrlEl.value = '';
+        if (newsDownloadNameEl) newsDownloadNameEl.value = '';
+        // 清空图片列表
+        renderNewsImagesEditor([]);
+    }
+    toggleNoticeCategoryFields();
+    // 更新审核信息预览
+    updateReviewPreview();
+    openModal('newsModal');
+}
+
+// 根据日期匹配一审人员（与官网同步）
+function getReviewerByDate(dateStr) {
+    if (!dateStr) return { name: '请选择日期', hint: '' };
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return { name: '日期格式错误', hint: '' };
+    var y = d.getFullYear(), m = d.getMonth() + 1, day = d.getDate();
+    var dateLabel = y + '年' + m + '月' + day + '日';
+    // 2025-11-18及之后
+    if (d >= new Date('2025-11-18')) return { name: '何俊杰、张钰', hint: dateLabel + ' 属于当前届期' };
+    // 2024-11-18 至 2025-11-17
+    if (d >= new Date('2024-11-18') && d <= new Date('2025-11-17')) return { name: '全德君、廖奕琪', hint: dateLabel + ' 属于2024-2025届期' };
+    // 2023-11-16 至 2024-11-17
+    if (d >= new Date('2023-11-16') && d <= new Date('2024-11-17')) return { name: '尹尚琦、张玉洁', hint: dateLabel + ' 属于2023-2024届期' };
+    // 超出已知范围
+    return { name: '待定（超出已知届期范围）', hint: dateLabel + ' 超出一审人员记录范围，请联系管理员确认' };
+}
+
+// 实时更新审核信息预览
+function updateReviewPreview() {
+    var dateVal = document.getElementById('newsDate').value;
+    var result = getReviewerByDate(dateVal);
+    var el = document.getElementById('adminReviewer1');
+    var hintEl = document.getElementById('reviewDateHint');
+    if (el) el.textContent = result.name;
+    if (hintEl) hintEl.textContent = result.hint;
+}
+
+function saveNews(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    try {
+        var editIdEl = document.getElementById('editId');
+        var titleEl = document.getElementById('newsTitle');
+        var authorEl = document.getElementById('newsAuthor');
+        var dateEl = document.getElementById('newsDate');
+        var descEl = document.getElementById('newsDesc');
+        var contentEl = document.getElementById('newsContent');
+        var statusEl = document.getElementById('newsStatus');
+        var viewsEl = document.getElementById('newsViews');
+        var categoryEl = document.getElementById('newsCategory');
+        var topicEl = document.getElementById('newsTopic');
+        var downloadUrlEl = document.getElementById('newsDownloadUrl');
+        var downloadNameEl = document.getElementById('newsDownloadName');
+        var category = categoryEl ? (categoryEl.value || '新闻动态') : '新闻动态';
+
+        // DOM元素空值防护
+        if (!titleEl || !contentEl || !dateEl) {
+            console.error('❌ 表单元素未找到，可能DOM未加载完成');
+            showToast('页面未就绪，请稍后重试', 'error');
+            return;
+        }
+
+        const id = editIdEl ? editIdEl.value : '';
+        const item = {
+            id: id ? parseInt(id, 10) : Date.now(),
+            title: (titleEl.value || '').trim(),
+            author: (authorEl ? authorEl.value : '').trim(),
+            date: dateEl ? dateEl.value : '',
+            desc: (descEl ? descEl.value : '').trim(),
+            content: contentEl.innerHTML || '',
+            status: statusEl ? statusEl.value : 'published',
+            views: viewsEl ? (parseInt(viewsEl.value, 10) || 0) : 0,
+            category: category,
+            topic: category === '专题专栏' && topicEl ? (topicEl.value || '') : '',
+            downloadUrl: category === '资料下载' && downloadUrlEl ? (downloadUrlEl.value || '').trim() : '',
+            downloadName: category === '资料下载' && downloadNameEl ? (downloadNameEl.value || '').trim() : '',
+            images: [],
+            updatedAt: Date.now()
+        };
+
+        // 安全获取图片数据
+        try { item.images = getNewsImagesData(); } catch(imgErr) { console.warn('图片数据获取异常:', imgErr); }
+
+        if (!item.title) return showToast('请填写标题', 'error');
+        if (!item.content || item.content === '<br>' || item.content === '') return showToast('请填写正文', 'error');
+
+        // 编辑模式安全保护：如果新内容异常短（可能编辑器未加载完），保留原内容
+        if (id && item.content.length < 20) {
+            var original = newsData.find(function(x) { return String(x.id) === String(id); });
+            if (original && original.content && original.content.length > item.content.length) {
+                console.warn('⚠️ 新正文过短，保留原内容（', original.content.length, '字符）');
+                item.content = original.content;
+                // 同时保留原有图片
+                if (original.images) item.images = original.images;
+            }
+        }
+
+        if (id) {
+            var idx = newsData.findIndex(function(x) { return String(x.id) === String(id); });
+            if (idx > -1) newsData[idx] = Object.assign({}, newsData[idx], item);
+            addLog('编辑新闻', item.title);
+        } else {
+            newsData.unshift(item);
+            addLog('新增新闻', item.title);
+        }
+
+        saveToStorage('jiaodao_news', newsData);
+        // 使用增量同步，只发送当前编辑/新增的这一条，避免 50 条全量数据 payload 过大
+        var changedItem = newsData.find(function(x) { return String(x.id) === String(item.id); });
+        if (changedItem) {
+            syncNewsChangeToServer('merge', [changedItem]);
+        } else {
+            syncToServer('jiaodao_news', newsData);
+        }
+        closeModal('newsModal');
+        renderNews();
+        updateStats();
+
+        showToast('保存成功！已同步到官网', 'success');
+    } catch(err) {
+        console.error('❌ 保存新闻出错:', err);
+        alert('保存出错：' + (err.message || '未知错误'));
+    }
+}
+
+function editNews(id) { openNewsEditor(id); }
+
+// ========== 新闻图片管理（支持URL+本地上传）==========
+var _newsImages = [];
+
+function renderNewsImagesEditor(images) {
+    _newsImages = images || [];
+    var container = document.getElementById('newsImagesContainer');
+    if (!container) return;
+    
+    if (_newsImages.length === 0) {
+        container.innerHTML = '<p class="text-sm text-gray-400 text-center py-3 border border-dashed rounded-lg">暂未添加图片，可通过上方按钮添加</p>';
+        return;
+    }
+    
+    container.innerHTML = _newsImages.map(function(img, idx) {
+        var isBase64 = img.src && img.src.startsWith('data:');
+        var displaySrc = isBase64 ? img.src : (img.src || '');
+        return '<div class="flex items-start gap-3 bg-gray-50 rounded-lg p-3">' +
+            '<img src="' + displaySrc + '" class="w-20 h-20 object-cover rounded border flex-shrink-0" onerror="this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Crect fill=%22%23e5e7eb%22 width=%2280%22 height=%2280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%239ca3af%22 font-size=%2212%22%3E图\' + esc(idx+1) + \'%3C/text%3E%3C/svg%3E\'">' +
+            '<div class="flex-1 min-w-0">' +
+                '<input type="text" value="' + esc(img.src && !isBase64 ? img.src : (img.fileName || '（本地文件）')) + '" placeholder="图片URL或文件名" ' + (isBase64 ? 'readonly class="w-full px-2 py-1 text-sm border rounded mb-1 bg-gray-100"' : 'onchange="_newsImages[' + idx + '].src=this.value" class="w-full px-2 py-1 text-sm border rounded mb-1"') + '>' +
+                '<input type="text" value="' + esc(img.caption || '') + '" placeholder="图片说明（可选）" onchange="_newsImages[' + idx + '].caption=this.value" class="w-full px-2 py-1 text-sm border rounded">' +
+                (isBase64 ? '<span class="text-xs text-green-600"><i class="fas fa-check-circle mr-1"></i>已上传，保存后将提交到服务器</span>' : '') +
+            '</div>' +
+            '<button type="button" onclick="removeNewsImage(' + idx + ')" class="text-red-500 hover:text-red-700 p-1 flex-shrink-0 mt-1" title="删除"><i class="fas fa-trash"></i></button>' +
+        '</div>';
+    }).join('');
+}
+
+// 方式1：通过URL添加图片
+function addNewsImageByUrl() {
+    var src = prompt('请输入图片URL或文件名：');
+    if (!src || !src.trim()) return;
+    var caption = prompt('图片说明（可选，可直接回车跳过）：', '');
+    _newsImages.push({ src: src.trim(), caption: caption || '', fileName: '' });
+    renderNewsImagesEditor(_newsImages);
+}
+
+// 方式2：本地上传图片
+function handleNewsImageUpload(event) {
+    var files = event.target.files;
+    if (!files || files.length === 0) return;
+    
+    for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        if (!file.type.startsWith('image/')) continue;
+        
+        (function(f) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var caption = prompt('图片「' + f.name + '」的说明（可选，回车跳过）：', '');
+                _newsImages.push({
+                    src: e.target.result,           // base64数据
+                    caption: caption || '',
+                    fileName: f.name,
+                    fileType: f.type,
+                    isLocal: true
+                });
+                renderNewsImagesEditor(_newsImages);
+            };
+            reader.readAsDataURL(f);
+        })(file);
+    }
+    
+    // 清空input以便重复选择同一文件
+    event.target.value = '';
+}
+
+// 兼容旧的addNewsImage名称
+function addNewsImage() { addNewsImageByUrl(); }
+
+function removeNewsImage(idx) {
+    _newsImages.splice(idx, 1);
+    renderNewsImagesEditor(_newsImages);
+}
+
+function getNewsImagesData() {
+    // 从 _newsImages 原始数据中收集，保留完整的图片信息（包括base64）
+    var result = [];
+    for (var i = 0; i < _newsImages.length; i++) {
+        var img = _newsImages[i];
+        // 优先使用原始src（特别是base64数据）
+        var src = img.src || '';
+        
+        // 如果不是base64，尝试从DOM获取可能修改过的URL
+        if (!src.startsWith('data:')) {
+            var container = document.getElementById('newsImagesContainer');
+            if (container) {
+                var items = container.querySelectorAll('.bg-gray-50');
+                if (items[i]) {
+                    var urlInput = items[i].querySelectorAll('input[type="text"]');
+                    if (urlInput && urlInput[0] && urlInput[0].value.trim() && urlInput[0].value.trim() !== '（本地文件）') {
+                        src = urlInput[0].value.trim();
+                    }
+                }
+                var capInput = items[i] ? items[i].querySelectorAll('input[type="text"]') : null;
+                if (capInput && capInput[1]) {
+                    img.caption = capInput[1].value.trim() || '';
+                }
+            }
+        }
+        
+        if (src) {
+            result.push({
+                src: src,
+                caption: img.caption || '',
+                fileName: img.fileName || '',
+                fileType: img.fileType || ''
+            });
+        }
+    }
+    return result;
+}
+
+function delNews(id) {
+    const n = newsData.find(x => x.id === id);
+    if (!n || !confirm(`删除「${n.title}」？`)) return;
+    newsData = newsData.filter(x => x.id !== id);
+    saveToStorage('jiaodao_news', newsData);
+    syncNewsChangeToServer('delete', [id]);
+    renderNews();
+    updateStats();
+    addLog('删除新闻', n.title);
+
+    // 强制同步到官网 - 写入多个触发器确保被监听到
+    localStorage.setItem('jiaodao_sync_trigger', String(Date.now()));
+    localStorage.setItem('jiaodao_lastUpdate', new Date().toISOString());
+    
+    // 尝试通过postMessage通知同源页面
+    try {
+        window.postMessage({ type: 'jiaodao_news_updated', data: newsData, timestamp: Date.now() }, '*');
+    } catch(e) {}
+
+    showToast('已删除', 'warning');
+}
+
+function batchDeleteNews() {
+    const checked = [...document.querySelectorAll('.news-cb:checked')].map(el => parseInt(el.value));
+    if (!checked.length) return showToast('请先选择', 'warning');
+    if (!confirm(`删除 ${checked.length} 条？`)) return;
+    newsData = newsData.filter(n => !checked.includes(n.id));
+    saveToStorage('jiaodao_news', newsData);
+    syncNewsChangeToServer('delete', checked);
+    renderNews();
+    updateStats();
+
+    // 强制同步到官网 - 写入多个触发器确保被监听到
+    localStorage.setItem('jiaodao_sync_trigger', String(Date.now()));
+    localStorage.setItem('jiaodao_lastUpdate', new Date().toISOString());
+    
+    // 尝试通过postMessage通知同源页面
+    try {
+        window.postMessage({ type: 'jiaodao_news_updated', data: newsData, timestamp: Date.now() }, '*');
+    } catch(e) {}
+
+    showToast(`已删除 ${checked.length} 条`, 'success');
+}
+
+// ========== 富文本编辑器 ==========
+function execCmd(cmd) { document.execCommand(cmd, false, null); document.getElementById('newsContent').focus(); }
+
+// 插入超链接：选中文字或输入文字+URL，生成可点击跳转的链接
+function insertEditorLink() {
+    var editor = document.getElementById('newsContent');
+    editor.focus();
+
+    var sel = window.getSelection();
+    var selectedText = sel.toString().trim();
+
+    // 第一步：获取链接地址
+    var url = prompt('请输入链接地址（URL）：', 'https://');
+    if (!url || !url.trim()) return;
+    url = url.trim();
+    // 自动补全协议
+    if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+    }
+
+    // 第二步：如果有选中文字，直接包裹；否则让用户输入显示文字
+    var linkText = selectedText;
+    if (!linkText) {
+        linkText = prompt('请输入链接显示的文字（点击后跳转到上述地址）：', '');
+        if (!linkText || !linkText.trim()) {
+            // 用户没输入文字，用URL本身作为文字
+            linkText = url;
+        } else {
+            linkText = linkText.trim();
+        }
+    }
+
+    // 创建 <a> 标签并插入
+    var a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';     // 新窗口打开
+    a.rel = 'noopener noreferrer';
+    a.style.color = '#8B0000';
+    a.style.textDecoration = 'underline';
+    a.textContent = linkText;
+
+    if (sel.rangeCount > 0) {
+        var range = sel.getRangeAt(0);
+        range.deleteContents();
+        range.insertNode(a);
+        // 光标移到链接后面
+        range.setStartAfter(a);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } else {
+        editor.appendChild(a);
+    }
+
+    showToast('链接已插入：' + linkText, 'success');
+}
+
+// 图片插入下拉菜单
+function showInsertImgMenu(e) {
+    e.stopPropagation();
+    // 移除已有菜单
+    var old = document.getElementById('editorImgMenu');
+    if (old) old.remove();
+
+    var menu = document.createElement('div');
+    menu.id = 'editorImgMenu';
+    menu.className = 'absolute bg-white border rounded-lg shadow-lg z-50 mt-1 py-1 min-w-[160px]';
+    menu.innerHTML = `
+        <button type="button" onclick="insertImgByUrl()" class="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm flex items-center gap-2">
+            <i class="fas fa-link text-blue-500"></i> URL链接
+        </button>
+        <button type="button" onclick="document.getElementById('editorImageFileInput').click()" class="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm flex items-center gap-2">
+            <i class="fas fa-upload text-green-500"></i> 本地上传
+        </button>
+        <div class="border-t my-1"></div>
+        <p class="px-4 py-1 text-xs text-gray-400">提示：也可直接 Ctrl+V 粘贴图片</p>
+    `;
+    // 定位到按钮下方
+    var btn = e.currentTarget;
+    var rect = btn.getBoundingClientRect();
+    var toolbar = btn.closest('.editor-toolbar');
+    menu.style.left = (rect.left - toolbar.getBoundingClientRect().left) + 'px';
+    menu.style.top = '100%';
+    toolbar.style.position = 'relative';
+    toolbar.appendChild(menu);
+
+    // 点击其他地方关闭菜单
+    setTimeout(function() {
+        document.addEventListener('click', function closeMenu() {
+            menu.remove();
+            document.removeEventListener('click', closeMenu);
+        });
+    }, 10);
+}
+
+// URL方式插入图片
+function insertImgByUrl() {
+    var url = prompt('请输入图片URL地址：');
+    if (url && url.trim()) {
+        insertImageToEditor(url.trim());
+    }
+}
+
+// 本地上传图片 → 转base64 → 插入编辑器
+function handleEditorImageUpload(e) {
+    var files = e.target.files;
+    if (!files || files.length === 0) return;
+    for (var i = 0; i < files.length; i++) {
+        (function(file) {
+            if (!file.type.startsWith('image/')) return;
+            var reader = new FileReader();
+            reader.onload = function(ev) {
+                insertImageToEditor(ev.target.result);
+            };
+            reader.readAsDataURL(file);
+        })(files[i]);
+    }
+    // 清空input以便重复选择同一文件
+    e.target.value = '';
+}
+
+// 将图片插入到编辑器光标位置
+function insertImageToEditor(src) {
+    var editor = document.getElementById('newsContent');
+    editor.focus();
+
+    // 创建img元素
+    var img = document.createElement('img');
+    img.src = src;
+    img.style.maxWidth = '100%';
+    img.style.height = 'auto';
+    img.style.borderRadius = '8px';
+    img.style.margin = '8px 0';
+
+    // 插入到光标位置
+    var sel = window.getSelection();
+    if (sel.rangeCount > 0) {
+        var range = sel.getRangeAt(0);
+        range.deleteContents();
+        range.insertNode(img);
+        // 光标移到图片后面
+        range.setStartAfter(img);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } else {
+        editor.appendChild(img);
+    }
+}
+
+// 编辑器粘贴事件：支持Ctrl+V直接粘贴截图/剪贴板图片
+(function initEditorPaste() {
+    document.addEventListener('DOMContentLoaded', function() {
+        var editor = document.getElementById('newsContent');
+        if (!editor) return;
+        editor.addEventListener('paste', function(e) {
+            var items = e.clipboardData && e.clipboardData.items;
+            if (!items) return;
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf('image') !== -1) {
+                    e.preventDefault(); // 阻止默认粘贴行为
+                    var file = items[i].getAsFile();
+                    if (file) {
+                        var reader = new FileReader();
+                        reader.onload = function(ev) {
+                            insertImageToEditor(ev.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                    return;
+                }
+            }
+        });
+    });
+})();
+
+// ========== 轮播图 ==========
+function renderCarousel() {
+    const el = document.getElementById('carouselList');
+    const empty = document.getElementById('emptyCarouselState');
+    if (!carouselData.length) { el.innerHTML = ''; empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+    el.innerHTML = carouselData.map(c => `
+        <div class="bg-gray-50 rounded-lg p-4"><div class="font-bold mb-2">${esc(c.title)}</div>${(c.subtitle||c.desc)?`<div class="text-sm text-gray-600 mb-2">${esc(c.subtitle||c.desc)}</div>`:''}
+        ${c.image?`<img src="${c.image}" class="w-full h-32 object-cover rounded my-2">`:''}
+        <div class="flex gap-2 mt-3"><button onclick="editCarousel(${c.id})" class="text-yellow-600 text-sm"><i class="fas fa-edit"></i></button><button onclick="delCarousel(${c.id})" class="text-red-600 text-sm"><i class="fas fa-trash"></i></button></div></div>
+    `).join('');
+}
+
+function openCarouselEditor(id = null) {
+    document.getElementById('carouselModalTitle').textContent = id ? '编辑轮播图' : '添加轮播图';
+    document.getElementById('carouselEditId').value = id || '';
+    if (id) {
+        const c = carouselData.find(x => x.id === id);
+        if (c) { document.getElementById('carouselTitle').value = c.title||''; document.getElementById('carouselSubtitle').value = c.subtitle||c.desc||''; document.getElementById('carouselImage').value = c.image||''; }
+    } else { document.querySelector('#carouselModal form').reset(); }
+    openModal('carouselModal');
+}
+
+function saveCarousel(e) {
+    e.preventDefault();
+    const id = document.getElementById('carouselEditId').value;
+    const item = { id: id?parseInt(id):Date.now(), title: document.getElementById('carouselTitle').value.trim(), subtitle: document.getElementById('carouselSubtitle').value.trim(), image: document.getElementById('carouselImage').value.trim() };
+    if (!item.title) return showToast('请填写标题', 'error');
+    if (id) { const idx = carouselData.findIndex(x=>x.id==id); if(idx>-1) carouselData[idx]={...carouselData[idx],...item}; }
+    else carouselData.push(item);
+    saveToStorage('jiaodao_carousel', carouselData);
+    closeModal('carouselModal');
+    renderCarousel();
+    updateStats();
+    showToast('保存成功', 'success');
+}
+
+function editCarousel(id) { openCarouselEditor(id); }
+function delCarousel(id) { if (!confirm('删除？')) return; carouselData = carouselData.filter(x=>x.id!==id); saveToStorage('jiaodao_carousel', carouselData); renderCarousel(); updateStats(); }
+
+// ========== 关于我们 ==========
+function renderAbout() {
+    document.getElementById('aboutIntroContent').innerHTML = aboutData.intro || '<p class="text-gray-400">点击编辑按钮添加组织简介</p>';
+    document.getElementById('aboutMissionContent').innerHTML = aboutData.mission || '<p class="text-gray-400">点击编辑按钮添加使命愿景</p>';
+
+    const tl = document.getElementById('teacherList');
+    if (!teachersData.length) { tl.innerHTML = '<p class="text-gray-400 col-span-2 text-center py-4">暂无数据</p>'; return; }
+    tl.innerHTML = teachersData.map(t => `
+        <div class="bg-gray-50 rounded-lg p-4"><div class="font-bold">${esc(t.name)}</div><div class="text-sm text-red-900">${esc(t.position)}</div>${t.exp?`<div class="text-sm mt-2">${t.exp}</div>`:''}<button onclick="delTeacher(${t.id})" class="text-red-500 text-xs mt-2">删除</button></div>
+    `).join('');
+}
+
+function editAboutIntro() {
+    const v = prompt('组织简介（支持HTML）:', aboutData.intro);
+    if (v !== null) { aboutData.intro = v; saveToStorage('jiaodao_about', aboutData); renderAbout(); showToast('已更新', 'success'); }
+}
+function editAboutMission() {
+    const v = prompt('使命愿景（支持HTML）:', aboutData.mission);
+    if (v !== null) { aboutData.mission = v; saveToStorage('jiaodao_about', aboutData); renderAbout(); showToast('已更新', 'success'); }
+}
+function addTeacher() {
+    const name = prompt('姓名:');
+    if (!name) return;
+    const pos = prompt('职务:', '指导老师');
+    teachersData.push({ id: Date.now(), name, position: pos||'指导老师', exp: '' });
+    saveToStorage('jiaodao_teachers', teachersData);
+    renderAbout();
+    showToast('已添加', 'success');
+}
+function delTeacher(id) { if(!confirm('删除？'))return; teachersData = teachersData.filter(t=>t.id!==id); saveToStorage('jiaodao_teachers',teachersData); renderAbout(); }
+
+// ========== 人员管理 ==========
+function renderMembers() {
+    const tbody = document.getElementById('membersListBody');
+    let list = [...membersData];
+    const f = document.getElementById('memberFilter')?.value;
+    if (f === 'current') list = list.filter(m => m.term === '第十五届');
+    else if (f === 'former') list = list.filter(m => m.term !== '第十五届');
+
+    tbody.innerHTML = list.map(m => `
+        <tr class="border-t"><td class="px-6 py-3">${m.photo?`<img src="${m.photo}" class="w-10 h-10 rounded-full object-cover">`:'<div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center"><i class="fas fa-user text-gray-400"></i></div>'}</td>
+        <td class="px-6 py-3 font-medium">${esc(m.name)}</td><td class="px-6 py-3">${esc(m.position)}</td><td class="px-6 py-3">${m.department||m.dept||'-'}</td>
+        <td class="px-6 py-3 text-center"><span class="px-2 py-1 rounded text-xs bg-blue-100 text-blue-700">${m.department||m.dept||'-'}</span></td>
+        <td class="px-6 py-3 text-center"><button onclick="editMember(${m.id})" class="text-yellow-600 mr-2"><i class="fas fa-edit"></i></button><button onclick="delMember(${m.id})" class="text-red-600"><i class="fas fa-trash"></i></button></td></tr>
+    `).join('');
+}
+
+function openMemberEditor(id=null) {
+    document.getElementById('memberModalTitle').textContent = id?'编辑成员':'添加成员';
+    document.getElementById('memberEditId').value = id||'';
+    if(id){const m=membersData.find(x=>x.id===id);if(m){document.getElementById('memberName').value=m.name||'';document.getElementById('memberPosition').value=m.position||'';document.getElementById('memberDept').value=m.department||m.dept||'常委会';document.getElementById('memberTerm').value=m.term||m.department||'第十五届';}}
+    else{document.querySelector('#memberModal form').reset();}
+    openModal('memberModal');
+}
+
+function saveMember(e) {
+    e.preventDefault();
+    const id=document.getElementById('memberEditId').value;
+    const item={id:id?parseInt(id):Date.now(),name:document.getElementById('memberName').value.trim(),position:document.getElementById('memberPosition').value.trim(),dept:document.getElementById('memberDept').value,term:document.getElementById('memberTerm').value};
+    if(!item.name||!item.position)return showToast('填写必填项','error');
+    if(id){const idx=membersData.findIndex(x=>x.id==id);if(idx>-1)membersData[idx]={...membersData[idx],...item};}
+    else membersData.push(item);
+    saveToStorage('jiaodao_members',membersData);
+    closeModal('memberModal');
+    renderMembers();
+    updateStats();
+    showToast('成功','success');
+}
+function editMember(id){openMemberEditor(id);}
+function delMember(id){if(!confirm('删除？'))return;membersData=membersData.filter(m=>m.id!==id);saveToStorage('jiaodao_members',membersData);renderMembers();updateStats();}
+
+// ========== 设置 ==========
+function loadSettingsUI() {
+    document.getElementById('settingPhone').value = settingsData.phone || '';
+    document.getElementById('settingEmail').value = settingsData.email || '';
+    document.getElementById('settingIcp').value = settingsData.icp || '';
+    renderAccountList();
+}
+
+function saveSettings(e) {
+    e.preventDefault();
+    settingsData.phone = document.getElementById('settingPhone').value;
+    settingsData.email = document.getElementById('settingEmail').value;
+    settingsData.icp = document.getElementById('settingIcp').value;
+    saveToStorage('jiaodao_settings', settingsData);
+    showToast('设置已保存', 'success');
+}
+
+// ========== 账号管理（标准后台安全流程）==========
+function loadAccountSettings() {
+    try {
+        var saved = localStorage.getItem('jiaodao_accounts');
+        if (saved) ADMIN_ACCOUNTS = JSON.parse(saved);
+    } catch(e) {}
+    renderAccountList();
+    
+    // 显示当前登录用户名
+    var cu = document.getElementById('settingsCurrentUser');
+    if (cu) cu.textContent = sessionStorage.getItem('user') || '管理员';
+}
+
+function renderAccountList() {
+    var el = document.getElementById('accountList');
+    if (!el) return;
+    
+    var currentUser = sessionStorage.getItem('user') || '';
+    
+    if (ADMIN_ACCOUNTS.length === 0) {
+        el.innerHTML = '<div class="text-center text-gray-400 py-6 text-sm"><i class="fas fa-users-slash text-2xl mb-2 block"></i>暂无账号</div>';
+        return;
+    }
+    
+    el.innerHTML = ADMIN_ACCOUNTS.map(function(acc, idx) {
+        var isMe = acc.username === currentUser;
+        var badge = isMe ? '<span class="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">当前</span>' : '';
+        return '<div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">' +
+            '<div class="w-9 h-9 rounded-full flex items-center justify-center ' + (isMe ? 'bg-blue-100' : 'bg-gray-200') + '">' +
+                '<i class="fas ' + (isMe ? 'fa-user-check text-blue-600' : 'fa-user text-gray-500') + '"></i></div>' +
+            '<div class="flex-1 min-w-0">' +
+                '<div class="font-medium text-sm truncate">' + esc(acc.username) + badge + '</div>' +
+                '<div class="text-xs text-gray-400">密码已设置 · ' + (isMe ? '正在使用此账号登录' : '可正常登录') + '</div>' +
+            '</div>' +
+            '<button onclick="openEditAccountModal(' + idx + ')" class="text-blue-500 hover:text-blue-700 p-2 rounded-lg hover:bg-blue-50 transition-colors" title="修改密码"><i class="fas fa-key"></i></button>' +
+            (!isMe ? '<button onclick="confirmDeleteAccount(' + idx + ')" class="text-red-500 hover:text-red-700 p-2 rounded-lg hover:bg-red-50 transition-colors" title="删除账号"><i class="fas fa-trash"></i></button>' : '') +
+        '</div>';
+    }).join('');
+}
+
+// 打开修改自己密码的弹窗
+function openChangePasswordModal() {
+    document.getElementById('oldPassword').value = '';
+    document.getElementById('newPassword1').value = '';
+    document.getElementById('newPassword2').value = '';
+    hideElement('pwdError');
+    openModal('changePwdModal');
+}
+
+// 修改自己的密码
+function changePassword(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    var currentUser = sessionStorage.getItem('user') || '';
+    var oldPwd = document.getElementById('oldPassword').value;
+    var newPwd1 = document.getElementById('newPassword1').value;
+    var newPwd2 = document.getElementById('newPassword2').value;
+    var errEl = document.getElementById('pwdError');
+    
+    // 验证
+    if (!oldPwd) { showErr(errEl, '请输入当前密码'); return; }
+    if (!newPwd1) { showErr(errEl, '请输入新密码'); return; }
+    if (newPwd1.length < 6) { showErr(errEl, '新密码至少6个字符'); return; }
+    if (newPwd1 !== newPwd2) { showErr(errEl, '两次输入的新密码不一致'); return; }
+    if (oldPwd === newPwd1) { showErr(errEl, '新密码不能与当前密码相同'); return; }
+    
+    // 验证旧密码是否正确
+    var acc = null;
+    for (var i = 0; i < ADMIN_ACCOUNTS.length; i++) {
+        if (ADMIN_ACCOUNTS[i].username === currentUser && ADMIN_ACCOUNTS[i].password === oldPwd) {
+            acc = ADMIN_ACCOUNTS[i];
+            break;
+        }
+    }
+    
+    if (!acc) {
+        showErr(errEl, '当前密码不正确');
+        document.getElementById('oldPassword').value = '';
+        document.getElementById('oldPassword').focus();
+        return;
+    }
+    
+    // 修改密码
+    acc.password = newPwd1;
+    saveAccounts();
+    closeModal('changePwdModal');
+    showToast('密码修改成功', 'success');
+    addLog('修改密码', '账号 ' + currentUser + ' 修改了密码');
+}
+
+// 打开添加账号弹窗
+function openAddAccountModal() {
+    document.getElementById('newAccUsername').value = '';
+    document.getElementById('newAccPassword1').value = '';
+    document.getElementById('newAccPassword2').value = '';
+    hideElement('addAccError');
+    openModal('addAccountModal');
+}
+
+// 执行添加账号
+function doAddAccount(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    var u = document.getElementById('newAccUsername').value.trim();
+    var p1 = document.getElementById('newAccPassword1').value;
+    var p2 = document.getElementById('newAccPassword2').value;
+    var errEl = document.getElementById('addAccError');
+    
+    // 验证
+    if (!u) { showErr(errEl, '请输入用户名'); return; }
+    if (!/^[a-zA-Z0-9_]+$/.test(u)) { showErr(errEl, '用户名只能包含英文字母、数字和下划线'); return; }
+    if (!p1) { showErr(errEl, '请输入密码'); return; }
+    if (p1.length < 6) { showErr(errEl, '密码至少6个字符'); return; }
+    if (p1 !== p2) { showErr(errEl, '两次输入的密码不一致'); return; }
+    
+    // 检查重复
+    for (var i = 0; i < ADMIN_ACCOUNTS.length; i++) {
+        if (ADMIN_ACCOUNTS[i].username === u) {
+            showErr(errEl, '用户名「' + u + '」已存在');
+            return;
+        }
+    }
+    
+    ADMIN_ACCOUNTS.push({ username: u, password: p1 });
+    saveAccounts();
+    renderAccountList();
+    closeModal('addAccountModal');
+    showToast('账号「' + u + '」添加成功', 'success');
+    addLog('添加账号', '新增管理员账号：' + u);
+}
+
+// 打开编辑账号（改密码）弹窗
+function openEditAccountModal(idx) {
+    var acc = ADMIN_ACCOUNTS[idx];
+    if (!acc) return;
+    
+    document.getElementById('editAccIndex').value = idx;
+    document.getElementById('editAccNameDisplay').textContent = acc.username;
+    document.getElementById('editAccOldPwd').value = '';
+    document.getElementById('editAccNewPwd1').value = '';
+    document.getElementById('editAccNewPwd2').value = '';
+    hideElement('editAccError');
+    openModal('editAccountModal');
+}
+
+// 执行编辑账号（改密码）
+function doEditAccount(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    var idx = parseInt(document.getElementById('editAccIndex').value);
+    var acc = ADMIN_ACCOUNTS[idx];
+    if (!acc) return;
+    
+    var verifyPwd = document.getElementById('editAccOldPwd').value;
+    var newPwd1 = document.getElementById('editAccNewPwd1').value;
+    var newPwd2 = document.getElementById('editAccNewPwd2').value;
+    var errEl = document.getElementById('editAccError');
+    var currentUser = sessionStorage.getItem('user') || '';
+    
+    // 验证
+    if (!verifyPwd) { showErr(errEl, '请输入当前登录密码进行身份验证'); return; }
+    if (!newPwd1) { showErr(errEl, '请输入新密码'); return; }
+    if (newPwd1.length < 6) { showErr(errEl, '新密码至少6个字符'); return; }
+    if (newPwd1 !== newPwd2) { showErr(errEl, '两次输入的新密码不一致'); return; }
+    
+    // 用当前登录用户的密码来验证身份
+    var myAcc = null;
+    for (var i = 0; i < ADMIN_ACCOUNTS.length; i++) {
+        if (ADMIN_ACCOUNTS[i].username === currentUser && ADMIN_ACCOUNTS[i].password === verifyPwd) {
+            myAcc = ADMIN_ACCOUNTS[i];
+            break;
+        }
+    }
+    
+    if (!myAcc) {
+        showErr(errEl, '验证失败：当前登录密码不正确');
+        document.getElementById('editAccOldPwd').value = '';
+        document.getElementById('editAccOldPwd').focus();
+        return;
+    }
+    
+    // 身份验证通过，修改目标账号密码
+    acc.password = newPwd1;
+    saveAccounts();
+    renderAccountList();
+    closeModal('editAccountModal');
+    showToast('账号「' + acc.username + '」密码已更新', 'success');
+    addLog('修改密码', '管理员 ' + currentUser + ' 修改了账号「' + acc.username + '」的密码');
+}
+
+// 删除账号（带二次确认）
+function confirmDeleteAccount(idx) {
+    var acc = ADMIN_ACCOUNTS[idx];
+    if (!acc) return;
+    if (ADMIN_ACCOUNTS.length <= 1) {
+        showToast('至少保留一个账号', 'error');
+        return;
+    }
+    
+    var msg = '确定要删除账号「' + acc.username + '」吗？\n\n此操作不可撤销！';
+    if (confirm(msg)) {
+        ADMIN_ACCOUNTS.splice(idx, 1);
+        saveAccounts();
+        renderAccountList();
+        showToast('账号「' + acc.username + '」已删除', 'warning');
+        addLog('删除账号', '删除了管理员账号：' + acc.username);
+    }
+}
+
+// 兼容旧的函数名（防止报错）
+function addAccount() { openAddAccountModal(); }
+function editAccount(idx) { openEditAccountModal(idx); }
+function deleteAccount(idx) { confirmDeleteAccount(idx); }
+
+function refreshAccounts() {
+    loadAccountSettings();
+    showToast('账号列表已刷新', 'success');
+}
+
+function saveAccounts() {
+    localStorage.setItem('jiaodao_accounts', JSON.stringify(ADMIN_ACCOUNTS));
+    window._ACCOUNTS = ADMIN_ACCOUNTS.map(function(a){return {u:a.username, p:a.password};});
+}
+
+// 辅助函数：显示/隐藏错误信息
+function showErr(el, msg) {
+    if (el) { el.textContent = msg; el.className = 'text-red-600 text-sm py-2 bg-red-50 rounded px-3'; }
+}
+function hideElement(id) {
+    var el = document.getElementById(id);
+    if (el) { el.textContent = ''; el.className = 'hidden'; }
+}
+
+// ========== 数据导入导出 ==========
+function exportData() {
+    const data = { version: '2.0', time: new Date().toISOString(), news: newsData, carousel: carouselData, members: membersData, about: aboutData, teachers: teachersData, settings: settingsData };
+    const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `backup-${new Date().toISOString().split('T')[0]}.json`; a.click();
+    showToast('导出成功','success');
+}
+
+// 导出新闻数据（用于同步到官网，生成 news_data.json）
+function exportNewsData() {
+    if (!newsData || newsData.length === 0) {
+        showToast('没有新闻数据可导出', 'error');
+        return;
+    }
+    // 只导出已发布的新闻，按日期倒序排列
+    var exportList = newsData
+        .filter(function(n) { return n.status !== 'draft'; })
+        .sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+    // 生成与服务器 news_data.json 格式完全一致的数据
+    var blob = new Blob([JSON.stringify(exportList, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'news_data.json';
+    a.click();
+    showToast('导出成功！共 ' + exportList.length + ' 条新闻，请上传到服务器根目录', 'success');
+}
+
+function importData(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        try {
+            const d = JSON.parse(ev.target.result);
+            if(d.news)newsData=d.news; if(d.carousel)carouselData=d.carousel; if(d.members)membersData=d.members;
+            if(d.about)aboutData=d.about; if(d.teachers)teachersData=d.teachers; if(d.settings)settingsData=d.settings;
+            Object.entries({jiaodao_news:newsData,jiaodao_carousel:carouselData,jiaodao_members:membersData,jiaodao_about:aboutData,jiaodao_teachers:teachersData,jiaodao_settings:settingsData}).forEach(([k,v])=>saveToStorage(k,v));
+            loadData(); refreshCurrentTab(); showToast('导入成功','success');
+        } catch(err) { showToast('导入失败','error'); }
+    };
+    reader.readAsText(file);
+    e.target.value='';
+}
+
+function clearAllData() {
+    if(!confirm('确定清空所有数据？\n此操作不可恢复！'))return;
+    if(!confirm('再次确认？'))return;
+    newsData=[];carouselData=[];membersData=[];aboutData={intro:'',mission:''};teachersData=[];settingsData={};
+    Object.keys(localStorage).filter(k=>k.startsWith('jiaodao_')).forEach(k=>localStorage.removeItem(k));
+    loadData(); refreshCurrentTab(); showToast('已清空','warning');
+}
+
+// ========== 同步 ==========
+function syncToFrontend() {
+    const syncData = { timestamp: Date.now(), news: newsData, carousel: carouselData, members: membersData, about: aboutData, teachers: teachersData, settings: settingsData };
+    localStorage.setItem('jiaodao_sync_data', JSON.stringify(syncData));
+    localStorage.setItem('jiaodao_sync_trigger', String(Date.now()));
+
+    if (window.opener) window.opener.postMessage({ type: 'fullSync', data: syncData }, '*');
+
+    // BroadcastChannel 毫秒级通知前端页面
+    if (typeof BroadcastChannel !== 'undefined') {
+        try {
+            var bc = new BroadcastChannel('jiaodao_news_sync');
+            bc.postMessage({ type: 'news_updated', key: 'manual_sync', timestamp: Date.now() });
+        } catch(e) {}
+    }
+
+    document.getElementById('syncStatus').innerHTML = '<span class="w-2 h-2 bg-yellow-500 rounded-full inline-block mr-2 animate-pulse"></span>同步中...';
+    setTimeout(() => { document.getElementById('syncStatus').innerHTML = '<span class="w-2 h-2 bg-green-500 rounded-full inline-block mr-2"></span>已同步'; }, 1500);
+
+    addLog('数据同步', '手动触发全量同步');
+    showToast('同步完成', 'success');
+}
+
+// ========== 工具函数 ==========
+function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.body.style.overflow = ''; }
+function esc(s) { if(!s)return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function showToast(msg,type='info'){
+    const c=document.getElementById('toastContainer');
+    const t=document.createElement('div');
+    const colors={success:'bg-green-500',error:'bg-red-500',info:'bg-blue-500',warning:'bg-yellow-500'};
+    t.className=`toast ${colors[type]} text-white px-6 py-3 rounded-lg shadow-lg`;
+    t.textContent=msg;
+    c.appendChild(t);
+    setTimeout(()=>t.remove(),3000);
+}
+
+function addLog(action,detail){
+    logs.unshift({time:new Date().toLocaleString('zh-CN'),action,detail});
+    if(logs.length>50)logs=logs.slice(0,50);
+    saveToStorage('jiaodao_logs',logs);
+    renderLogs();
+}
+
+function renderLogs(){
+    const el=document.getElementById('recentLogs');
+    if(!logs.length){el.innerHTML='<p class="text-gray-400">暂无记录</p>';return;}
+    el.innerHTML=logs.slice(0,10).map(l=>`<div class="flex justify-between text-sm py-1 border-b"><span>${l.action}: ${l.detail}</span><span class="text-gray-400">${l.time}</span></div>`).join('');
+}
+
+function addLoginLog(openId, name, method){
+    fetch('./api/login_logs.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            action: 'add',
+            data: {openId: openId || '', name: name || '未知', method: method || '未知'}
+        })
+    }).then(r=>r.json()).then(()=>loadLoginLogs()).catch(()=>{});
+}
+
+function loadLoginLogs(){
+    fetch('./api/login_logs.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({action: 'list'})
+    }).then(r=>r.json()).then(res=>{
+        if(res.success){
+            loginLogs = res.data || [];
+            renderLoginLogs();
+            document.getElementById('statLoginCount').textContent = loginLogs.length;
+        }
+    }).catch(()=>{});
+}
+
+function renderLoginLogs(){
+    const el=document.getElementById('loginLogsBody');
+    if(!loginLogs.length){el.innerHTML='<tr><td colspan="5" class="px-4 py-6 text-center text-gray-400">暂无登录记录</td></tr>';return;}
+    const methodLabel={'feishu':'飞书登录','account':'账号密码'};
+    el.innerHTML=loginLogs.map(l=>`<tr class="border-b hover:bg-gray-50"><td class="px-4 py-3 whitespace-nowrap text-sm">${esc(l.time)}</td><td class="px-4 py-3 font-medium">${esc(l.name)}</td><td class="px-4 py-3 text-gray-500 font-mono text-xs">${esc(l.openId) || '-'}</td><td class="px-4 py-3"><span class="px-2 py-1 rounded-full text-xs ${l.method==='feishu'?'bg-blue-50 text-blue-600':'bg-gray-100 text-gray-600'}">${methodLabel[l.method]||esc(l.method)}</span></td><td class="px-4 py-3 text-gray-500 text-xs">${esc(l.ip) || '-'}</td></tr>`).join('');
+}
+
+// 点击遮罩关闭
+['newsModal','carouselModal','memberModal','changePwdModal','addAccountModal','editAccountModal'].forEach(id=>{
+    document.getElementById(id)?.addEventListener('click',(e)=>{if(e.target.id===id)closeModal(id)});
+});
+
+// ESC关闭
+document.addEventListener('keydown',(e)=>{if(e.key==='Escape')['newsModal','carouselModal','memberModal','changePwdModal','addAccountModal','editAccountModal'].forEach(id=>{if(!document.getElementById(id).classList.contains('hidden'))closeModal(id)})});
+</script>
+</body>
+</html>

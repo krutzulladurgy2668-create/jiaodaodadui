@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "photo": "album1.jpg",
+    "desc": "升旗仪式"
+  },
+  {
+    "id": 2,
+    "photo": "album2.jpg",
+    "desc": "野外拉练"
+  },
+  {
+    "id": 3,
+    "photo": "album3.jpg",
+    "desc": "授衔仪式"
+  },
+  {
+    "id": 4,
+    "photo": "album4.jpg",
+    "desc": "拓展训练"
+  },
+  {
+    "id": 5,
+    "photo": "album5.jpg",
+    "desc": "军事训练"
+  },
+  {
+    "id": 6,
+    "photo": "album6.jpg",
+    "desc": "队员合影"
+  },
+  {
+    "id": 7,
+    "photo": "album7.jpg",
+    "desc": "会议场景"
+  },
+  {
+    "id": 8,
+    "photo": "album8.jpg",
+    "desc": "雷锋纪念馆参观"
+  },
+  {
+    "id": 9,
+    "photo": "album9.jpg",
+    "desc": "教导杯篮球赛"
+  },
+  {
+    "id": 10,
+    "photo": "album10.jpg",
+    "desc": "体能训练"
+  },
+  {
+    "id": 11,
+    "photo": "album11.jpg",
+    "desc": "表彰大会"
+  },
+  {
+    "id": 12,
+    "photo": "album12.jpg",
+    "desc": "国防教育活动"
+  },
+  {
+    "id": 13,
+    "photo": "album13.jpg",
+    "desc": "校园执勤"
+  },
+  {
+    "id": 14,
+    "photo": "album14.jpg",
+    "desc": "文艺活动"
+  },
+  {
+    "id": 15,
+    "photo": "album15.jpg",
+    "desc": "骨干培训"
+  },
+  {
+    "id": 16,
+    "photo": "album16.jpg",
+    "desc": "内务整理"
+  },
+  {
+    "id": 17,
+    "photo": "album17.jpg",
+    "desc": "新队员入队"
+  },
+  {
+    "id": 18,
+    "photo": "album18.jpg",
+    "desc": "野外露营"
+  },
+  {
+    "id": 19,
+    "photo": "album19.jpg",
+    "desc": "战术训练"
+  },
+  {
+    "id": 20,
+    "photo": "album20.jpg",
+    "desc": "年度总结"
+  }
+]

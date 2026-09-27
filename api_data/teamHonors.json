@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "新生军训特别贡献奖",
+        "category": "年度评优表彰",
+        "image": "honor_team_1.jpg"
+    },
+    {
+        "id": 2,
+        "title": "高校军事技能竞赛优秀奖",
+        "category": "市级竞赛获奖",
+        "image": "honor_team_2.jpg"
+    },
+    {
+        "id": 3,
+        "title": "优秀学生组织",
+        "category": "校级荣誉称号",
+        "image": "honor_team_3.jpg"
+    },
+    {
+        "id": 4,
+        "title": "国防教育先进集体",
+        "category": "国防教育表彰",
+        "image": "honor_team_4.jpg"
+    },
+    {
+        "id": 5,
+        "title": "射击比赛团体第七名",
+        "category": "省级竞赛奖项",
+        "image": "honor_team_5.jpg"
+    },
+    {
+        "id": 6,
+        "title": "四会教练员集训优秀团队",
+        "category": "省级集训荣誉",
+        "image": "honor_team_6.jpg"
+    }
+]

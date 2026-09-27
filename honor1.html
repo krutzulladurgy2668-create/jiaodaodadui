@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>大队荣誉墙 - 学生志愿教导大队</title>
+    <meta name="description" content="学生志愿教导大队历年获得的集体荣誉与表彰。">
+    <meta name="author" content="学生志愿教导大队">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.jiaodao.fun/honor1.html">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/logo.jpg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.jiaodao.fun/honor1.html">
+    <meta property="og:title" content="大队荣誉墙 - 学生志愿教导大队">
+    <meta property="og:image" content="https://www.jiaodao.fun/logo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="大队荣誉墙 - 学生志愿教导大队">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+    <!-- 荣誉图片预加载 -->
+    <link rel="preload" href="/logo.jpg" as="image" fetchpriority="high">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pkured': '#8B0000',
+                        'pkured-dark': '#6B0000',
+                        'deepblue': '#1E3A8A',
+                        'golden': '#D4AF37',
+                        'cloud': '#F8F5F0',
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'SimSun', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: #fff; color: #333; line-height: 1.8; overflow-x: hidden; }
+
+        .card-hover { transition: all 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .card-hover:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 25px 50px rgba(139, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.08); }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 600ms; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        .nav-link { position: relative; transition: all 200ms; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 2px; background: #D4AF37; transition: all 300ms; transform: translateX(-50%); }
+        .nav-link:hover::after { width: 80%; }
+
+        .honor-card { transition: all 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; border-radius: 16px; }
+        .honor-card::before { content: ''; position: absolute; inset: -2px; border-radius: inherit; background: linear-gradient(135deg, #D4AF37, #8B0000, #D4AF37); opacity: 0; z-index: -1; transition: opacity 400ms ease; }
+        .honor-card:hover::before { opacity: 1; }
+        .honor-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2), 0 15px 30px rgba(0, 0, 0, 0.1); }
+
+        .honor-card-img { width: 100%; height: 240px; object-fit: cover; background: #f3f4f6; display: block; }
+
+        @media (max-width: 767px) {
+            .honor-card-img { height: 200px; }
+            .mobile-left-align { padding-left: 0; text-align: left; }
+        }
+
+        .stagger-item { opacity: 0; transform: translateY(25px); animation: staggerFadeIn 500ms ease forwards; }
+        @keyframes staggerFadeIn { to { opacity: 1; transform: translateY(0); } }
+
+        .section-title { position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -8px; left: 50%; width: 0; height: 3px; background: linear-gradient(90deg, #8B0000, #D4AF37); transition: all 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94); transform: translateX(-50%); border-radius: 2px; }
+        .section-title.visible::after, .section-title:hover::after { width: 100%; }
+
+        .mobile-menu { position: fixed; top: 0; right: 0; width: 75%; max-width: 280px; height: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15); transform: translateX(100%); transition: transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 1000; overflow-y: auto; }
+        .mobile-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 999; }
+        .mobile-menu-item { opacity: 0; transform: translateX(20px); transition: all 0.3s ease-out; }
+        #mobileMenu.menu-open .mobile-menu-item { opacity: 1; transform: translateX(0); }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(1) { transition-delay: 0.05s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(2) { transition-delay: 0.1s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(3) { transition-delay: 0.15s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(4) { transition-delay: 0.2s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(5) { transition-delay: 0.25s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(6) { transition-delay: 0.3s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(7) { transition-delay: 0.35s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(8) { transition-delay: 0.4s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(9) { transition-delay: 0.45s; }
+        #mobileMenu.menu-open .mobile-menu-item:nth-child(10) { transition-delay: 0.5s; }
+
+/* ========== 导航栏 - 与index.html完全一致 ========== */
+.nav-header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);transition:all .3s ease}
+.nav-header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
+.nav-link{position:relative;color:#374151;font-size:14px;font-weight:500;padding:4px 0;transition:color 200ms;white-space:nowrap}
+.nav-link:hover{color:#8B0000}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:50%;width:0;height:2px;background:#D4AF37;transition:all 300ms;transform:translateX(-50%)}
+.nav-link:hover::after{width:70%}
+.nav-link.active{color:#8B0000;font-weight:600}
+.nav-link.active::after{width:70%}
+.dropdown{position:relative}
+.dropdown-menu{position:absolute;top:100%;left:0;min-width:160px;background:#fff;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:all 250ms;padding:8px 0;z-index:60}
+.dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-menu a{display:block;padding:8px 20px;font-size:13px;color:#4b5563;transition:all 150ms}
+.dropdown-menu a:hover{background:#fef2f2;color:#8B0000}
+
+/* ========== 移动端菜单 - 与index.html一致 ========== */
+.mobile-menu{position:fixed;top:0;right:0;width:75%;max-width:300px;height:100%;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);box-shadow:-10px 0 40px rgba(0,0,0,.15);transform:translateX(100%);transition:transform 400ms cubic-bezier(.4,0,.2,1);z-index:70;overflow-y:auto}
+.mobile-menu.menu-open{transform:translateX(0)}
+.mobile-menu-item{opacity:0;transform:translateX(20px);transition:all 300ms ease}
+#mobileMenu.menu-open .mobile-menu-item{opacity:1;transform:translateX(0)}
+
+/* ========== 页脚社交图标 - 与index.html一致 ========== */
+.social-icon-wrapper{position:relative;display:inline-block}
+.social-icon-wrapper .qr-popup{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) scale(.9);background:#fff;border-radius:10px;padding:10px;box-shadow:0 8px 30px rgba(0,0,0,.18);opacity:0;visibility:hidden;transition:all 250ms;z-index:80;min-width:120px;pointer-events:none}
+.social-icon-wrapper .qr-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#fff}
+.social-icon-wrapper:hover .qr-popup{opacity:1;visibility:visible;transform:translateX(-50%) scale(1)}
+
+/* ========== body顶部留白（fixed导航栏） ========== */
+body{padding-top:64px}
+@media(min-width:768px){body{padding-top:72px}}
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- 强制同步预加载关键图片 -->
+    <div style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;">
+        <img src="/logo.jpg" alt="" onload="">
+        <img src="/honor_team_1.jpg" alt="" onload="">
+        <img src="/honor_team_2.jpg" alt="" onload="">
+        <img src="/honor_team_3.jpg" alt="" onload="">
+        <img src="/honor_team_4.jpg" alt="" onload="">
+        <img src="/honor_team_5.jpg" alt="" onload="">
+        <img src="/honor_team_6.jpg" alt="" onload="">
+    </div>
+
+    <!-- ==================== 导航栏 - 浮动在内容上方 ==================== -->
+    <header id="mainNav" class="nav-header">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-18">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="/logo.jpg" alt="学生志愿教导大队 Logo" class="w-9 h-9 md:w-11 md:h-11 rounded-full object-cover shadow-sm flex-shrink-0" loading="eager" fetchpriority="high" decoding="sync" onerror="this.style.display='none'">
+                    <div><h1 class="text-lg md:text-xl font-semibold text-gray-800 font-serif tracking-wide">学生志愿教导大队</h1></div>
+                </a>
+                <nav class="hidden lg:flex items-center gap-7">
+                    <a href="index.html" class="nav-link">首页</a>
+                    <a href="about.html" class="nav-link">大队简介</a>
+                    <a href="org.html" class="nav-link">组织架构</a>
+                    <a href="news.php" class="nav-link">通知公告</a>
+
+                    <div class="relative dropdown">
+                        <a class="nav-link">人员信息 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="current.html">第十五届干部</a>
+                            <a href="history.html">历任干部</a>
+                        </div>
+                    </div>
+
+                    <div class="relative dropdown">
+                        <a class="nav-link active">荣誉墙 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="honor2.html">个人荣誉墙</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a class="nav-link">训练活动 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="volunteer.html">志愿活动</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <a class="nav-link">服务中心 <i class="fas fa-chevron-down text-xs ml-0.5 opacity-60"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="regulations.html">规章制度</a>
+                            <a href="downloads.html">资料下载</a>
+                            <a href="faq.html">常见问题</a>
+                        </div>
+                    </div>
+                    <a href="join.html" class="nav-link">招贤纳士</a>
+                </nav>
+                <button id="menuToggle" class="lg:hidden w-9 h-9 flex items-center justify-center rounded hover:bg-gray-100 active:bg-gray-200 transition-colors duration-200" onclick="toggleMobileMenu()"><i class="fas fa-bars text-gray-700 text-base"></i></button>
+            </div>
+        </div>
+    </header>
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/25 z-[60] hidden opacity-0 transition-opacity duration-400" onclick="toggleMobileMenu()"></div>
+    <div id="mobileMenu" class="mobile-menu overflow-y-auto">
+        <div class="p-5 border-b border-gray-100"><div class="flex justify-between items-center mb-4"><h2 class="text-lg font-bold text-pkured font-serif">导航菜单</h2><button onclick="toggleMobileMenu()" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"><i class="fas fa-times text-gray-500"></i></button></div></div>
+        <nav class="p-3 space-y-0.5">
+            <a href="index.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">首页</a>
+            <a href="about.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">大队简介</a>
+            <a href="org.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">组织架构</a>
+            <a href="news.php" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">通知公告</a>
+
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">人员信息</p>
+                <a href="current.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">第十五届干部</a>
+                <a href="history.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">历任干部</a>
+            </div>
+
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">荣誉墙</p>
+                <a href="honor2.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">个人荣誉墙</a>
+            </div>
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">训练活动</p>
+                <a href="volunteer.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">志愿活动</a>
+            </div>
+            <div class="pt-2 pb-1">
+                <p class="px-4 text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">服务中心</p>
+                <a href="regulations.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">规章制度</a>
+                <a href="downloads.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">资料下载</a>
+                <a href="faq.html" class="block pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">常见问题</a>
+            </div>
+            <a href="join.html" class="block px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-pkured rounded-md transition-all mobile-menu-item">招贤纳士</a>
+        </nav>
+    </div>
+
+    <!-- ==================== 大队荣誉墙内容 ==================== -->
+    <main>
+        <!-- 荣誉展示区 -->
+        <section class="py-16 bg-cloud fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14">
+                    <h2 class="text-3xl md:text-4xl font-bold font-serif text-pkured section-title mb-4">集体荣誉</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-6">自2011年建队以来，教导大队在各类评比中屡获殊荣，展现了优秀的团队风貌</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 stagger-grid">
+                    <!-- 荣誉卡片 1 -->
+                    <div class="honor-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="/honor_team_1.jpg" alt="优秀学生组织" class="honor-card-img" loading="lazy" onerror="this.style.display='none'">
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-800">优秀学生组织</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">多次被评为校级优秀学生组织，在年度学生社团评比中名列前茅。</p>
+                        </div>
+                    </div>
+
+                    <!-- 荣誉卡片 2 -->
+                    <div class="honor-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="/honor_team_2.jpg" alt="军训工作先进集体" class="honor-card-img" loading="lazy" onerror="this.style.display='none'">
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-800">军训工作先进集体</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">连续多年获得学校军训工作先进集体称号，为新生军训工作做出突出贡献。</p>
+                        </div>
+                    </div>
+
+                    <!-- 荣誉卡片 3 -->
+                    <div class="honor-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="/honor_team_3.jpg" alt="志愿服务优秀团队" class="honor-card-img" loading="lazy" onerror="this.style.display='none'">
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-800">志愿服务优秀团队</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">积极参与校园及社会志愿服务活动，获评志愿服务优秀团队荣誉称号。</p>
+                        </div>
+                    </div>
+
+                    <!-- 荣誉卡片 4 -->
+                    <div class="honor-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="/honor_team_4.jpg" alt="文明寝室标兵" class="honor-card-img" loading="lazy" onerror="this.style.display='none'">
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-800">文明寝室标兵</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">大队成员所在寝室多次被评为文明寝室，展现优良作风和纪律意识。</p>
+                        </div>
+                    </div>
+
+                    <!-- 荣誉卡片 5 -->
+                    <div class="honor-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="/honor_team_5.jpg" alt="国防教育先进单位" class="honor-card-img" loading="lazy" onerror="this.style.display='none'">
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-800">国防教育先进单位</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">在学校国防教育工作中表现突出，被授予国防教育先进单位称号。</p>
+                        </div>
+                    </div>
+
+                    <!-- 荣誉卡片 6 -->
+                    <div class="honor-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <img src="/honor_team_6.jpg" alt="五四红旗团支部" class="honor-card-img" loading="lazy" onerror="this.style.display='none'">
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-800">五四红旗团支部</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">荣获校级五四红旗团支部称号，团员青年积极向上、奋发有为。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== 页脚 ==================== -->
+    <footer class="bg-gray-900 text-gray-300 py-12 md:py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="/logo.jpg" alt="Logo" class="w-11 h-11 rounded-lg object-cover" onerror="this.style.display='none'">
+                        <div><h3 class="text-lg font-bold font-serif text-white">学生志愿教导大队</h3></div>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed">明理严军 · 自强不息</p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 text-white uppercase tracking-wider">快速链接</h4>
+                    <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition-colors">首页</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">大队简介</a></li>
+                        <li><a href="org.html" class="hover:text-white transition-colors">组织架构</a></li>
+                        <li><a href="news.php" class="hover:text-white transition-colors">通知公告</a></li>
+                        <li><a href="volunteer.html" class="hover:text-white transition-colors">志愿活动</a></li>
+                        <li><a href="current.html" class="hover:text-white transition-colors">第十五届干部</a></li>
+                        <li><a href="history.html" class="hover:text-white transition-colors">历任干部</a></li>
+                        <li><a href="honor2.html" class="hover:text-white transition-colors">个人荣誉墙</a></li>
+                        <li><a href="regulations.html" class="hover:text-white transition-colors">规章制度</a></li>
+                        <li><a href="downloads.html" class="hover:text-white transition-colors">资料下载</a></li>
+                        <li><a href="faq.html" class="hover:text-white transition-colors">常见问题</a></li>
+                        <li><a href="join.html" class="hover:text-white transition-colors">招贤纳士</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 text-white uppercase tracking-wider">联系方式</h4>
+                    <div class="space-y-2.5 text-sm text-gray-400 mb-6">
+                        <p><strong class="text-gray-300">办公地址：</strong>湖南涉外经济学院南四栋1楼102室</p>
+                        <p><strong class="text-gray-300">工作时间：</strong>周一至周五 9:00-19:00</p>
+                    </div>
+                    <div class="flex items-center gap-5">
+                        <div class="social-icon-wrapper"><i class="fab fa-weixin text-lg text-gray-400 hover:text-white cursor-pointer transition-colors"></i><div class="qr-popup"><img src="/wechat-qr.jpg" alt="微信二维码" class="w-24 h-24 rounded mx-auto block" onerror="this.replaceWith(this.nextElementSibling||document.createElement('span'))"><p class="text-[10px] text-gray-500 mt-1.5">扫一扫关注公众号</p></div></div>
+                        <div class="social-icon-wrapper"><i class="fab fa-tiktok text-lg text-gray-400 hover:text-white cursor-pointer transition-colors"></i><div class="qr-popup"><img src="/douyin-qr.jpg" alt="抖音二维码" class="w-24 h-24 rounded mx-auto block" onerror="this.replaceWith(this.nextElementSibling||document.createElement('span'))"><p class="text-[10px] text-gray-500 mt-1.5">扫一扫关注官方抖音</p></div></div>
+                        <div class="social-icon-wrapper"><i class="fab fa-weibo text-lg text-gray-400 hover:text-white cursor-pointer transition-colors"></i><div class="qr-popup"><img src="/weibo-qr.jpg" alt="微博二维码" class="w-24 h-24 rounded mx-auto block" onerror="this.replaceWith(this.nextElementSibling||document.createElement('span'))"><p class="text-[10px] text-gray-500 mt-1.5">扫一扫关注官方微博</p></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500 space-y-2">
+                <p>学生志愿教导大队版权所有</p>
+                <p class="flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-1">
+                    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors cursor-pointer">蜀ICP备2026028492号-1</a>
+                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51012202002408" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors cursor-pointer inline-flex items-center gap-1"><img src="https://www.beian.gov.cn/img/ghs.png" alt="公安备案图标" class="w-4 h-4">川公网安备51012202002408号</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            if (menu.classList.contains('menu-open')) {
+                menu.style.transform = 'translateX(100%)';
+                overlay.style.opacity = '0';
+                setTimeout(() => { menu.classList.remove('menu-open'); overlay.classList.add('hidden'); }, 400);
+            } else {
+                overlay.classList.remove('hidden');
+                setTimeout(() => { overlay.style.opacity = '1'; menu.classList.add('menu-open'); menu.style.transform = 'translateX(0)'; }, 10);
+            }
+        }
+
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) e.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+            // Stagger动画
+            document.querySelectorAll('.stagger-grid').forEach(function(grid) {
+                var items = grid.querySelectorAll(':scope > div');
+                items.forEach(function(item, i) {
+                    item.classList.add('stagger-item');
+                    item.style.animationDelay = (i * 80) + 'ms';
+                });
+            });
+
+            var titles = document.querySelectorAll('.section-title');
+            var titleObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) e.target.classList.add('visible');
+                });
+            }, { threshold: 0.5 });
+            titles.forEach(function(t) { titleObs.observe(t); });
+        }
+
+        document.addEventListener('DOMContentLoaded', initScrollAnimations);
+
+        (function(){
+            var bp=document.createElement('script');
+            bp.src=(location.protocol==='https')?'https://zz.bdstatic.com/linksubmit/push.js':'http://push.zhanzhang.baidu.com/push.js';
+            var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);
+        })();
+        (function(){
+            if('serviceWorker' in navigator){
+                navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(()=>{}).catch(function(e){});
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "term": "第十四届",
+    "name": "全德君",
+    "post": "大队长",
+    "tenure": "2024-2025",
+    "photo": "history_01.jpg"
+  },
+  {
+    "id": 2,
+    "term": "第十四届",
+    "name": "廖奕琪",
+    "post": "教导员",
+    "tenure": "2024-2025",
+    "photo": "history_02.jpg"
+  },
+  {
+    "id": 3,
+    "term": "第十三届",
+    "name": "尹尚琦",
+    "post": "大队长",
+    "tenure": "2023-2024",
+    "photo": "history_03.jpg"
+  },
+  {
+    "id": 4,
+    "term": "第十三届",
+    "name": "张玉洁",
+    "post": "教导员",
+    "tenure": "2023-2024",
+    "photo": "history_04.jpg"
+  },
+  {
+    "id": 5,
+    "term": "第十二届",
+    "name": "李博诚",
+    "post": "大队长",
+    "tenure": "2022-2023",
+    "photo": "history_05.jpg"
+  },
+  {
+    "id": 6,
+    "term": "第十二届",
+    "name": "王硕",
+    "post": "教导员",
+    "tenure": "2022-2023",
+    "photo": "history_06.jpg"
+  },
+  {
+    "id": 7,
+    "term": "第十一届",
+    "name": "蒋斌",
+    "post": "大队长",
+    "tenure": "2021-2022",
+    "photo": "history_07.jpg"
+  },
+  {
+    "id": 8,
+    "term": "第十一届",
+    "name": "刘明璇",
+    "post": "教导员",
+    "tenure": "2021-2022",
+    "photo": "history_08.jpg"
+  },
+  {
+    "id": 9,
+    "term": "第十届",
+    "name": "汪小宁",
+    "post": "大队长",
+    "tenure": "2020-2021",
+    "photo": "history_09.jpg"
+  },
+  {
+    "id": 10,
+    "term": "第十届",
+    "name": "陈文瑾",
+    "post": "教导员",
+    "tenure": "2020-2021",
+    "photo": "history_10.jpg"
+  }
+]

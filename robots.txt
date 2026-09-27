@@ -1,0 +1,23 @@
+# 湖南涉外经济学院学生志愿教导大队 - robots.txt
+# 网站地图位置
+Sitemap: https://www.jiaodao.fun/sitemap.xml
+
+# 允许所有主流搜索引擎爬虫
+User-agent: *
+Allow: /
+
+# 禁止抓取管理后台和敏感文件
+Disallow: /admin.html
+Disallow: /backend/
+Disallow: /node_modules/
+Disallow: /news_data.json
+Disallow: /package*.json
+Disallow: /*.ps1
+Disallow: /*.js
+
+# 特别允许的图片和资源
+Allow: /logo.jpg
+Allow: /*.css
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.ico

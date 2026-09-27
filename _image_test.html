@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片诊断工具</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: 0 auto; }
+        .test-item { padding: 12px; margin: 8px 0; border-radius: 8px; display: flex; align-items: center; gap: 15px; }
+        .ok { background: #d4edda; border: 1px solid #c3e6cb; }
+        .fail { background: #f8d7da; border: 1px solid #f5c6cb; }
+        .status { font-weight: bold; min-width: 80px; }
+        .url { flex: 1; font-family: monospace; font-size: 14px; }
+        .detail { color: #666; font-size: 13px; }
+        h1 { color: #333; }
+        .summary { padding: 15px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>图片加载诊断工具</h1>
+    <div class="summary" id="summary">正在测试...</div>
+    <div id="results"></div>
+
+    <script>
+        var images = [
+            { name: 'Logo', url: '/logo.jpg' },
+            { name: '轮播图1', url: '/slide1.jpg' },
+            { name: '轮播图2', url: '/slide2.jpg' },
+            { name: '轮播图3', url: '/slide3.jpg' },
+            { name: '轮播图5', url: '/slide5.jpg' },
+            { name: '现任领导-徐京都', url: '/leader1.jpg' },
+            { name: '现任领导-夏建平', url: '/leader2.jpg' },
+            { name: '组织架构图', url: '/org.jpg' },
+            { name: '第十五届-何俊杰', url: '/member1.jpg' },
+            { name: '第十五届-张钰', url: '/member2.jpg' },
+            { name: '第十五届-陈启蕊', url: '/member3.jpg' },
+            { name: '第十五届-郑佳旺', url: '/member4.jpg' },
+            { name: '综合办公室-欧家', url: '/office1.jpg' },
+            { name: '综合办公室-潘妍妍', url: '/office2.jpg' },
+            { name: '中队长-刘仕鹏', url: '/captain1.jpg' },
+            { name: '历任干部-全德君', url: '/history_01.jpg' },
+            { name: '历任干部-廖奕琪', url: '/history_02.jpg' },
+            { name: '大队荣誉墙-1', url: '/honor_team_1.jpg' },
+        ];
+
+        var resultsEl = document.getElementById('results');
+        var summaryEl = document.getElementById('summary');
+        var passCount = 0;
+        var failCount = 0;
+        var total = images.length;
+        var done = 0;
+
+        images.forEach(function(img) {
+            var div = document.createElement('div');
+            div.className = 'test-item';
+            div.innerHTML = '<span class="status">测试中...</span><span class="url">' + img.url + '</span><span class="detail">' + img.name + '</span>';
+            resultsEl.appendChild(div);
+
+            fetch(img.url, { method: 'HEAD' })
+                .then(function(res) {
+                    done++;
+                    if (res.ok) {
+                        passCount++;
+                        div.className = 'test-item ok';
+                        div.querySelector('.status').textContent = '正常';
+                        div.querySelector('.detail').textContent = img.name + ' (' + res.headers.get('Content-Type') + ', ' + (parseInt(res.headers.get('Content-Length'), 10) / 1024).toFixed(1) + 'KB)';
+                    } else {
+                        failCount++;
+                        div.className = 'test-item fail';
+                        div.querySelector('.status').textContent = '失败(' + res.status + ')';
+                        div.querySelector('.detail').textContent = img.name + ' - HTTP ' + res.status + ' ' + res.statusText;
+                    }
+                    updateSummary();
+                })
+                .catch(function(err) {
+                    done++;
+                    failCount++;
+                    div.className = 'test-item fail';
+                    div.querySelector('.status').textContent = '错误';
+                    div.querySelector('.detail').textContent = img.name + ' - ' + err.message;
+                    updateSummary();
+                });
+        });
+
+        function updateSummary() {
+            if (done === total) {
+                if (failCount === 0) {
+                    summaryEl.innerHTML = '<strong>全部通过！</strong>' + total + '张图片全部可以正常访问。如果网页仍不显示，请清除浏览器缓存（Ctrl+Shift+Delete）后重试。';
+                    summaryEl.style.background = '#d4edda';
+                    summaryEl.style.borderColor = '#c3e6cb';
+                } else {
+                    summaryEl.innerHTML = '<strong>发现问题！</strong>' + failCount + '/' + total + '张图片无法加载。请检查：<br>1. 图片文件是否已上传到网站根目录<br>2. 文件名是否完全匹配（区分大小写）<br>3. 文件权限是否正确（需要644）<br>4. 联系服务器管理员检查Apache/Nginx配置';
+                    summaryEl.style.background = '#f8d7da';
+                    summaryEl.style.borderColor = '#f5c6cb';
+                }
+            } else {
+                summaryEl.textContent = '正在测试... (' + done + '/' + total + ')';
+            }
+        }
+    </script>
+</body>
+</html>

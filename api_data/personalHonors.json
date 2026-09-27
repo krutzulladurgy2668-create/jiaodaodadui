@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "姓名1",
+        "squad": "XX中队",
+        "photo": "excellent_1.jpg"
+    },
+    {
+        "id": 2,
+        "name": "姓名2",
+        "squad": "XX中队",
+        "photo": "excellent_2.jpg"
+    },
+    {
+        "id": 3,
+        "name": "姓名3",
+        "squad": "XX中队",
+        "photo": "excellent_3.jpg"
+    },
+    {
+        "id": 4,
+        "name": "姓名4",
+        "squad": "XX中队",
+        "photo": "excellent_4.jpg"
+    },
+    {
+        "id": 5,
+        "name": "姓名5",
+        "squad": "XX中队",
+        "photo": "excellent_5.jpg"
+    },
+    {
+        "id": 6,
+        "name": "姓名6",
+        "squad": "XX中队",
+        "photo": "excellent_6.jpg"
+    },
+    {
+        "id": 7,
+        "name": "姓名7",
+        "squad": "XX中队",
+        "photo": "excellent_7.jpg"
+    },
+    {
+        "id": 8,
+        "name": "姓名8",
+        "squad": "XX中队",
+        "photo": "excellent_8.jpg"
+    },
+    {
+        "id": 9,
+        "name": "姓名9",
+        "squad": "XX中队",
+        "photo": "excellent_9.jpg"
+    },
+    {
+        "id": 10,
+        "name": "姓名10",
+        "squad": "XX中队",
+        "photo": "excellent_10.jpg"
+    },
+    {
+        "id": 11,
+        "name": "姓名11",
+        "squad": "XX中队",
+        "photo": "excellent_11.jpg"
+    },
+    {
+        "id": 12,
+        "name": "姓名12",
+        "squad": "XX中队",
+        "photo": "excellent_12.jpg"
+    }
+]

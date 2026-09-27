@@ -1,0 +1,17 @@
+{
+  "name": "jiaodao-admin-backend",
+  "version": "1.0.0",
+  "description": "学生志愿教导大队管理后台API服务",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "keywords": ["jiaodao", "admin", "api"],
+  "author": "学生志愿教导大队",
+  "license": "MIT"
+}
