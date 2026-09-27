@@ -1760,7 +1760,7 @@ function mergeNewsData(localNews, serverNews) {
 // 从服务器同步最新数据到本地
 function syncFromServer() {
     // ========== 新闻数据：通过高可靠接口读取并智能合并 ==========
-    fetch('/api/save_news.php', {
+    fetch('/api/save_news.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ mode: 'read', _t: Date.now() })
@@ -2099,7 +2099,7 @@ function syncToServer(storageKey, data, retryCount) {
             }
         };
 
-        fetch('/api/save_news.php', {
+        fetch('/api/save_news.html', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -2214,7 +2214,7 @@ function syncNewsChangeToServer(mode, payloadData, retryCount) {
         method: sessionStorage.getItem('loginMethod') || ''
     };
 
-    fetch('/api/save_news.php', {
+    fetch('/api/save_news.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
